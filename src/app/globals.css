@@ -1,0 +1,286 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ============================================================
+ * React Flow Connection Handles (Plan 01-02)
+ * Subtly visible at rest so users can discover them, fully visible
+ * on hover, selection, and during connection drag.
+ * Handles sit on the node border; enlarged hit area for easy grabbing.
+ * ============================================================ */
+
+.react-flow__handle {
+  opacity: 0;
+  width: 14px;
+  height: 14px;
+  background: transparent;
+  border: none;
+  border-radius: 50%;
+}
+
+/* Invisible hit area around each handle for easier grabbing */
+.react-flow__handle::after {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  right: -8px;
+  bottom: -8px;
+  border-radius: 50%;
+}
+
+/* ============================================================
+ * Edge reconnection grab indicators
+ * When hovering near an edge endpoint, show a reconnection anchor.
+ * ============================================================ */
+
+.react-flow__edgeupdater {
+  fill: transparent;
+  stroke: none;
+  cursor: move;
+  r: 10;
+  transition: fill 0.15s, stroke 0.15s;
+}
+
+.react-flow__edge:hover .react-flow__edgeupdater {
+  fill: #3B82F6;
+  stroke: white;
+  stroke-width: 1.5;
+}
+
+.react-flow__edge.selected .react-flow__edgeupdater {
+  fill: #3B82F6;
+  stroke: white;
+  stroke-width: 1.5;
+}
+
+/* Increase edge interaction zone for easier selection & reconnection */
+.react-flow__edge-interaction {
+  stroke-width: 20;
+}
+
+/* ============================================================
+ * Entity Node Shape Styles (Plan 01-03)
+ * Visual shape distinctions for the 6 entity categories.
+ * ============================================================ */
+
+.entity-node {
+  position: relative;
+  padding: 12px 16px;
+  background: white;
+  border: 1px solid;
+  font-family: inherit;
+  min-width: 180px;
+  min-height: 70px;
+  cursor: grab;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+
+/* Companies (Pty Ltd) - sharp rectangle */
+.entity-node--rectangle {
+  border-radius: 4px;
+}
+
+/* Trusts (unit, discretionary, hybrid, MIT) - rounded pill */
+.entity-node--rounded {
+  border-radius: 16px;
+  padding: 12px 24px;
+}
+
+/* Partnerships (general, limited) - diamond via clip-path */
+.entity-node--diamond {
+  border-radius: 4px;
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+  min-width: 200px;
+  min-height: 140px;
+  padding: 34px 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+/* Venture Capital (VCLP, ESVCLP) - hexagon via clip-path */
+.entity-node--hexagon {
+  clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+  min-width: 220px;
+  min-height: 110px;
+  padding: 18px 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+/* Individuals - rounded top (person silhouette shape) */
+.entity-node--person {
+  border-radius: 50% 50% 8px 8px;
+  min-width: 140px;
+  padding: 18px 16px 12px;
+}
+
+/* SMSF - shield shape via clip-path */
+.entity-node--shield {
+  clip-path: polygon(50% 0%, 100% 15%, 100% 65%, 50% 100%, 0% 65%, 0% 15%);
+  min-width: 200px;
+  min-height: 130px;
+  padding: 28px 36px 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+/* Triangle (trusts, partnerships, VC, SMSF) - upward-pointing triangle */
+.entity-node--triangle {
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  min-width: 220px;
+  min-height: 140px;
+  padding: 52px 32px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+/* Oval (individuals) - ellipse shape */
+.entity-node--oval {
+  border-radius: 50%;
+  min-width: 200px;
+  min-height: 110px;
+  padding: 24px 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+/* ============================================================
+ * Palette Sidebar Styles (Plan 02-01)
+ * Drag cursor states for palette items.
+ * ============================================================ */
+
+.palette-item {
+  cursor: grab;
+}
+
+.palette-item:active {
+  cursor: grabbing;
+}
+
+/* ============================================================
+ * Edge Drag Handle (curvature adjustment)
+ * Cursor states for the draggable midpoint handle on edges.
+ * ============================================================ */
+
+.edge-drag-handle {
+  cursor: grab;
+}
+
+.edge-drag-handle.dragging {
+  cursor: grabbing;
+}
+
+/* ============================================================
+ * Canvas Cursor Feedback (interaction mode)
+ * Changes cursor depending on drag vs select mode.
+ * ============================================================ */
+
+.canvas-mode-drag .react-flow__pane {
+  cursor: grab;
+}
+
+.canvas-mode-drag .react-flow__pane:active {
+  cursor: grabbing;
+}
+
+.canvas-mode-select .react-flow__pane {
+  cursor: crosshair;
+}
+
+/* ============================================================
+ * Entity Node Hover States
+ * Subtle elevation & shadow change on hover for discoverability.
+ * ============================================================ */
+
+.entity-node {
+  transition: box-shadow 0.15s ease, filter 0.15s ease;
+}
+
+.entity-node:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+/* Clip-path shapes can't use box-shadow -- use brighter drop-shadow on hover */
+.entity-node--triangle:hover,
+.entity-node--diamond:hover,
+.entity-node--hexagon:hover,
+.entity-node--shield:hover {
+  box-shadow: none;
+  filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.2));
+}
+
+/* ============================================================
+ * Minimap Styles
+ * Compact minimap in the bottom-left corner of the canvas.
+ * ============================================================ */
+
+.react-flow__minimap {
+  border-radius: 8px !important;
+  border: 1px solid #e5e7eb !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08) !important;
+}
+
+/* ============================================================
+ * Dark Mode
+ * Applied via .dark class on the root layout wrapper.
+ * ============================================================ */
+
+.dark .entity-node {
+  background: #1f2937 !important;
+  color: #f3f4f6;
+}
+
+.dark .entity-node .font-semibold {
+  color: #f3f4f6;
+}
+
+.dark .entity-node .text-gray-500 {
+  color: #9ca3af;
+}
+
+.dark .entity-node .text-gray-400 {
+  color: #6b7280;
+}
+
+.dark .react-flow__minimap {
+  background: #1f2937 !important;
+  border-color: #374151 !important;
+}
+
+.dark .react-flow__controls button {
+  background: #1f2937;
+  color: #d1d5db;
+  border-color: #374151;
+}
+
+.dark .react-flow__controls button:hover {
+  background: #374151;
+}
