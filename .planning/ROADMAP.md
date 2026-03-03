@@ -207,10 +207,10 @@ Plans:
   2. `useLongPress` hook fires a callback after 500ms hold and cancels on finger movement
   3. `BottomSheet` component renders at three snap points (collapsed, half, full) with touch drag-to-dismiss
   4. Zustand `ui-store` contains `isMobilePaletteOpen`, `isMobilePropertiesOpen`, `mobileTool`, and `pendingConnectionSource` fields with correct initial values
-**Plans**: TBD
+**Plans**: 1 plan
 
 Plans:
-- [ ] 10-01: Device detection hook, long-press hook, BottomSheet primitive, and mobile Zustand state
+- [ ] 10-01-PLAN.md -- Device detection hook, long-press hook, BottomSheet component, and mobile Zustand state
 
 ### Phase 11: Responsive Layout Shell
 **Goal**: Users can access the editor on any screen size — the mobile gate is removed, phones see a full-screen canvas ready for overlay panels, tablets see a two-column layout, and the desktop three-column layout is completely unchanged
