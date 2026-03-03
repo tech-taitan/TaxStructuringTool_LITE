@@ -13,6 +13,7 @@ import { useRouter } from 'next/navigation';
 import EditorLayout from '@/components/editor/EditorLayout';
 import { useGraphStore } from '@/stores/graph-store';
 import { loadStructure, saveStructure } from '@/lib/local-storage-db';
+import { generateThumbnail } from '@/lib/thumbnail';
 import { useAutoSave } from '@/hooks/useAutoSave';
 
 export default function SavedEditorPage({
@@ -48,7 +49,8 @@ export default function SavedEditorPage({
         setIsSaving(true);
         try {
             const snapshot = useGraphStore.getState().getSnapshot();
-            saveStructure(id, structureName, snapshot, null);
+            const thumbnail = await generateThumbnail(snapshot.nodes);
+            saveStructure(id, structureName, snapshot, thumbnail);
             saveNow();
         } catch {
             // Save failed -- non-critical

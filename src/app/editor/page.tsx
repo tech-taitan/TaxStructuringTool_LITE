@@ -15,6 +15,7 @@ import { useRouter } from 'next/navigation';
 import EditorLayout from '@/components/editor/EditorLayout';
 import { useGraphStore } from '@/stores/graph-store';
 import { saveStructure } from '@/lib/local-storage-db';
+import { generateThumbnail } from '@/lib/thumbnail';
 import { clearLocalBackup } from '@/hooks/useLocalBackup';
 
 export default function EditorPage() {
@@ -29,7 +30,8 @@ export default function EditorPage() {
         ? `${snapshot.nodes[0].data.name} Structure`
         : 'Untitled Structure';
 
-      const newId = saveStructure(null, name, snapshot, null);
+      const thumbnail = await generateThumbnail(snapshot.nodes);
+      const newId = saveStructure(null, name, snapshot, thumbnail);
 
       // Clear the anonymous draft since we've saved
       clearLocalBackup();
