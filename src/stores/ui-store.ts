@@ -29,6 +29,9 @@ export type RightPanelMode = 'properties' | 'history';
 /** Canvas interaction mode: drag (pan) or select (marquee) */
 export type InteractionMode = 'drag' | 'select';
 
+/** Mobile tool mode for touch canvas interactions */
+export type MobileTool = 'select' | 'pan' | 'connect';
+
 /** Connection filter mode */
 type FilterMode = 'all' | 'toggle' | 'highlight';
 
@@ -75,6 +78,24 @@ interface UIState {
 
   /** Whether dark mode is active */
   darkMode: boolean;
+
+  /** Whether the mobile entity palette bottom sheet is open */
+  isMobilePaletteOpen: boolean;
+  /** Whether the mobile properties bottom sheet is open */
+  isMobilePropertiesOpen: boolean;
+  /** Active mobile tool mode, null = default behavior */
+  mobileTool: MobileTool | null;
+  /** Node ID of pending connection source in tap-to-connect flow, null when not connecting */
+  pendingConnectionSource: string | null;
+
+  /** Set mobile palette open state */
+  setMobilePaletteOpen: (open: boolean) => void;
+  /** Set mobile properties open state */
+  setMobilePropertiesOpen: (open: boolean) => void;
+  /** Set active mobile tool */
+  setMobileTool: (tool: MobileTool | null) => void;
+  /** Set pending connection source node ID */
+  setPendingConnectionSource: (nodeId: string | null) => void;
 
   /** Set the selected node (null to deselect). Non-null switches to properties view. */
   setSelectedNode: (id: string | null) => void;
@@ -137,6 +158,16 @@ export const useUIStore = create<UIState>()((set) => ({
   showLegend: true,
   interactionMode: 'drag',
   darkMode: false,
+
+  isMobilePaletteOpen: false,
+  isMobilePropertiesOpen: false,
+  mobileTool: null,
+  pendingConnectionSource: null,
+
+  setMobilePaletteOpen: (open) => set({ isMobilePaletteOpen: open }),
+  setMobilePropertiesOpen: (open) => set({ isMobilePropertiesOpen: open }),
+  setMobileTool: (tool) => set({ mobileTool: tool }),
+  setPendingConnectionSource: (nodeId) => set({ pendingConnectionSource: nodeId }),
 
   setSelectedNode: (id) => set(id ? { selectedNodeId: id, rightPanelMode: 'properties' } : { selectedNodeId: id }),
   setSelectedEdge: (id) => set(id ? { selectedEdgeId: id, rightPanelMode: 'properties' } : { selectedEdgeId: id }),
