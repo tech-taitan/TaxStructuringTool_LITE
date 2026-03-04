@@ -40,7 +40,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] **Phase 10: Mobile Foundation** - Reusable hooks, BottomSheet primitive, and Zustand mobile state — no visible UI
 - [x] **Phase 11: Responsive Layout Shell** - Remove mobile gate, full-screen canvas on phone, tablet layout, React Flow touch props
-- [ ] **Phase 12: Mobile Entity Creation** - FAB, bottom sheet palette, tap-to-add entity placement
+- [x] **Phase 12: Mobile Entity Creation** - FAB, bottom sheet palette, tap-to-add entity placement
 - [ ] **Phase 13: Mobile Properties Editing** - Properties bottom sheet, connection properties sheet, long-press context menu
 - [ ] **Phase 14: Mobile Connection Drawing** - Connect mode toolbar toggle, tap-source-then-target flow, enlarged handles
 - [ ] **Phase 15: Hover Audit and Toolbar Completion** - 74 hover interactions remediated, mobile toolbar with overflow menu, tablet MiniMap
@@ -240,7 +240,7 @@ Plans:
 **Plans**: 1 plan
 
 Plans:
-- [ ] 12-01-PLAN.md -- Extract shared palette data, MobilePalette component, tap-to-add placement with grid snap and overlap avoidance, scale-in animation
+- [x] 12-01-PLAN.md -- Extract shared palette data, MobilePalette component, tap-to-add placement with grid snap and overlap avoidance, scale-in animation
 
 ### Phase 13: Mobile Properties Editing
 **Goal**: Users on mobile can view and edit entity properties, connection properties, and trigger node actions — tapping a selected entity opens a properties bottom sheet, tapping a connection opens its properties, and long-pressing an entity reveals a context action menu for delete, copy, connect, and properties
@@ -320,7 +320,7 @@ Note: Phase 10 before all v1.1 phases (primitives). Phase 11 before 12-16 (layou
 | 9. Entity Customization | Deferred | 0/1 | Deferred | - |
 | 10. Mobile Foundation | v1.1 | 1/1 | Complete | 2026-03-04 |
 | 11. Responsive Layout Shell | v1.1 | 2/2 | Complete | 2026-03-04 |
-| 12. Mobile Entity Creation | v1.1 | 0/1 | Planned | - |
+| 12. Mobile Entity Creation | v1.1 | 1/1 | Complete | 2026-03-04 |
 | 13. Mobile Properties Editing | v1.1 | 0/2 | Not started | - |
 | 14. Mobile Connection Drawing | v1.1 | 0/1 | Not started | - |
 | 15. Hover Audit and Toolbar Completion | v1.1 | 0/2 | Not started | - |

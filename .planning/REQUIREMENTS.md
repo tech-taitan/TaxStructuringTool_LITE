@@ -84,10 +84,10 @@ Requirements for mobile responsive editing. Each maps to roadmap phases 10-16.
 
 ### Mobile Entity Creation
 
-- [ ] **MENT-01**: User can open an entity palette via a floating action button on mobile
-- [ ] **MENT-02**: User can browse categorized entity types in a bottom sheet palette
-- [ ] **MENT-03**: User can tap an entity type to place it at the viewport center
-- [ ] **MENT-04**: User sees placed entities snapped to grid with smart overlap avoidance
+- [x] **MENT-01**: User can open an entity palette via a floating action button on mobile
+- [x] **MENT-02**: User can browse categorized entity types in a bottom sheet palette
+- [x] **MENT-03**: User can tap an entity type to place it at the viewport center
+- [x] **MENT-04**: User sees placed entities snapped to grid with smart overlap avoidance
 
 ### Mobile Properties
 
@@ -198,10 +198,10 @@ Which phases cover which requirements. Updated during roadmap creation.
 | TOUCH-03 | Phase 11 | Pending |
 | TOUCH-04 | Phase 11 | Pending |
 | TOUCH-05 | Phase 11 | Pending |
-| MENT-01 | Phase 12 | Pending |
-| MENT-02 | Phase 12 | Pending |
-| MENT-03 | Phase 12 | Pending |
-| MENT-04 | Phase 12 | Pending |
+| MENT-01 | Phase 12 | Done |
+| MENT-02 | Phase 12 | Done |
+| MENT-03 | Phase 12 | Done |
+| MENT-04 | Phase 12 | Done |
 | MPROP-01 | Phase 13 | Pending |
 | MPROP-02 | Phase 13 | Pending |
 | MPROP-03 | Phase 13 | Pending |
