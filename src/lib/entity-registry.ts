@@ -9,6 +9,23 @@
 import type { EntityTypeConfig, EntityCategory } from '@/models/entities';
 import { COLORS } from './constants';
 
+/** Category configuration for the palette (shared between desktop and mobile) */
+export interface CategoryConfig {
+  category: EntityCategory;
+  label: string;
+  iconName: string;
+}
+
+/** Ordered list of entity categories for palette rendering */
+export const CATEGORY_CONFIG: CategoryConfig[] = [
+  { category: 'company', label: 'Companies', iconName: 'building-2' },
+  { category: 'trust', label: 'Trusts', iconName: 'shield' },
+  { category: 'partnership', label: 'Partnerships', iconName: 'handshake' },
+  { category: 'vc', label: 'Venture Capital', iconName: 'trending-up' },
+  { category: 'individual', label: 'Individuals', iconName: 'user' },
+  { category: 'smsf', label: 'Super Funds', iconName: 'shield-check' },
+];
+
 /** Registry of all entity type configurations, keyed by entity type ID */
 export const ENTITY_REGISTRY: Record<string, EntityTypeConfig> = {
   'au-pty-ltd': {

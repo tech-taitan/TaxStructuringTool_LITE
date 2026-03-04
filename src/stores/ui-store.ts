@@ -87,6 +87,8 @@ interface UIState {
   mobileTool: MobileTool | null;
   /** Node ID of pending connection source in tap-to-connect flow, null when not connecting */
   pendingConnectionSource: string | null;
+  /** ID of the most recently placed node (for scale-in animation), null when cleared */
+  lastPlacedNodeId: string | null;
 
   /** Set mobile palette open state */
   setMobilePaletteOpen: (open: boolean) => void;
@@ -96,6 +98,8 @@ interface UIState {
   setMobileTool: (tool: MobileTool | null) => void;
   /** Set pending connection source node ID */
   setPendingConnectionSource: (nodeId: string | null) => void;
+  /** Set last placed node ID (for scale-in animation tracking) */
+  setLastPlacedNodeId: (id: string | null) => void;
 
   /** Set the selected node (null to deselect). Non-null switches to properties view. */
   setSelectedNode: (id: string | null) => void;
@@ -163,11 +167,13 @@ export const useUIStore = create<UIState>()((set) => ({
   isMobilePropertiesOpen: false,
   mobileTool: null,
   pendingConnectionSource: null,
+  lastPlacedNodeId: null,
 
   setMobilePaletteOpen: (open) => set({ isMobilePaletteOpen: open }),
   setMobilePropertiesOpen: (open) => set({ isMobilePropertiesOpen: open }),
   setMobileTool: (tool) => set({ mobileTool: tool }),
   setPendingConnectionSource: (nodeId) => set({ pendingConnectionSource: nodeId }),
+  setLastPlacedNodeId: (id) => set({ lastPlacedNodeId: id }),
 
   setSelectedNode: (id) => set(id ? { selectedNodeId: id, rightPanelMode: 'properties' } : { selectedNodeId: id }),
   setSelectedEdge: (id) => set(id ? { selectedEdgeId: id, rightPanelMode: 'properties' } : { selectedEdgeId: id }),

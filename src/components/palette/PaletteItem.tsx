@@ -9,33 +9,7 @@
  */
 
 import type { EntityTypeConfig } from '@/models/entities';
-import {
-  Building2,
-  Shield,
-  ShieldCheck,
-  ShieldHalf,
-  Landmark,
-  Handshake,
-  FileSignature,
-  TrendingUp,
-  Rocket,
-  User,
-  type LucideIcon,
-} from 'lucide-react';
-
-/** Map icon name strings from entity registry to lucide components */
-const PALETTE_ICONS: Record<string, LucideIcon> = {
-  'building-2': Building2,
-  'shield': Shield,
-  'shield-check': ShieldCheck,
-  'shield-half': ShieldHalf,
-  'landmark': Landmark,
-  'handshake': Handshake,
-  'file-signature': FileSignature,
-  'trending-up': TrendingUp,
-  'rocket': Rocket,
-  'user': User,
-};
+import { PALETTE_ICONS } from '@/lib/palette-icons';
 
 interface PaletteItemProps {
   config: EntityTypeConfig;

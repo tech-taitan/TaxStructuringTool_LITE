@@ -14,35 +14,15 @@
 
 import { useState, useEffect, useMemo } from 'react';
 import {
-  Building2,
-  Shield,
-  Handshake,
-  TrendingUp,
-  User,
-  ShieldCheck,
   PanelLeftClose,
   PanelLeft,
 } from 'lucide-react';
 import { useUIStore } from '@/stores/ui-store';
-import { getEntitiesByCategory } from '@/lib/entity-registry';
+import { getEntitiesByCategory, CATEGORY_CONFIG } from '@/lib/entity-registry';
 import { ENTITY_REGISTRY } from '@/lib/entity-registry';
-import type { EntityCategory } from '@/models/entities';
+import { PALETTE_ICONS } from '@/lib/palette-icons';
 import PaletteSearch from './PaletteSearch';
 import PaletteCategory from './PaletteCategory';
-
-/** Category configuration for the palette */
-const CATEGORY_CONFIG: {
-  category: EntityCategory;
-  label: string;
-  icon: React.ReactNode;
-}[] = [
-  { category: 'company', label: 'Companies', icon: <Building2 className="w-4 h-4" /> },
-  { category: 'trust', label: 'Trusts', icon: <Shield className="w-4 h-4" /> },
-  { category: 'partnership', label: 'Partnerships', icon: <Handshake className="w-4 h-4" /> },
-  { category: 'vc', label: 'Venture Capital', icon: <TrendingUp className="w-4 h-4" /> },
-  { category: 'individual', label: 'Individuals', icon: <User className="w-4 h-4" /> },
-  { category: 'smsf', label: 'Super Funds', icon: <ShieldCheck className="w-4 h-4" /> },
-];
 
 /** Pre-rendered ghost preview elements for setDragImage (must be in DOM ahead of time) */
 function GhostPreviews() {
@@ -129,13 +109,15 @@ export default function EntityPalette() {
       {isPaletteCollapsed ? (
         /* Collapsed mode: narrow icon strip with tooltips */
         <div className="flex flex-col items-center gap-1 py-2 overflow-y-auto">
-          {CATEGORY_CONFIG.map((cat) => (
+          {CATEGORY_CONFIG.map((cat) => {
+            const CatIcon = PALETTE_ICONS[cat.iconName];
+            return (
             <div
               key={cat.category}
               className="relative group p-2 rounded-md hover:bg-gray-100 cursor-default text-gray-500"
               title={cat.label}
             >
-              {cat.icon}
+              {CatIcon && <CatIcon className="w-4 h-4" />}
               {/* Tooltip on hover */}
               <div className="absolute left-full ml-2 top-1/2 -translate-y-1/2 z-50 hidden group-hover:block">
                 <div className="bg-white border border-gray-200 shadow-md rounded-md px-3 py-1.5 text-sm text-gray-700 whitespace-nowrap">
@@ -143,22 +125,26 @@ export default function EntityPalette() {
                 </div>
               </div>
             </div>
-          ))}
+            );
+          })}
         </div>
       ) : (
         /* Expanded mode: search + categories */
         <>
           <PaletteSearch value={paletteSearchQuery} onChange={setPaletteSearch} />
           <div className="flex-1 overflow-y-auto">
-            {categoriesWithItems.map((cat) => (
-              <PaletteCategory
-                key={cat.category}
-                label={cat.label}
-                icon={cat.icon}
-                items={cat.items}
-                defaultOpen={false}
-              />
-            ))}
+            {categoriesWithItems.map((cat) => {
+              const CatIcon = PALETTE_ICONS[cat.iconName];
+              return (
+                <PaletteCategory
+                  key={cat.category}
+                  label={cat.label}
+                  icon={CatIcon ? <CatIcon className="w-4 h-4" /> : null}
+                  items={cat.items}
+                  defaultOpen={false}
+                />
+              );
+            })}
             {/* Show message when search has no results */}
             {debouncedQuery &&
               categoriesWithItems.every((cat) => cat.items.length === 0) && (

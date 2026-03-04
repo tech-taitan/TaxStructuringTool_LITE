@@ -249,15 +249,17 @@ export function BottomSheet({
         style={{
           transform: `translateY(${percentToPx(SNAP_PERCENTS.collapsed)}px)`,
           height: '100dvh',
-          touchAction: 'none',
         }}
-        onTouchStart={handleTouchStart}
-        onTouchMove={handleTouchMove}
-        onTouchEnd={handleTouchEnd}
-        onTouchCancel={handleTouchEnd}
       >
         {/* Drag handle */}
-        <div className="flex justify-center pt-3 pb-2">
+        <div
+          className="flex justify-center pt-3 pb-4"
+          style={{ touchAction: 'none' }}
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+          onTouchCancel={handleTouchEnd}
+        >
           <div className="w-8 h-1 rounded-full bg-gray-300 dark:bg-gray-600" />
         </div>
 
