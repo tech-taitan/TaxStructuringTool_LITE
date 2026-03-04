@@ -26,7 +26,8 @@ import { type TemplateDefinition } from '@/lib/templates';
 import TemplatePickerModal from '@/components/templates/TemplatePickerModal';
 import StatusBar from '@/components/canvas/StatusBar';
 import { exportCanvasPng, exportCanvasSvg, exportCanvasPdf } from '@/lib/export';
-import { useMediaQuery } from '@/hooks/useMediaQuery';
+import { useDeviceCapabilities } from '@/hooks/useDeviceCapabilities';
+import MobileEditorLayout from '@/components/editor/MobileEditorLayout';
 import { NODE_WIDTH, GRID_SIZE } from '@/lib/constants';
 
 interface EditorLayoutProps {
@@ -51,8 +52,7 @@ function EditorLayoutInner({
   canSave = false,
 }: EditorLayoutProps) {
   // Responsive breakpoints
-  const isMobile = useMediaQuery('(max-width: 767px)');
-  const isTablet = useMediaQuery('(max-width: 1024px)');
+  const { isMobile, isTablet } = useDeviceCapabilities();
 
   const selectedNodeId = useUIStore((s) => s.selectedNodeId);
   const selectedEdgeId = useUIStore((s) => s.selectedEdgeId);
@@ -258,30 +258,23 @@ function EditorLayoutInner({
       : `Delete ${deleteConfirm.nodeIds.length} entities and ${deleteConfirm.connectionCount} connection${deleteConfirm.connectionCount !== 1 ? 's' : ''}?`
     : '';
 
-  // Mobile gate: show message for small screens
-  if (isMobile) {
-    return (
-      <div className="flex items-center justify-center h-screen w-screen bg-gray-50 px-8">
-        <div className="text-center max-w-sm">
-          <h2 className="text-lg font-semibold text-gray-700 mb-2">
-            Larger Screen Required
-          </h2>
-          <p className="text-sm text-gray-500 mb-4">
-            This tool works best on a tablet or desktop. Please use a larger
-            screen for the full editing experience.
-          </p>
-          <a
-            href="/"
-            className="text-sm text-blue-600 hover:text-blue-700"
-          >
-            Back to homepage
-          </a>
-        </div>
-      </div>
-    );
-  }
-
-  return (
+  // Layout content: mobile vs tablet/desktop
+  const layoutContent = isMobile ? (
+    <MobileEditorLayout
+      structureId={structureId}
+      structureName={_structureName}
+      onSave={onSave}
+      isSaving={isSaving}
+      canSave={canSave}
+      onUndo={undo}
+      onRedo={redo}
+      canUndo={canUndo}
+      canRedo={canRedo}
+      hasDraft={hasDraft}
+      restoreDraft={restoreDraft}
+      discardDraft={discardDraft}
+    />
+  ) : (
     <div className={`flex h-screen w-screen overflow-hidden ${darkMode ? 'dark' : ''}`}>
       {/* Left palette -- fixed width */}
       <EntityPalette />
@@ -386,8 +379,14 @@ function EditorLayoutInner({
         {/* Bottom status bar */}
         <StatusBar />
       </div>
+    </div>
+  );
 
-      {/* Template picker modal */}
+  return (
+    <>
+      {layoutContent}
+
+      {/* Template picker modal -- renders on ALL screen sizes */}
       {showTemplatePicker && (
         <TemplatePickerModal
           onSelect={handleLoadTemplate}
@@ -395,8 +394,7 @@ function EditorLayoutInner({
         />
       )}
 
-
-      {/* Delete confirmation dialog modal overlay */}
+      {/* Delete confirmation dialog -- renders on ALL screen sizes */}
       {deleteConfirm && (
         <div
           className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center"
@@ -427,7 +425,7 @@ function EditorLayoutInner({
           </div>
         </div>
       )}
-    </div>
+    </>
   );
 }
 
