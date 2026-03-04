@@ -5,23 +5,23 @@
 See: .planning/PROJECT.md (updated 2026-03-03)
 
 **Core value:** Tax lawyers can draw a structure and instantly understand its tax implications
-**Current focus:** Milestone v1.1 -- Mobile Experience, Phase 11 (Responsive Layout Shell)
+**Current focus:** Milestone v1.1 -- Mobile Experience, Phase 12 (Mobile Entity Management)
 
 ## Current Position
 
-Phase: 11 of 16 (Responsive Layout Shell)
-Plan: 1 of 2 in current phase
-Status: Executing
-Last activity: 2026-03-04 -- Completed 11-01 (Responsive Layout Shell)
+Phase: 12 of 16 (Mobile Entity Management)
+Plan: 1 of N in current phase
+Status: Ready
+Last activity: 2026-03-04 -- Completed Phase 11 (Responsive Layout Shell) -- all 2 plans done
 
-Progress: [==================........] 72% (18/25 plans across all milestones)
+Progress: [===================.......] 76% (19/25 plans across all milestones)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 18
+- Total plans completed: 19
 - Average duration: 9 min
-- Total execution time: ~2.5 hours
+- Total execution time: ~2.6 hours
 
 **By Phase:**
 
@@ -35,10 +35,10 @@ Progress: [==================........] 72% (18/25 plans across all milestones)
 | 06-ai-analysis-engine | 2/2 | 39 min | 20 min |
 | 07-local-persistence | 3/3 | 10 min | 3 min |
 | 10-mobile-foundation | 1/1 | 3 min | 3 min |
-| 11-responsive-layout-shell | 1/2 | 4 min | 4 min |
+| 11-responsive-layout-shell | 2/2 | 7 min | 4 min |
 
 **Recent Trend:**
-- Last 5 plans: 4 min, 8 min, 2 min, 3 min, 4 min
+- Last 5 plans: 8 min, 2 min, 3 min, 4 min, 3 min
 - Trend: Stable
 
 *Updated after each plan completion*
@@ -62,6 +62,9 @@ Recent decisions affecting current work:
 - [10-01]: BottomSheet uses translateY transforms via ref (no React state during drag) for 60fps touch performance
 - [11-01]: No floating structure name header in mobile editor -- maximizes canvas real estate like Figma mobile
 - [11-01]: Template picker and delete dialog render on all screen sizes via fragment wrapper
+- [11-02]: Double-click-to-create disabled on touch -- FAB in Phase 12 replaces it
+- [11-02]: Context menus disabled on touch -- long-press menus in Phase 13 replace them
+- [11-02]: HelperLines hidden on all touch devices (not just mobile) -- precision feature
 
 ### Pending Todos
 
@@ -77,5 +80,5 @@ None.
 ## Session Continuity
 
 Last session: 2026-03-04
-Stopped at: Completed 11-01-PLAN.md -- ready for 11-02 (Responsive Layout Shell)
+Stopped at: Completed 11-02-PLAN.md -- Phase 11 complete, ready for Phase 12 (Mobile Entity Management)
 Resume file: None
