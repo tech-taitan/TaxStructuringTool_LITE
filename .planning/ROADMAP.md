@@ -222,11 +222,11 @@ Plans:
   3. User on desktop (>1024px) sees the unchanged three-column layout (palette, canvas, properties)
   4. User on a touch device can pan with single-finger drag, pinch-to-zoom, tap to select entities, and touch-drag entities to reposition them
   5. User on a phone sees touch-friendly entity nodes without resize handles and with responsive hit areas
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
-- [ ] 11-01: Remove mobile gate, MobileEditorLayout, breakpoint branching, responsive dashboard
-- [ ] 11-02: React Flow touch props, touch handle CSS, touch-friendly node adjustments, viewport meta
+- [ ] 11-01-PLAN.md -- Remove mobile gate, MobileEditorLayout, breakpoint branching, responsive dashboard
+- [ ] 11-02-PLAN.md -- React Flow touch props, touch handle CSS, touch-friendly node adjustments, viewport meta
 
 ### Phase 12: Mobile Entity Creation
 **Goal**: Users on mobile can add any entity type to the canvas — opening a categorized palette via a floating action button, tapping an entity type to place it at viewport center with smart grid snapping, completely replacing the desktop drag-and-drop flow that is non-functional on touch
@@ -252,7 +252,7 @@ Plans:
   3. User can tap a selected connection to open connection properties in a bottom sheet
   4. User can run AI analysis and see streaming results in a mobile full-screen overlay
   5. User can long-press an entity to see a context action menu with delete, copy, connect, and properties options
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
 - [ ] 13-01: MobilePropertiesSheet wrapping PropertiesPanel and ConnectionPropertiesPanel, keyboard-aware resize, responsive modals
@@ -282,7 +282,7 @@ Plans:
   3. User can interact with all UI elements on touch devices without any hover dependency (handles, tooltips, shadows, highlights all have touch-accessible alternatives)
   4. User sees :active touch feedback (scale, color change) on all interactive elements when tapped
   5. User on tablet can see a MiniMap for navigating large structures
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
 - [ ] 15-01: MobileToolbar completion (undo/redo, mode buttons, overflow menu), EditorToolbar desktop overflow
