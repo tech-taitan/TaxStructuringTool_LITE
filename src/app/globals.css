@@ -284,3 +284,39 @@ body {
 .dark .react-flow__controls button:hover {
   background: #374151;
 }
+
+/* ============================================================
+ * Touch Device Handle Overrides (Phase 11)
+ * On touch devices: handles always subtly visible, enlarged to
+ * 44px hit area minimum per WCAG/Apple HIG touch target guidance.
+ * ============================================================ */
+
+@media (pointer: coarse) {
+  /* Make handles subtly visible on touch (no hover to discover them) */
+  .react-flow__handle {
+    opacity: 0.3;
+  }
+
+  /* Enlarge invisible hit area to 44px minimum */
+  .react-flow__handle::after {
+    top: -15px;
+    left: -15px;
+    right: -15px;
+    bottom: -15px;
+  }
+
+  /* When node is selected, handles fully visible */
+  .react-flow__node.selected .react-flow__handle {
+    opacity: 0.7;
+  }
+
+  /* During active connection drawing, show all handles clearly */
+  .react-flow__node.connecting .react-flow__handle {
+    opacity: 0.8;
+  }
+
+  /* Entity node touch feedback */
+  .entity-node:active {
+    transform: scale(0.98);
+  }
+}

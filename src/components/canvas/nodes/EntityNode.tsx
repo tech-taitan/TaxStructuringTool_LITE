@@ -13,6 +13,7 @@ import type { TaxEntityData } from '@/models/graph';
 import { getEntityConfig } from '@/lib/entity-registry';
 import { useGraphStore } from '@/stores/graph-store';
 import { useUIStore } from '@/stores/ui-store';
+import { useDeviceCapabilities } from '@/hooks/useDeviceCapabilities';
 import { COLORS, MIN_NODE_WIDTH, MIN_NODE_HEIGHT } from '@/lib/constants';
 import type { EntityCategory } from '@/models/entities';
 import { AlertTriangle } from 'lucide-react';
@@ -89,6 +90,7 @@ function getIntermediateHandleStyle(
 const EntityNode = memo(({ id, data, selected }: EntityNodeProps) => {
   const config = getEntityConfig(data.entityType);
   const updateNodeData = useGraphStore((s) => s.updateNodeData);
+  const { isTouchDevice } = useDeviceCapabilities();
 
   // Read live validation warnings from UI store (not from node data, to avoid undo pollution)
   const validationWarnings = useUIStore((s) => s.validationWarnings.get(id) ?? EMPTY_WARNINGS);
@@ -203,11 +205,11 @@ const EntityNode = memo(({ id, data, selected }: EntityNodeProps) => {
 
   return (
     <div
-      className={`entity-node entity-node--${shape}`}
+      className={`entity-node entity-node--${shape}${isTouchDevice ? ' active:scale-[0.98] transition-transform duration-75' : ''}`}
       style={nodeStyle}
     >
-      {/* 8 resize handles -- only visible when selected */}
-      {selected && (
+      {/* 8 resize handles -- only visible when selected, hidden on touch devices */}
+      {selected && !isTouchDevice && (
         <>
           {/* 4 corner handles: proportional resize */}
           {CORNER_POSITIONS.map((pos) => (
