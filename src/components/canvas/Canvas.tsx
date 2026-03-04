@@ -47,6 +47,7 @@ import { useHelperLines } from '@/hooks/useHelperLines';
 import { useUndoRedo } from '@/hooks/useUndoRedo';
 import { useClipboard } from '@/hooks/useClipboard';
 import { useKeyboardShortcuts } from '@/hooks/useKeyboardShortcuts';
+import { useDeviceCapabilities } from '@/hooks/useDeviceCapabilities';
 import {
   GRID_SIZE,
   CANVAS_BOUNDS,
@@ -76,6 +77,8 @@ import { edgeTypes } from '@/components/canvas/edges';
 
 /** Canvas component -- must be rendered inside ReactFlowProvider (provided by EditorPage) */
 export default function Canvas() {
+  const { isTouchDevice, isMobile } = useDeviceCapabilities();
+
   const nodes = useGraphStore((s) => s.nodes);
   const edges = useGraphStore((s) => s.edges);
   const onEdgesChange = useGraphStore((s) => s.onEdgesChange);
@@ -487,13 +490,16 @@ export default function Canvas() {
         onNodeDragStart={onNodeDragStart}
         onNodeDragStop={onNodeDragStop}
         onPaneClick={onPaneClick}
-        onDoubleClick={onDoubleClickPane}
-        onEdgeContextMenu={onEdgeContextMenu}
-        onNodeContextMenu={onNodeContextMenu}
-        panOnDrag={interactionMode === 'drag'}
-        selectionOnDrag={interactionMode === 'select'}
-        selectionKeyCode={interactionMode === 'select' ? null : 'Shift'}
+        onDoubleClick={isTouchDevice ? undefined : onDoubleClickPane}
+        onEdgeContextMenu={isTouchDevice ? undefined : onEdgeContextMenu}
+        onNodeContextMenu={isTouchDevice ? undefined : onNodeContextMenu}
+        panOnDrag={isTouchDevice ? true : interactionMode === 'drag'}
+        selectionOnDrag={isTouchDevice ? false : interactionMode === 'select'}
+        selectionKeyCode={isTouchDevice ? null : (interactionMode === 'select' ? null : 'Shift')}
         selectionMode={SelectionMode.Full}
+        zoomOnPinch={true}
+        preventScrolling={true}
+        nodesDraggable={true}
         multiSelectionKeyCode="Shift"
         deleteKeyCode={null}
         snapToGrid={snapToGrid}
@@ -510,20 +516,24 @@ export default function Canvas() {
       >
         {showGrid && <CanvasBackground />}
         <CanvasBorder />
-        <HelperLines
-          horizontal={helperLines.horizontal}
-          vertical={helperLines.vertical}
-        />
-        <Controls />
-        <MiniMap
-          pannable
-          zoomable
-          nodeStrokeWidth={2}
-          nodeColor="#e5e7eb"
-          maskColor="rgba(243, 244, 246, 0.7)"
-          style={{ width: 160, height: 100 }}
-          position="bottom-left"
-        />
+        {!isTouchDevice && (
+          <HelperLines
+            horizontal={helperLines.horizontal}
+            vertical={helperLines.vertical}
+          />
+        )}
+        {!isMobile && <Controls />}
+        {!isMobile && (
+          <MiniMap
+            pannable
+            zoomable
+            nodeStrokeWidth={2}
+            nodeColor="#e5e7eb"
+            maskColor="rgba(243, 244, 246, 0.7)"
+            style={{ width: 160, height: 100 }}
+            position="bottom-left"
+          />
+        )}
         <CanvasLegend />
       </ReactFlow>
       {contextMenu && (
