@@ -39,7 +39,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 **v1.1 Mobile Experience:**
 
 - [x] **Phase 10: Mobile Foundation** - Reusable hooks, BottomSheet primitive, and Zustand mobile state — no visible UI
-- [ ] **Phase 11: Responsive Layout Shell** - Remove mobile gate, full-screen canvas on phone, tablet layout, React Flow touch props
+- [x] **Phase 11: Responsive Layout Shell** - Remove mobile gate, full-screen canvas on phone, tablet layout, React Flow touch props
 - [ ] **Phase 12: Mobile Entity Creation** - FAB, bottom sheet palette, tap-to-add entity placement
 - [ ] **Phase 13: Mobile Properties Editing** - Properties bottom sheet, connection properties sheet, long-press context menu
 - [ ] **Phase 14: Mobile Connection Drawing** - Connect mode toolbar toggle, tap-source-then-target flow, enlarged handles
@@ -225,8 +225,8 @@ Plans:
 **Plans**: 2 plans
 
 Plans:
-- [ ] 11-01-PLAN.md -- Remove mobile gate, MobileEditorLayout, breakpoint branching, responsive dashboard
-- [ ] 11-02-PLAN.md -- React Flow touch props, touch handle CSS, touch-friendly node adjustments, viewport meta
+- [x] 11-01-PLAN.md -- Remove mobile gate, MobileEditorLayout, breakpoint branching, responsive dashboard
+- [x] 11-02-PLAN.md -- React Flow touch props, touch handle CSS, touch-friendly node adjustments, viewport meta
 
 ### Phase 12: Mobile Entity Creation
 **Goal**: Users on mobile can add any entity type to the canvas — opening a categorized palette via a floating action button, tapping an entity type to place it at viewport center with smart grid snapping, completely replacing the desktop drag-and-drop flow that is non-functional on touch
@@ -319,7 +319,7 @@ Note: Phase 10 before all v1.1 phases (primitives). Phase 11 before 12-16 (layou
 | 8. Sharing | Deferred | 0/1 | Deferred | - |
 | 9. Entity Customization | Deferred | 0/1 | Deferred | - |
 | 10. Mobile Foundation | v1.1 | 1/1 | Complete | 2026-03-04 |
-| 11. Responsive Layout Shell | v1.1 | 0/2 | Not started | - |
+| 11. Responsive Layout Shell | v1.1 | 2/2 | Complete | 2026-03-04 |
 | 12. Mobile Entity Creation | v1.1 | 0/1 | Not started | - |
 | 13. Mobile Properties Editing | v1.1 | 0/2 | Not started | - |
 | 14. Mobile Connection Drawing | v1.1 | 0/1 | Not started | - |
