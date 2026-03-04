@@ -16,6 +16,7 @@ import {
     deleteStructure,
     type StructureSummary,
 } from '@/lib/local-storage-db';
+import { useDeviceCapabilities } from '@/hooks/useDeviceCapabilities';
 
 /** Format a date string for display */
 function formatDate(iso: string): string {
@@ -32,6 +33,7 @@ function formatDate(iso: string): string {
 
 export default function DashboardPage() {
     const router = useRouter();
+    const { isMobile, isTouchDevice } = useDeviceCapabilities();
     const [structures, setStructures] = useState<StructureSummary[]>([]);
     const [deleteConfirmId, setDeleteConfirmId] = useState<string | null>(null);
     const [mounted, setMounted] = useState(false);
@@ -63,7 +65,7 @@ export default function DashboardPage() {
         <div className="min-h-screen bg-gray-50">
             {/* Header */}
             <header className="bg-white border-b border-gray-200">
-                <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+                <div className={`max-w-6xl mx-auto ${isMobile ? 'flex flex-col gap-3 px-4 py-3' : 'flex items-center justify-between px-6 py-4'}`}>
                     <div className="flex items-center gap-4">
                         <button
                             onClick={() => router.push('/')}
@@ -83,7 +85,7 @@ export default function DashboardPage() {
                     </div>
                     <Link
                         href="/editor"
-                        className="flex items-center gap-2 rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-700 transition-colors"
+                        className={`flex items-center gap-2 rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-700 transition-colors ${isMobile ? 'w-full justify-center' : ''}`}
                     >
                         <Plus className="w-4 h-4" />
                         New Structure
@@ -92,7 +94,7 @@ export default function DashboardPage() {
             </header>
 
             {/* Content */}
-            <main className="max-w-6xl mx-auto px-6 py-8">
+            <main className={`max-w-6xl mx-auto ${isMobile ? 'px-4 py-6' : 'px-6 py-8'}`}>
                 {structures.length === 0 ? (
                     /* Empty state */
                     <div className="flex flex-col items-center justify-center py-20">
@@ -116,7 +118,7 @@ export default function DashboardPage() {
                     </div>
                 ) : (
                     /* Structure grid */
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 ${isMobile ? 'gap-4' : 'gap-6'}`}>
                         {structures.map((structure) => (
                             <div
                                 key={structure.id}
@@ -161,14 +163,14 @@ export default function DashboardPage() {
                                         </p>
                                     </Link>
 
-                                    {/* Delete button */}
+                                    {/* Delete button -- always visible on touch devices */}
                                     <button
                                         onClick={(e) => {
                                             e.preventDefault();
                                             e.stopPropagation();
                                             setDeleteConfirmId(structure.id);
                                         }}
-                                        className="p-1.5 rounded text-gray-300 hover:text-red-500 hover:bg-red-50 opacity-0 group-hover:opacity-100 transition-all"
+                                        className={`p-1.5 rounded text-gray-300 hover:text-red-500 hover:bg-red-50 transition-all ${isTouchDevice ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'}`}
                                         title="Delete structure"
                                     >
                                         <Trash2 className="w-4 h-4" />
