@@ -255,8 +255,8 @@ Plans:
 **Plans**: 2 plans
 
 Plans:
-- [ ] 13-01: MobilePropertiesSheet wrapping PropertiesPanel and ConnectionPropertiesPanel, keyboard-aware resize, responsive modals
-- [ ] 13-02: NodeActionMenu with long-press trigger, AI analysis mobile overlay, mobile-friendly modal adaptations
+- [ ] 13-01-PLAN.md -- MobilePropertiesSheet with two-step tap trigger, keyboard-aware snap, MobileConnectionTypePicker, 44px touch targets
+- [ ] 13-02-PLAN.md -- MobileContextMenu with long-press trigger, MobileAnalysisOverlay placeholder, Analyze toolbar button
 
 ### Phase 14: Mobile Connection Drawing
 **Goal**: Users on mobile can draw connections between entities — entering a connect mode via toolbar, tapping a source entity then a target entity to create a connection, with clear visual feedback throughout the flow and enlarged touch-friendly handles
