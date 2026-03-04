@@ -91,6 +91,8 @@ const EntityNode = memo(({ id, data, selected }: EntityNodeProps) => {
   const config = getEntityConfig(data.entityType);
   const updateNodeData = useGraphStore((s) => s.updateNodeData);
   const { isTouchDevice } = useDeviceCapabilities();
+  const lastPlacedNodeId = useUIStore((s) => s.lastPlacedNodeId);
+  const isNew = id === lastPlacedNodeId;
 
   // Read live validation warnings from UI store (not from node data, to avoid undo pollution)
   const validationWarnings = useUIStore((s) => s.validationWarnings.get(id) ?? EMPTY_WARNINGS);
@@ -205,8 +207,13 @@ const EntityNode = memo(({ id, data, selected }: EntityNodeProps) => {
 
   return (
     <div
-      className={`entity-node entity-node--${shape}${isTouchDevice ? ' active:scale-[0.98] transition-transform duration-75' : ''}`}
+      className={`entity-node entity-node--${shape}${isTouchDevice ? ' active:scale-[0.98] transition-transform duration-75' : ''}${isNew ? ' entity-node--scale-in' : ''}`}
       style={nodeStyle}
+      onAnimationEnd={() => {
+        if (isNew) {
+          useUIStore.getState().setLastPlacedNodeId(null);
+        }
+      }}
     >
       {/* 8 resize handles -- only visible when selected, hidden on touch devices */}
       {selected && !isTouchDevice && (

@@ -320,3 +320,26 @@ body {
     transform: scale(0.98);
   }
 }
+
+/* ============================================================
+ * Scale-in Animation (Phase 12)
+ * Played on newly placed entities from the mobile palette.
+ * Uses `scale` property (not transform: scale()) to avoid
+ * overriding React Flow's transform: translate() on wrappers.
+ * ============================================================ */
+
+@keyframes entity-scale-in {
+  from {
+    scale: 0;
+    opacity: 0;
+  }
+  to {
+    scale: 1;
+    opacity: 1;
+  }
+}
+
+.entity-node--scale-in {
+  animation: entity-scale-in 150ms ease-out forwards;
+  transform-origin: center center;
+}

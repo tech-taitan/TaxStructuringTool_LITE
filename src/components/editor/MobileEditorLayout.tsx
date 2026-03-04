@@ -12,6 +12,7 @@
  */
 
 import Canvas from '@/components/canvas/Canvas';
+import { MobilePalette } from '@/components/mobile/MobilePalette';
 import { useUIStore } from '@/stores/ui-store';
 import { Undo2, Redo2, Plus, Link } from 'lucide-react';
 
@@ -119,8 +120,8 @@ export default function MobileEditorLayout({
         </div>
       </div>
 
-      {/* Shell mount points for future bottom sheets */}
-      {/* Phase 12: Mobile palette bottom sheet */}
+      {/* Bottom sheets */}
+      <MobilePalette />
       {/* Phase 13: Mobile properties bottom sheet */}
     </div>
   );
