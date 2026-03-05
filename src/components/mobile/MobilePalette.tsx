@@ -96,7 +96,7 @@ export function MobilePalette() {
       <div className="px-4 pb-2">
         <h2 className="text-base font-semibold text-gray-800">Add Entity</h2>
       </div>
-      <div className="pb-safe">
+      <div className="safe-area-bottom">
         {CATEGORY_CONFIG.map((cat) => {
           const items = getEntitiesByCategory('AU', cat.category);
           if (items.length === 0) return null;

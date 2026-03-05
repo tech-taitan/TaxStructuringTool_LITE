@@ -276,7 +276,7 @@ export const BottomSheet = forwardRef<BottomSheetRef, BottomSheetProps>(function
         </div>
 
         {/* Content */}
-        <div className="overflow-y-auto" style={{ maxHeight: 'calc(100dvh - 48px)' }}>
+        <div className="overflow-y-auto safe-area-bottom" style={{ maxHeight: 'calc(100dvh - 48px)' }}>
           {children}
         </div>
       </div>

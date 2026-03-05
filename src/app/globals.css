@@ -413,3 +413,18 @@ body {
 .connection-banner--animate-in {
   animation: connection-banner-in 200ms ease-out;
 }
+
+/* ============================================================
+ * Safe Area Inset Utilities (Phase 16)
+ * Applied to elements flush with screen edges on notch/
+ * home-indicator devices. Requires viewport-fit=cover
+ * (already set in layout.tsx).
+ * ============================================================ */
+
+.safe-area-bottom {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+.safe-area-top {
+  padding-top: env(safe-area-inset-top, 0px);
+}
