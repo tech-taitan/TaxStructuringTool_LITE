@@ -349,3 +349,17 @@ body {
   animation: entity-scale-in 150ms ease-out forwards;
   transform-origin: center center;
 }
+
+/* ============================================================
+ * Context Menu Entrance Animation (Phase 13)
+ * Played on MobileContextMenu appearance for smooth entry.
+ * ============================================================ */
+
+@keyframes context-menu-in {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.context-menu--animate-in {
+  animation: context-menu-in 150ms ease-out;
+}

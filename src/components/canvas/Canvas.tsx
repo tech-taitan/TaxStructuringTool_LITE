@@ -70,6 +70,7 @@ import CanvasBorder from './CanvasBorder';
 import CanvasLegend from './CanvasLegend';
 import HelperLines from './HelperLines';
 import CanvasContextMenu from '@/components/context-menu/CanvasContextMenu';
+import { MobileContextMenu } from '@/components/mobile/MobileContextMenu';
 import EdgeContextMenu from '@/components/context-menu/EdgeContextMenu';
 import ShortcutLegend from '@/components/canvas/ShortcutLegend';
 import EntitySearchBar from '@/components/canvas/EntitySearchBar';
@@ -113,6 +114,8 @@ export default function Canvas() {
   const snapToGrid = useUIStore((s) => s.snapToGrid);
   const canvasBgColor = useUIStore((s) => s.canvasBgColor);
   const interactionMode = useUIStore((s) => s.interactionMode);
+  const mobileContextMenu = useUIStore((s) => s.mobileContextMenu);
+  const setMobileContextMenu = useUIStore((s) => s.setMobileContextMenu);
 
   // Derive filtered edges based on connection filter state
   const filteredEdges = useMemo(() => {
@@ -590,6 +593,14 @@ export default function Canvas() {
             setContextMenu(null);
           }}
           onClose={() => setContextMenu(null)}
+        />
+      )}
+      {mobileContextMenu && (
+        <MobileContextMenu
+          x={mobileContextMenu.x}
+          y={mobileContextMenu.y}
+          nodeId={mobileContextMenu.nodeId}
+          onClose={() => setMobileContextMenu(null)}
         />
       )}
       {edgeContextMenu && (

@@ -1,6 +1,6 @@
 'use client';
 
-import { memo, useState, useRef, useEffect, useCallback } from 'react';
+import { memo, useState, useRef, useEffect, useCallback, useMemo } from 'react';
 import {
   Handle,
   Position,
@@ -14,6 +14,7 @@ import { getEntityConfig } from '@/lib/entity-registry';
 import { useGraphStore } from '@/stores/graph-store';
 import { useUIStore } from '@/stores/ui-store';
 import { useDeviceCapabilities } from '@/hooks/useDeviceCapabilities';
+import { useLongPress } from '@/hooks/useLongPress';
 import { COLORS, MIN_NODE_WIDTH, MIN_NODE_HEIGHT } from '@/lib/constants';
 import type { EntityCategory } from '@/models/entities';
 import { AlertTriangle } from 'lucide-react';
@@ -132,6 +133,55 @@ const EntityNode = memo(({ id, data, selected }: EntityNodeProps) => {
     }
   }, [commitRename]);
 
+  // Long-press for mobile context menu
+  const touchCoordsRef = useRef({ x: 0, y: 0 });
+
+  const longPressHandlers = useLongPress({
+    onStart: undefined,
+    onFinish: () => {
+      // Select the node
+      useUIStore.getState().setSelectedNode(id);
+      useGraphStore.getState().onNodesChange([
+        { id, type: 'select', selected: true },
+      ]);
+      // Show context menu at touch position
+      useUIStore.getState().setMobileContextMenu({
+        x: touchCoordsRef.current.x,
+        y: touchCoordsRef.current.y,
+        nodeId: id,
+      });
+      // Haptic feedback
+      navigator.vibrate?.(10);
+    },
+    onCancel: undefined,
+  });
+
+  // Combined touch start handler: capture coordinates then delegate to long-press
+  const combinedTouchStart = useCallback(
+    (e: React.TouchEvent<HTMLElement>) => {
+      touchCoordsRef.current = {
+        x: e.touches[0].clientX,
+        y: e.touches[0].clientY,
+      };
+      longPressHandlers.onTouchStart(e);
+    },
+    [longPressHandlers],
+  );
+
+  // Conditionally apply touch handlers only on touch devices
+  const touchHandlerProps = useMemo(
+    () =>
+      isTouchDevice
+        ? {
+            onTouchStart: combinedTouchStart,
+            onTouchMove: longPressHandlers.onTouchMove,
+            onTouchEnd: longPressHandlers.onTouchEnd,
+            onTouchCancel: longPressHandlers.onTouchCancel,
+          }
+        : {},
+    [isTouchDevice, combinedTouchStart, longPressHandlers],
+  );
+
   // Fallback for unknown entity types
   if (!config) {
     return (
@@ -209,6 +259,7 @@ const EntityNode = memo(({ id, data, selected }: EntityNodeProps) => {
     <div
       className={`entity-node entity-node--${shape}${isTouchDevice ? ' active:scale-[0.98] transition-transform duration-75' : ''}${isNew ? ' entity-node--scale-in' : ''}`}
       style={nodeStyle}
+      {...touchHandlerProps}
       onAnimationEnd={() => {
         if (isNew) {
           useUIStore.getState().setLastPlacedNodeId(null);
