@@ -248,15 +248,20 @@ export default function Canvas() {
     ]
   );
 
+  // Drag state for transition suppression (Phase 16 performance)
+  const [isDragging, setIsDragging] = useState(false);
+
   /** Pause temporal tracking on drag start to avoid recording every pixel */
   const onNodeDragStart = useCallback(() => {
     useGraphStore.temporal.getState().pause();
+    setIsDragging(true);
   }, []);
 
   /** Resume temporal tracking on drag stop */
   const onNodeDragStop: NodeMouseHandler<TaxNode> = useCallback(
     () => {
       useGraphStore.temporal.getState().resume();
+      setIsDragging(false);
     },
     []
   );
@@ -550,7 +555,7 @@ export default function Canvas() {
   });
 
   return (
-    <div className={`w-full h-full canvas-mode-${interactionMode}`}>
+    <div className={`w-full h-full canvas-mode-${interactionMode}${isDragging ? ' is-dragging' : ''}`}>
       <ReactFlow
         nodes={styledNodes}
         edges={filteredEdges}
@@ -598,6 +603,7 @@ export default function Canvas() {
         fitView={false}
         style={{ backgroundColor: darkMode ? '#111827' : canvasBgColor }}
         colorMode={darkMode ? 'dark' : 'light'}
+        onlyRenderVisibleElements={true}
         proOptions={{ hideAttribution: true }}
       >
         {showGrid && <CanvasBackground />}

@@ -91,7 +91,7 @@ export default function MobileEditorLayout({
         <div
           className="absolute bottom-4 left-1/2 -translate-x-1/2 z-30
                      flex items-center gap-1 px-3 py-2
-                     bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm
+                     bg-white dark:bg-gray-800
                      rounded-full shadow-lg border border-gray-200 dark:border-gray-700"
         >
           {/* Undo */}

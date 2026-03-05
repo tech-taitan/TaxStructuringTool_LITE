@@ -241,6 +241,17 @@ body {
   }
 }
 
+/* Suppress transitions during drag for 60fps on mobile (Phase 16) */
+.is-dragging .entity-node {
+  transition: none !important;
+}
+.is-dragging .entity-node--triangle,
+.is-dragging .entity-node--diamond,
+.is-dragging .entity-node--hexagon,
+.is-dragging .entity-node--shield {
+  filter: none !important;
+}
+
 /* ============================================================
  * Minimap Styles
  * Compact minimap in the bottom-left corner of the canvas.

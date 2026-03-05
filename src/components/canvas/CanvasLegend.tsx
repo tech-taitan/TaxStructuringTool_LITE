@@ -13,6 +13,7 @@
 import { useMemo } from 'react';
 import { useGraphStore } from '@/stores/graph-store';
 import { useUIStore } from '@/stores/ui-store';
+import { useDeviceCapabilities } from '@/hooks/useDeviceCapabilities';
 import { COLORS } from '@/lib/constants';
 import { getEntityConfig } from '@/lib/entity-registry';
 import type { EntityCategory } from '@/models/entities';
@@ -102,6 +103,7 @@ function ShapeIcon({ category }: { category: EntityCategory }) {
 }
 
 export default function CanvasLegend() {
+  const { isMobile } = useDeviceCapabilities();
   const nodes = useGraphStore((s) => s.nodes);
   const edges = useGraphStore((s) => s.edges);
   const showLegend = useUIStore((s) => s.showLegend);
@@ -143,7 +145,7 @@ export default function CanvasLegend() {
   }
 
   return (
-    <div className="absolute bottom-4 left-4 z-10 bg-white/90 backdrop-blur-sm rounded-lg shadow-lg border border-gray-200 p-3 min-w-[180px] max-w-[240px]">
+    <div className={`absolute bottom-4 left-4 z-10 rounded-lg shadow-lg border border-gray-200 p-3 min-w-[180px] max-w-[240px] ${isMobile ? 'bg-white dark:bg-gray-800' : 'bg-white/90 backdrop-blur-sm'}`}>
       <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
         Legend
       </div>
