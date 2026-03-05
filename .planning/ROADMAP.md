@@ -295,10 +295,10 @@ Plans:
 **Success Criteria** (what must be TRUE):
   1. User can work with 20+ entities on mobile without perceptible jank or frame drops during pan, zoom, and drag operations
   2. User on a notch/home-indicator device sees correct safe-area insets on the bottom toolbar, FAB, and bottom sheets
-**Plans**: TBD
+**Plans**: 1 plan
 
 Plans:
-- [ ] 16-01: Viewport culling, transition suppression during drag, backdrop-filter audit, safe area insets, real-device test matrix validation
+- [ ] 16-01-PLAN.md -- Performance optimizations (viewport culling, drag transition suppression, backdrop-blur removal) and safe-area-inset CSS for notch/home-indicator devices, with real-device validation checkpoint
 
 ## Progress
 
