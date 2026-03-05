@@ -91,11 +91,11 @@ Requirements for mobile responsive editing. Each maps to roadmap phases 10-16.
 
 ### Mobile Properties
 
-- [ ] **MPROP-01**: User can tap a selected entity to open properties in a bottom sheet
-- [ ] **MPROP-02**: User can edit entity properties in the mobile bottom sheet (same fields as desktop)
-- [ ] **MPROP-03**: User can tap a selected connection to open connection properties in a bottom sheet
-- [ ] **MPROP-04**: User can run AI analysis and see streaming results in a mobile overlay
-- [ ] **MPROP-05**: User sees mobile-friendly modals (connection type picker, delete confirmation, templates)
+- [x] **MPROP-01**: User can tap a selected entity to open properties in a bottom sheet
+- [x] **MPROP-02**: User can edit entity properties in the mobile bottom sheet (same fields as desktop)
+- [x] **MPROP-03**: User can tap a selected connection to open connection properties in a bottom sheet
+- [x] **MPROP-04**: User can run AI analysis and see streaming results in a mobile overlay
+- [x] **MPROP-05**: User sees mobile-friendly modals (connection type picker, delete confirmation, templates)
 
 ### Mobile Connection Drawing
 
@@ -109,7 +109,7 @@ Requirements for mobile responsive editing. Each maps to roadmap phases 10-16.
 - [ ] **MNAV-01**: User can access undo/redo via mobile bottom toolbar
 - [ ] **MNAV-02**: User can access add, connect, and edit tools via mobile toolbar buttons
 - [ ] **MNAV-03**: User can access save, templates, auto-layout, and export via overflow menu
-- [ ] **MNAV-04**: User can long-press an entity for a context action menu (delete, copy, connect, properties)
+- [x] **MNAV-04**: User can long-press an entity for a context action menu (delete, copy, connect, properties)
 
 ### Mobile Polish
 
@@ -202,12 +202,12 @@ Which phases cover which requirements. Updated during roadmap creation.
 | MENT-02 | Phase 12 | Done |
 | MENT-03 | Phase 12 | Done |
 | MENT-04 | Phase 12 | Done |
-| MPROP-01 | Phase 13 | Pending |
-| MPROP-02 | Phase 13 | Pending |
-| MPROP-03 | Phase 13 | Pending |
-| MPROP-04 | Phase 13 | Pending |
-| MPROP-05 | Phase 13 | Pending |
-| MNAV-04 | Phase 13 | Pending |
+| MPROP-01 | Phase 13 | Done |
+| MPROP-02 | Phase 13 | Done |
+| MPROP-03 | Phase 13 | Done |
+| MPROP-04 | Phase 13 | Done |
+| MPROP-05 | Phase 13 | Done |
+| MNAV-04 | Phase 13 | Done |
 | MCONN-01 | Phase 14 | Pending |
 | MCONN-02 | Phase 14 | Pending |
 | MCONN-03 | Phase 14 | Pending |
