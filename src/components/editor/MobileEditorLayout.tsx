@@ -44,6 +44,8 @@ export default function MobileEditorLayout({
 }: MobileEditorLayoutProps) {
   const setMobilePaletteOpen = useUIStore((s) => s.setMobilePaletteOpen);
   const setMobileTool = useUIStore((s) => s.setMobileTool);
+  const mobileTool = useUIStore((s) => s.mobileTool);
+  const setPendingConnectionSource = useUIStore((s) => s.setPendingConnectionSource);
   const setMobileAnalysisOpen = useUIStore((s) => s.setMobileAnalysisOpen);
 
   return (
@@ -112,11 +114,22 @@ export default function MobileEditorLayout({
             <Plus className="w-5 h-5" />
           </button>
 
-          {/* Connect (sets mobile tool to connect -- wired for Phase 14) */}
+          {/* Connect (toggles connect mode -- Phase 14) */}
           <button
-            onClick={() => setMobileTool('connect')}
-            className="p-2.5 rounded-full text-gray-600 dark:text-gray-300 active:bg-gray-100 dark:active:bg-gray-700 disabled:opacity-30"
-            aria-label="Connect entities"
+            onClick={() => {
+              if (mobileTool === 'connect') {
+                setMobileTool(null);
+                setPendingConnectionSource(null);
+              } else {
+                setMobileTool('connect');
+              }
+            }}
+            className={`p-2.5 rounded-full ${
+              mobileTool === 'connect'
+                ? 'bg-blue-500 text-white'
+                : 'text-gray-600 dark:text-gray-300 active:bg-gray-100 dark:active:bg-gray-700'
+            }`}
+            aria-label={mobileTool === 'connect' ? 'Exit connect mode' : 'Connect entities'}
           >
             <Link className="w-5 h-5" />
           </button>

@@ -116,6 +116,8 @@ export default function Canvas() {
   const interactionMode = useUIStore((s) => s.interactionMode);
   const mobileContextMenu = useUIStore((s) => s.mobileContextMenu);
   const setMobileContextMenu = useUIStore((s) => s.setMobileContextMenu);
+  const mobileTool = useUIStore((s) => s.mobileTool);
+  const pendingConnectionSource = useUIStore((s) => s.pendingConnectionSource);
 
   // Derive filtered edges based on connection filter state
   const filteredEdges = useMemo(() => {
@@ -140,6 +142,16 @@ export default function Canvas() {
       return edge;
     });
   }, [edges, connectionFilter]);
+
+  // Styled nodes: add 'mobile-connect-source' class to pending source node
+  const styledNodes = useMemo(() => {
+    if (!pendingConnectionSource) return nodes;
+    return nodes.map((n) =>
+      n.id === pendingConnectionSource
+        ? { ...n, className: 'mobile-connect-source' }
+        : n
+    );
+  }, [nodes, pendingConnectionSource]);
 
   // Helper lines for alignment snap guides
   const { helperLines, applyNodesChangeWithHelperLines } = useHelperLines();
@@ -249,10 +261,42 @@ export default function Canvas() {
     []
   );
 
+  // Connection drawing state -- intercepts onConnect to show type picker
+  // (hoisted above onNodeClick so connect mode can call setPendingConnection)
+  const [pendingConnection, setPendingConnection] = useState<Connection | null>(
+    null
+  );
+
   /** Two-step tap for mobile: second tap on already-selected node opens properties sheet */
+  /** Connect mode intercept: first tap sets source, second tap triggers type picker */
   const onNodeClick = useCallback(
     (_event: React.MouseEvent, node: TaxNode) => {
       if (!isMobile) return;
+
+      // Connect mode intercept -- before two-step tap logic
+      if (mobileTool === 'connect') {
+        if (!pendingConnectionSource) {
+          // First tap: set as source
+          useUIStore.getState().setPendingConnectionSource(node.id);
+        } else if (pendingConnectionSource === node.id) {
+          // Tapped same node: deselect source
+          useUIStore.getState().setPendingConnectionSource(null);
+        } else {
+          // Second tap on different node: verify both nodes exist, then initiate connection
+          const sourceExists = useGraphStore.getState().nodes.some((n) => n.id === pendingConnectionSource);
+          if (sourceExists) {
+            setPendingConnection({
+              source: pendingConnectionSource,
+              target: node.id,
+              sourceHandle: null,
+              targetHandle: null,
+            });
+          }
+          useUIStore.getState().setPendingConnectionSource(null);
+        }
+        return; // Don't process normal two-step tap logic
+      }
+
       const currentSelectedId = useUIStore.getState().selectedNodeId;
       if (currentSelectedId === node.id) {
         // Second tap on same node -- open properties sheet
@@ -261,7 +305,7 @@ export default function Canvas() {
       // If properties sheet is already open and user taps a different node,
       // sheet stays open and re-renders via key={selectedNodeId}
     },
-    [isMobile],
+    [isMobile, mobileTool, pendingConnectionSource, setPendingConnection],
   );
 
   /** Two-step tap for mobile: second tap on already-selected edge opens properties sheet */
@@ -279,6 +323,14 @@ export default function Canvas() {
 
   /** Click on empty canvas deselects current entity and closes context menus/sheets */
   const onPaneClick = useCallback(() => {
+    // In connect mode: clear pending source but stay in connect mode
+    if (mobileTool === 'connect') {
+      if (pendingConnectionSource) {
+        useUIStore.getState().setPendingConnectionSource(null);
+      }
+      return;
+    }
+
     setSelectedNode(null);
     setSelectedEdge(null);
     setContextMenu(null);
@@ -287,7 +339,7 @@ export default function Canvas() {
       useUIStore.getState().setMobilePropertiesOpen(false);
       useUIStore.getState().setMobileContextMenu(null);
     }
-  }, [setSelectedNode, setSelectedEdge, setContextMenu, isMobile]);
+  }, [setSelectedNode, setSelectedEdge, setContextMenu, isMobile, mobileTool, pendingConnectionSource]);
 
   /** Double-click on empty canvas creates a new entity at that position */
   const onDoubleClickPane = useCallback(
@@ -356,11 +408,6 @@ export default function Canvas() {
       setEdgeContextMenu({ x: event.clientX, y: event.clientY, edgeId: edge.id });
     },
     []
-  );
-
-  // Connection drawing state -- intercepts onConnect to show type picker
-  const [pendingConnection, setPendingConnection] = useState<Connection | null>(
-    null
   );
 
   /** Intercept connection event to show type picker instead of creating edge directly */
@@ -505,7 +552,7 @@ export default function Canvas() {
   return (
     <div className={`w-full h-full canvas-mode-${interactionMode}`}>
       <ReactFlow
-        nodes={nodes}
+        nodes={styledNodes}
         edges={filteredEdges}
         nodeTypes={nodeTypes}
         edgeTypes={edgeTypes}
@@ -520,6 +567,7 @@ export default function Canvas() {
         isValidConnection={isValidConnection}
         connectionMode={ConnectionMode.Loose}
         connectionLineType={ConnectionLineType.SmoothStep}
+        connectOnClick={mobileTool !== 'connect'}
         defaultEdgeOptions={{ type: 'relationship' }}
         onDragOver={onDragOver}
         onDrop={onDrop}
