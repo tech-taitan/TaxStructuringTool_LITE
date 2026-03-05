@@ -7,7 +7,7 @@
  * responsive grid. Fully client-side, no authentication required.
  */
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useCallback, useSyncExternalStore } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { Plus, Trash2, FileText, ArrowLeft } from 'lucide-react';
@@ -31,35 +31,55 @@ function formatDate(iso: string): string {
     }
 }
 
+/** Cached snapshot for useSyncExternalStore (React 19 requires stable references) */
+let cachedSnapshot: StructureSummary[] | null = null;
+function getStructuresSnapshot(): StructureSummary[] {
+    if (cachedSnapshot === null) {
+        cachedSnapshot = listStructures();
+    }
+    return cachedSnapshot;
+}
+
+const SERVER_SNAPSHOT: StructureSummary[] = [];
+function getServerSnapshot(): StructureSummary[] {
+    return SERVER_SNAPSHOT;
+}
+
 export default function DashboardPage() {
     const router = useRouter();
     const { isMobile, isTouchDevice } = useDeviceCapabilities();
-    const [structures, setStructures] = useState<StructureSummary[]>([]);
     const [deleteConfirmId, setDeleteConfirmId] = useState<string | null>(null);
-    const [mounted, setMounted] = useState(false);
 
-    // Load structures from localStorage on mount
-    useEffect(() => {
-        setStructures(listStructures());
-        setMounted(true);
+    const subscribeStructures = useCallback((onStoreChange: () => void) => {
+        if (typeof window === 'undefined') {
+            return () => undefined;
+        }
+
+        const handler = (event: StorageEvent) => {
+            if (event.key === null || event.key === 'tax-tool-structures') {
+                cachedSnapshot = null;
+                onStoreChange();
+            }
+        };
+
+        window.addEventListener('storage', handler);
+        return () => window.removeEventListener('storage', handler);
     }, []);
+
+    const structures = useSyncExternalStore<StructureSummary[]>(
+        subscribeStructures,
+        getStructuresSnapshot,
+        getServerSnapshot
+    );
 
     const handleDelete = useCallback(
         (id: string) => {
             deleteStructure(id);
-            setStructures(listStructures());
+            cachedSnapshot = null;
             setDeleteConfirmId(null);
         },
         []
     );
-
-    if (!mounted) {
-        return (
-            <div className="flex items-center justify-center h-screen w-screen bg-gray-50">
-                <div className="w-8 h-8 border-2 border-blue-600 border-t-transparent rounded-full animate-spin" />
-            </div>
-        );
-    }
 
     return (
         <div className="min-h-screen bg-gray-50">
