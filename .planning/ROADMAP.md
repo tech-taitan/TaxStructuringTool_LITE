@@ -285,8 +285,8 @@ Plans:
 **Plans**: 2 plans
 
 Plans:
-- [ ] 15-01: MobileToolbar completion (undo/redo, mode buttons, overflow menu), EditorToolbar desktop overflow
-- [ ] 15-02: Hover audit across 22 files (@media hover/pointer wrapping), :active affordances, tablet MiniMap
+- [ ] 15-01-PLAN.md -- MobileOverflowMenu component, prop threading, toolbar overflow button for save/templates/layout/export
+- [ ] 15-02-PLAN.md -- CSS :hover wrapping in @media (hover: hover), :active touch feedback on all components, tablet MiniMap verification
 
 ### Phase 16: Performance and Real-Device Testing
 **Goal**: The mobile experience performs smoothly on real mid-range hardware — 20+ entity structures render without jank, transitions are suppressed during drag, safe area insets are correct on notch devices, and the full feature set is validated on iOS Safari, Android Chrome, and iPad Safari
