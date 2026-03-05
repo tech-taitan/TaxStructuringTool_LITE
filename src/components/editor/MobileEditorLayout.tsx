@@ -14,8 +14,9 @@
 import Canvas from '@/components/canvas/Canvas';
 import { MobilePalette } from '@/components/mobile/MobilePalette';
 import { MobilePropertiesSheet } from '@/components/mobile/MobilePropertiesSheet';
+import { MobileAnalysisOverlay } from '@/components/mobile/MobileAnalysisOverlay';
 import { useUIStore } from '@/stores/ui-store';
-import { Undo2, Redo2, Plus, Link } from 'lucide-react';
+import { Undo2, Redo2, Plus, Link, Sparkles } from 'lucide-react';
 
 export interface MobileEditorLayoutProps {
   structureId: string | null;
@@ -43,6 +44,7 @@ export default function MobileEditorLayout({
 }: MobileEditorLayoutProps) {
   const setMobilePaletteOpen = useUIStore((s) => s.setMobilePaletteOpen);
   const setMobileTool = useUIStore((s) => s.setMobileTool);
+  const setMobileAnalysisOpen = useUIStore((s) => s.setMobileAnalysisOpen);
 
   return (
     <div className="h-[100dvh] w-screen flex flex-col overflow-hidden">
@@ -118,12 +120,25 @@ export default function MobileEditorLayout({
           >
             <Link className="w-5 h-5" />
           </button>
+
+          {/* Divider */}
+          <div className="w-px h-6 bg-gray-200 dark:bg-gray-600 mx-1" />
+
+          {/* Analyze (opens AI analysis overlay) */}
+          <button
+            onClick={() => setMobileAnalysisOpen(true)}
+            className="p-2.5 rounded-full text-gray-600 dark:text-gray-300 active:bg-gray-100 dark:active:bg-gray-700"
+            aria-label="Analyze structure"
+          >
+            <Sparkles className="w-5 h-5" />
+          </button>
         </div>
       </div>
 
       {/* Bottom sheets */}
       <MobilePalette />
       <MobilePropertiesSheet />
+      <MobileAnalysisOverlay />
     </div>
   );
 }
