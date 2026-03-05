@@ -55,7 +55,7 @@ export default function TemplatePickerModal({
           </div>
           <button
             onClick={onClose}
-            className="p-1.5 rounded hover:bg-gray-100 text-gray-400 hover:text-gray-600 transition-colors"
+            className="p-1.5 rounded hover:bg-gray-100 active:bg-gray-200 text-gray-400 hover:text-gray-600 transition-colors"
             title="Close"
           >
             <X className="w-5 h-5" />
@@ -68,7 +68,7 @@ export default function TemplatePickerModal({
             <button
               key={template.id}
               onClick={() => onSelect(template)}
-              className="text-left p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-md transition-all group"
+              className="text-left p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-md active:border-blue-500 active:bg-gray-50 transition-all group"
             >
               <div className="flex items-start justify-between mb-2">
                 <h3 className="text-sm font-medium text-gray-900 group-hover:text-blue-700">

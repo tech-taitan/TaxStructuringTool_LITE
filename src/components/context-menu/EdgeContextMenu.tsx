@@ -91,7 +91,7 @@ export default function EdgeContextMenu({
         Line Style
       </div>
       <button
-        className={`w-full px-3 py-2 text-sm text-left hover:bg-gray-100 flex items-center gap-2 ${
+        className={`w-full px-3 py-2 text-sm text-left hover:bg-gray-100 active:bg-gray-200 flex items-center gap-2 ${
           !isStraight ? 'text-blue-600 font-medium' : 'text-gray-700'
         }`}
         onClick={() => handleAction(() => onSetPathStyle('smoothstep'))}
@@ -101,7 +101,7 @@ export default function EdgeContextMenu({
         {!isStraight && <span className="ml-auto text-blue-500 text-xs">✓</span>}
       </button>
       <button
-        className={`w-full px-3 py-2 text-sm text-left hover:bg-gray-100 flex items-center gap-2 ${
+        className={`w-full px-3 py-2 text-sm text-left hover:bg-gray-100 active:bg-gray-200 flex items-center gap-2 ${
           isStraight ? 'text-blue-600 font-medium' : 'text-gray-700'
         }`}
         onClick={() => handleAction(() => onSetPathStyle('straight'))}
@@ -115,14 +115,14 @@ export default function EdgeContextMenu({
       <div className="h-px bg-gray-200 my-1" />
 
       <button
-        className="w-full px-3 py-2 text-sm text-left hover:bg-gray-100 flex items-center gap-2 text-gray-700"
+        className="w-full px-3 py-2 text-sm text-left hover:bg-gray-100 active:bg-gray-200 flex items-center gap-2 text-gray-700"
         onClick={() => handleAction(onProperties)}
       >
         <Settings className="w-4 h-4" />
         Properties
       </button>
       <button
-        className="w-full px-3 py-2 text-sm text-left hover:bg-gray-100 flex items-center gap-2 text-red-600"
+        className="w-full px-3 py-2 text-sm text-left hover:bg-gray-100 active:bg-gray-200 flex items-center gap-2 text-red-600"
         onClick={() => handleAction(onDelete)}
       >
         <Trash2 className="w-4 h-4" />

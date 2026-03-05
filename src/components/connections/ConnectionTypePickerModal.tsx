@@ -54,7 +54,7 @@ export default function ConnectionTypePickerModal({
               <button
                 key={item.type}
                 onClick={() => onSelect(item.type)}
-                className="flex items-center gap-2.5 px-3 py-2.5 rounded-md border border-gray-100 hover:bg-gray-50 hover:border-gray-200 transition-colors text-left group"
+                className="flex items-center gap-2.5 px-3 py-2.5 rounded-md border border-gray-100 hover:bg-gray-50 hover:border-gray-200 active:bg-gray-100 active:border-gray-300 transition-colors text-left group"
                 style={{ borderLeftWidth: '3px', borderLeftColor: item.color }}
               >
                 <Icon
@@ -78,7 +78,7 @@ export default function ConnectionTypePickerModal({
         <div className="mt-3 flex justify-end">
           <button
             onClick={onCancel}
-            className="px-4 py-1.5 text-sm text-gray-600 hover:text-gray-800 hover:bg-gray-100 rounded-md transition-colors"
+            className="px-4 py-1.5 text-sm text-gray-600 hover:text-gray-800 hover:bg-gray-100 active:bg-gray-200 rounded-md transition-colors"
           >
             Cancel
           </button>

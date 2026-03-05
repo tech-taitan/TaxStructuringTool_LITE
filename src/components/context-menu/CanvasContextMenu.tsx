@@ -81,21 +81,21 @@ export default function CanvasContextMenu({
       }}
     >
       <button
-        className="w-full px-3 py-2 text-sm text-left hover:bg-gray-100 flex items-center gap-2 text-red-600"
+        className="w-full px-3 py-2 text-sm text-left hover:bg-gray-100 active:bg-gray-200 flex items-center gap-2 text-red-600"
         onClick={() => handleAction(onDelete)}
       >
         <Trash2 className="w-4 h-4" />
         Delete
       </button>
       <button
-        className="w-full px-3 py-2 text-sm text-left hover:bg-gray-100 flex items-center gap-2 text-gray-700"
+        className="w-full px-3 py-2 text-sm text-left hover:bg-gray-100 active:bg-gray-200 flex items-center gap-2 text-gray-700"
         onClick={() => handleAction(onCopy)}
       >
         <Copy className="w-4 h-4" />
         Copy
       </button>
       <button
-        className="w-full px-3 py-2 text-sm text-left hover:bg-gray-100 flex items-center gap-2 text-gray-700"
+        className="w-full px-3 py-2 text-sm text-left hover:bg-gray-100 active:bg-gray-200 flex items-center gap-2 text-gray-700"
         onClick={() => handleAction(onProperties)}
       >
         <Settings className="w-4 h-4" />

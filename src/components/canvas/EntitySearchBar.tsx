@@ -95,15 +95,15 @@ export default function EntitySearchBar({ onClose }: EntitySearchBarProps) {
       {query && matches.length === 0 && (
         <span className="text-[10px] text-red-400 shrink-0">No results</span>
       )}
-      <button onClick={goPrev} className="p-0.5 rounded hover:bg-gray-100 text-gray-400" title="Previous match">
+      <button onClick={goPrev} className="p-0.5 rounded hover:bg-gray-100 active:bg-gray-200 text-gray-400" title="Previous match">
         <ChevronUp className="w-3.5 h-3.5" />
       </button>
-      <button onClick={goNext} className="p-0.5 rounded hover:bg-gray-100 text-gray-400" title="Next match">
+      <button onClick={goNext} className="p-0.5 rounded hover:bg-gray-100 active:bg-gray-200 text-gray-400" title="Next match">
         <ChevronDown className="w-3.5 h-3.5" />
       </button>
       <button
         onClick={onClose}
-        className="p-0.5 rounded hover:bg-gray-100 text-gray-400"
+        className="p-0.5 rounded hover:bg-gray-100 active:bg-gray-200 text-gray-400"
         title="Close (Esc)"
       >
         <X className="w-3.5 h-3.5" />

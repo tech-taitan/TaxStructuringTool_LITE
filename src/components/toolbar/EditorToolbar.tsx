@@ -144,7 +144,7 @@ function ToolbarButton({
         title={title}
         className={`p-2 rounded transition-colors flex flex-col items-center gap-0.5 min-w-[52px] ${disabled
           ? 'text-gray-300 cursor-not-allowed'
-          : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'
+          : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900 active:bg-gray-200'
           }`}
       >
         {children}
@@ -162,7 +162,7 @@ function ToolbarButton({
       title={title}
       className={`p-1.5 rounded transition-colors flex items-center gap-1 ${disabled
         ? 'text-gray-300 cursor-not-allowed'
-        : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'
+        : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900 active:bg-gray-200'
         }`}
     >
       {children}
@@ -212,13 +212,13 @@ function BgColorDropdown({
 
   useEffect(() => {
     if (!isOpen) return;
-    const handleMouseDown = (e: MouseEvent) => {
+    const handlePointerDown = (e: PointerEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
         setIsOpen(false);
       }
     };
-    document.addEventListener('mousedown', handleMouseDown);
-    return () => document.removeEventListener('mousedown', handleMouseDown);
+    document.addEventListener('pointerdown', handlePointerDown);
+    return () => document.removeEventListener('pointerdown', handlePointerDown);
   }, [isOpen]);
 
   return (
@@ -244,7 +244,7 @@ function BgColorDropdown({
                 }}
                 className={`w-7 h-7 rounded border-2 transition-colors ${currentColor.toUpperCase() === preset.color
                   ? 'border-blue-500'
-                  : 'border-gray-200 hover:border-gray-400'
+                  : 'border-gray-200 hover:border-gray-400 active:border-gray-500'
                   }`}
                 style={{ backgroundColor: preset.color }}
               />
@@ -274,13 +274,13 @@ function FilterDropdown({
   // Close on click outside
   useEffect(() => {
     if (!isOpen) return;
-    const handleMouseDown = (e: MouseEvent) => {
+    const handlePointerDown = (e: PointerEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
         setIsOpen(false);
       }
     };
-    document.addEventListener('mousedown', handleMouseDown);
-    return () => document.removeEventListener('mousedown', handleMouseDown);
+    document.addEventListener('pointerdown', handlePointerDown);
+    return () => document.removeEventListener('pointerdown', handlePointerDown);
   }, [isOpen]);
 
   return (
@@ -302,7 +302,7 @@ function FilterDropdown({
                 onClick={() => onSetFilterMode(mode)}
                 className={`flex-1 text-xs py-1 px-2 rounded font-medium transition-colors ${connectionFilter.mode === mode
                   ? 'bg-blue-100 text-blue-700'
-                  : 'text-gray-500 hover:bg-gray-100'
+                  : 'text-gray-500 hover:bg-gray-100 active:bg-gray-200'
                   }`}
               >
                 {capitalize(mode)}
@@ -322,7 +322,7 @@ function FilterDropdown({
               {RELATIONSHIP_TYPES.map((type) => (
                 <label
                   key={type}
-                  className="flex items-center gap-2 text-xs cursor-pointer hover:bg-gray-50 rounded px-1 py-0.5"
+                  className="flex items-center gap-2 text-xs cursor-pointer hover:bg-gray-50 active:bg-gray-100 rounded px-1 py-0.5"
                 >
                   <input
                     type="checkbox"
@@ -345,7 +345,7 @@ function FilterDropdown({
               {RELATIONSHIP_TYPES.map((type) => (
                 <label
                   key={type}
-                  className="flex items-center gap-2 text-xs cursor-pointer hover:bg-gray-50 rounded px-1 py-0.5"
+                  className="flex items-center gap-2 text-xs cursor-pointer hover:bg-gray-50 active:bg-gray-100 rounded px-1 py-0.5"
                 >
                   <input
                     type="radio"
@@ -392,13 +392,13 @@ function AlignDropdown({
 
   useEffect(() => {
     if (!isOpen) return;
-    const handleMouseDown = (e: MouseEvent) => {
+    const handlePointerDown = (e: PointerEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
         setIsOpen(false);
       }
     };
-    document.addEventListener('mousedown', handleMouseDown);
-    return () => document.removeEventListener('mousedown', handleMouseDown);
+    document.addEventListener('pointerdown', handlePointerDown);
+    return () => document.removeEventListener('pointerdown', handlePointerDown);
   }, [isOpen]);
 
   const handleAction = (action: () => void) => {
@@ -422,22 +422,22 @@ function AlignDropdown({
             Align
           </div>
           <div className="grid grid-cols-3 gap-1 mb-2">
-            <button onClick={() => handleAction(() => onAlign('left'))} title="Align Left" className="p-1.5 rounded hover:bg-gray-100 text-gray-600">
+            <button onClick={() => handleAction(() => onAlign('left'))} title="Align Left" className="p-1.5 rounded hover:bg-gray-100 active:bg-gray-200 text-gray-600">
               <AlignStartVertical className="w-4 h-4" />
             </button>
-            <button onClick={() => handleAction(() => onAlign('center'))} title="Align Center" className="p-1.5 rounded hover:bg-gray-100 text-gray-600">
+            <button onClick={() => handleAction(() => onAlign('center'))} title="Align Center" className="p-1.5 rounded hover:bg-gray-100 active:bg-gray-200 text-gray-600">
               <AlignCenterVertical className="w-4 h-4" />
             </button>
-            <button onClick={() => handleAction(() => onAlign('right'))} title="Align Right" className="p-1.5 rounded hover:bg-gray-100 text-gray-600">
+            <button onClick={() => handleAction(() => onAlign('right'))} title="Align Right" className="p-1.5 rounded hover:bg-gray-100 active:bg-gray-200 text-gray-600">
               <AlignEndVertical className="w-4 h-4" />
             </button>
-            <button onClick={() => handleAction(() => onAlign('top'))} title="Align Top" className="p-1.5 rounded hover:bg-gray-100 text-gray-600">
+            <button onClick={() => handleAction(() => onAlign('top'))} title="Align Top" className="p-1.5 rounded hover:bg-gray-100 active:bg-gray-200 text-gray-600">
               <AlignStartHorizontal className="w-4 h-4" />
             </button>
-            <button onClick={() => handleAction(() => onAlign('middle'))} title="Align Middle" className="p-1.5 rounded hover:bg-gray-100 text-gray-600">
+            <button onClick={() => handleAction(() => onAlign('middle'))} title="Align Middle" className="p-1.5 rounded hover:bg-gray-100 active:bg-gray-200 text-gray-600">
               <AlignCenterHorizontal className="w-4 h-4" />
             </button>
-            <button onClick={() => handleAction(() => onAlign('bottom'))} title="Align Bottom" className="p-1.5 rounded hover:bg-gray-100 text-gray-600">
+            <button onClick={() => handleAction(() => onAlign('bottom'))} title="Align Bottom" className="p-1.5 rounded hover:bg-gray-100 active:bg-gray-200 text-gray-600">
               <AlignEndHorizontal className="w-4 h-4" />
             </button>
           </div>
@@ -445,11 +445,11 @@ function AlignDropdown({
             Distribute
           </div>
           <div className="grid grid-cols-2 gap-1">
-            <button onClick={() => handleAction(() => onDistribute('horizontal'))} title="Distribute Horizontally" className="p-1.5 rounded hover:bg-gray-100 text-gray-600 flex items-center gap-1 text-xs">
+            <button onClick={() => handleAction(() => onDistribute('horizontal'))} title="Distribute Horizontally" className="p-1.5 rounded hover:bg-gray-100 active:bg-gray-200 text-gray-600 flex items-center gap-1 text-xs">
               <AlignHorizontalSpaceAround className="w-4 h-4" />
               <span>Horizontal</span>
             </button>
-            <button onClick={() => handleAction(() => onDistribute('vertical'))} title="Distribute Vertically" className="p-1.5 rounded hover:bg-gray-100 text-gray-600 flex items-center gap-1 text-xs">
+            <button onClick={() => handleAction(() => onDistribute('vertical'))} title="Distribute Vertically" className="p-1.5 rounded hover:bg-gray-100 active:bg-gray-200 text-gray-600 flex items-center gap-1 text-xs">
               <AlignVerticalSpaceAround className="w-4 h-4" />
               <span>Vertical</span>
             </button>
@@ -477,13 +477,13 @@ function ExportDropdown({
 
   useEffect(() => {
     if (!isOpen) return;
-    const handleMouseDown = (e: MouseEvent) => {
+    const handlePointerDown = (e: PointerEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
         setIsOpen(false);
       }
     };
-    document.addEventListener('mousedown', handleMouseDown);
-    return () => document.removeEventListener('mousedown', handleMouseDown);
+    document.addEventListener('pointerdown', handlePointerDown);
+    return () => document.removeEventListener('pointerdown', handlePointerDown);
   }, [isOpen]);
 
   return (
@@ -500,19 +500,19 @@ function ExportDropdown({
         <div className="absolute top-full left-0 mt-1 bg-white rounded-lg shadow-lg border border-gray-200 py-1 z-50 w-40">
           <button
             onClick={() => { onExportPng?.(); setIsOpen(false); }}
-            className="w-full text-left text-xs px-3 py-1.5 text-gray-700 hover:bg-gray-100"
+            className="w-full text-left text-xs px-3 py-1.5 text-gray-700 hover:bg-gray-100 active:bg-gray-200"
           >
             Export as PNG
           </button>
           <button
             onClick={() => { onExportSvg?.(); setIsOpen(false); }}
-            className="w-full text-left text-xs px-3 py-1.5 text-gray-700 hover:bg-gray-100"
+            className="w-full text-left text-xs px-3 py-1.5 text-gray-700 hover:bg-gray-100 active:bg-gray-200"
           >
             Export as SVG
           </button>
           <button
             onClick={() => { onExportPdf?.(); setIsOpen(false); }}
-            className="w-full text-left text-xs px-3 py-1.5 text-gray-700 hover:bg-gray-100"
+            className="w-full text-left text-xs px-3 py-1.5 text-gray-700 hover:bg-gray-100 active:bg-gray-200"
           >
             Export as PDF
           </button>
@@ -703,7 +703,7 @@ export default function EditorToolbar({
         <button
           onClick={() => setExpanded((v) => !v)}
           title={expanded ? 'Collapse toolbar labels' : 'Expand toolbar labels'}
-          className="p-1.5 rounded transition-colors text-gray-400 hover:bg-gray-100 hover:text-gray-600"
+          className="p-1.5 rounded transition-colors text-gray-400 hover:bg-gray-100 hover:text-gray-600 active:bg-gray-200"
         >
           {expanded ? (
             <ChevronsRightLeft className="w-4 h-4" />
