@@ -273,6 +273,9 @@ function EditorLayoutInner({
       hasDraft={hasDraft}
       restoreDraft={restoreDraft}
       discardDraft={discardDraft}
+      onAutoLayout={handleAutoLayout}
+      onShowTemplates={() => setShowTemplatePicker(true)}
+      onExportPng={handleExportPng}
     />
   ) : (
     <div className={`flex h-screen w-screen overflow-hidden ${darkMode ? 'dark' : ''}`}>

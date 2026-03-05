@@ -17,6 +17,7 @@ import { MobilePropertiesSheet } from '@/components/mobile/MobilePropertiesSheet
 import { MobileAnalysisOverlay } from '@/components/mobile/MobileAnalysisOverlay';
 import { MobileConnectionBanner } from '@/components/mobile/MobileConnectionBanner';
 import { useUIStore } from '@/stores/ui-store';
+import { MobileOverflowMenu } from '@/components/mobile/MobileOverflowMenu';
 import { Undo2, Redo2, Plus, Link, Sparkles } from 'lucide-react';
 
 export interface MobileEditorLayoutProps {
@@ -32,9 +33,15 @@ export interface MobileEditorLayoutProps {
   hasDraft: boolean;
   restoreDraft: () => void;
   discardDraft: () => void;
+  onAutoLayout: () => void;
+  onShowTemplates: () => void;
+  onExportPng?: () => void;
 }
 
 export default function MobileEditorLayout({
+  onSave,
+  isSaving,
+  canSave,
   onUndo,
   onRedo,
   canUndo,
@@ -42,6 +49,9 @@ export default function MobileEditorLayout({
   hasDraft,
   restoreDraft,
   discardDraft,
+  onAutoLayout,
+  onShowTemplates,
+  onExportPng,
 }: MobileEditorLayoutProps) {
   const setMobilePaletteOpen = useUIStore((s) => s.setMobilePaletteOpen);
   const setMobileTool = useUIStore((s) => s.setMobileTool);
@@ -147,6 +157,19 @@ export default function MobileEditorLayout({
           >
             <Sparkles className="w-5 h-5" />
           </button>
+
+          {/* Divider */}
+          <div className="w-px h-6 bg-gray-200 dark:bg-gray-600 mx-1" />
+
+          {/* Overflow menu (save, templates, auto-layout, export) */}
+          <MobileOverflowMenu
+            onSave={onSave}
+            isSaving={isSaving}
+            canSave={canSave}
+            onAutoLayout={onAutoLayout}
+            onShowTemplates={onShowTemplates}
+            onExportPng={onExportPng}
+          />
         </div>
       </div>
 
