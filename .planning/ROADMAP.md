@@ -267,10 +267,10 @@ Plans:
   2. User can tap a Connect button in the mobile toolbar to enter connect mode
   3. User can draw a connection by tapping a source entity then tapping a target entity (no drag precision required)
   4. User sees visual feedback during the connection flow — source entity highlights, instruction banner appears, and cancel option is available
-**Plans**: TBD
+**Plans**: 1 plan
 
 Plans:
-- [ ] 14-01: MobileConnectionFlow component, connect mode toggle, connectOnClick integration, enlarged handle CSS, visual feedback overlay
+- [ ] 14-01-PLAN.md -- Connect mode toggle, tap-to-connect state machine, MobileConnectionBanner, source highlight CSS, enhanced handle visibility
 
 ### Phase 15: Hover Audit and Toolbar Completion
 **Goal**: Every interactive element works on touch without hover dependency — all 74 hover-based interactions across 22 files are remediated with always-visible or tap-triggered alternatives, the mobile toolbar is complete with undo/redo/overflow menu, and tablet gets a MiniMap for navigating large structures
