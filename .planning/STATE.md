@@ -9,17 +9,17 @@ See: .planning/PROJECT.md (updated 2026-03-03)
 
 ## Current Position
 
-Phase: 14 of 16 (Mobile Connection Drawing) -- COMPLETE
-Plan: 1 of 1 in current phase -- COMPLETE
-Status: Phase 14 complete, ready for Phase 15
-Last activity: 2026-03-05 -- Completed 14-01-PLAN.md (Mobile Connection Drawing)
+Phase: 15 of 16 (Hover Audit & Toolbar Completion)
+Plan: 1 of 2 in current phase -- COMPLETE
+Status: 15-01 complete, ready for 15-02
+Last activity: 2026-03-06 -- Completed 15-01-PLAN.md (Mobile Overflow Menu)
 
-Progress: [=======================...] 92% (23/25 plans across all milestones)
+Progress: [========================..] 96% (24/25 plans across all milestones)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 23
+- Total plans completed: 24
 - Average duration: 8 min
 - Total execution time: ~3.0 hours
 
@@ -39,9 +39,10 @@ Progress: [=======================...] 92% (23/25 plans across all milestones)
 | 12-mobile-entity-management | 1/1 | 5 min | 5 min |
 | 13-mobile-properties-editing | 2/2 | 12 min | 6 min |
 | 14-mobile-connection-drawing | 1/1 | 4 min | 4 min |
+| 15-hover-audit-toolbar-completion | 1/2 | 2 min | 2 min |
 
 **Recent Trend:**
-- Last 5 plans: 3 min, 5 min, 8 min, 4 min, 4 min
+- Last 5 plans: 5 min, 8 min, 4 min, 4 min, 2 min
 - Trend: Stable
 
 *Updated after each plan completion*
@@ -81,6 +82,8 @@ Recent decisions affecting current work:
 - [14-01]: pendingConnection useState hoisted above onNodeClick for connect mode setPendingConnection access
 - [14-01]: connectOnClick disabled only during connect mode to prevent handle-tap conflicts while preserving desktop behavior
 - [14-01]: Handle base opacity bumped from 0.3 to 0.5 for always-visible discovery on touch (MCONN-01)
+- [15-01]: pointerdown event (not mousedown) for close-on-tap-outside to handle both mouse and touch
+- [15-01]: Save and Export PNG conditionally rendered only when respective props provided
 
 ### Pending Todos
 
@@ -95,6 +98,6 @@ None.
 
 ## Session Continuity
 
-Last session: 2026-03-05
-Stopped at: Completed 14-01-PLAN.md -- Phase 14 complete, ready for Phase 15 (Hover Interaction Audit)
+Last session: 2026-03-06
+Stopped at: Completed 15-01-PLAN.md -- ready for 15-02-PLAN.md (Hover Interaction Audit)
 Resume file: None
