@@ -245,13 +245,45 @@ export default function Canvas() {
     []
   );
 
-  /** Click on empty canvas deselects current entity and closes context menus */
+  /** Two-step tap for mobile: second tap on already-selected node opens properties sheet */
+  const onNodeClick = useCallback(
+    (_event: React.MouseEvent, node: TaxNode) => {
+      if (!isMobile) return;
+      const currentSelectedId = useUIStore.getState().selectedNodeId;
+      if (currentSelectedId === node.id) {
+        // Second tap on same node -- open properties sheet
+        useUIStore.getState().setMobilePropertiesOpen(true);
+      }
+      // If properties sheet is already open and user taps a different node,
+      // sheet stays open and re-renders via key={selectedNodeId}
+    },
+    [isMobile],
+  );
+
+  /** Two-step tap for mobile: second tap on already-selected edge opens properties sheet */
+  const onEdgeClick = useCallback(
+    (_event: React.MouseEvent, edge: Edge) => {
+      if (!isMobile) return;
+      const currentSelectedId = useUIStore.getState().selectedEdgeId;
+      if (currentSelectedId === edge.id) {
+        // Second tap on same edge -- open properties sheet
+        useUIStore.getState().setMobilePropertiesOpen(true);
+      }
+    },
+    [isMobile],
+  );
+
+  /** Click on empty canvas deselects current entity and closes context menus/sheets */
   const onPaneClick = useCallback(() => {
     setSelectedNode(null);
     setSelectedEdge(null);
     setContextMenu(null);
     setEdgeContextMenu(null);
-  }, [setSelectedNode, setSelectedEdge, setContextMenu]);
+    if (isMobile) {
+      useUIStore.getState().setMobilePropertiesOpen(false);
+      useUIStore.getState().setMobileContextMenu(null);
+    }
+  }, [setSelectedNode, setSelectedEdge, setContextMenu, isMobile]);
 
   /** Double-click on empty canvas creates a new entity at that position */
   const onDoubleClickPane = useCallback(
@@ -489,6 +521,8 @@ export default function Canvas() {
         onDrop={onDrop}
         onNodeDragStart={onNodeDragStart}
         onNodeDragStop={onNodeDragStop}
+        onNodeClick={onNodeClick}
+        onEdgeClick={onEdgeClick}
         onPaneClick={onPaneClick}
         onDoubleClick={isTouchDevice ? undefined : onDoubleClickPane}
         onEdgeContextMenu={isTouchDevice ? undefined : onEdgeContextMenu}
