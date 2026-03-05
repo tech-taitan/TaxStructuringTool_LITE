@@ -106,16 +106,16 @@ Requirements for mobile responsive editing. Each maps to roadmap phases 10-16.
 
 ### Mobile Navigation
 
-- [ ] **MNAV-01**: User can access undo/redo via mobile bottom toolbar
-- [ ] **MNAV-02**: User can access add, connect, and edit tools via mobile toolbar buttons
-- [ ] **MNAV-03**: User can access save, templates, auto-layout, and export via overflow menu
+- [x] **MNAV-01**: User can access undo/redo via mobile bottom toolbar
+- [x] **MNAV-02**: User can access add, connect, and edit tools via mobile toolbar buttons
+- [x] **MNAV-03**: User can access save, templates, auto-layout, and export via overflow menu
 - [x] **MNAV-04**: User can long-press an entity for a context action menu (delete, copy, connect, properties)
 
 ### Mobile Polish
 
-- [ ] **MPOL-01**: User can interact with all UI elements on touch without hover dependency
-- [ ] **MPOL-02**: User sees :active touch feedback on interactive elements
-- [ ] **MPOL-03**: User can see a MiniMap on tablet for navigating large structures
+- [x] **MPOL-01**: User can interact with all UI elements on touch without hover dependency
+- [x] **MPOL-02**: User sees :active touch feedback on interactive elements
+- [x] **MPOL-03**: User can see a MiniMap on tablet for navigating large structures
 - [ ] **MPOL-04**: User experiences smooth performance on mobile with 20+ entities
 - [ ] **MPOL-05**: User sees correct safe-area insets on notch/home-indicator devices
 
@@ -212,12 +212,12 @@ Which phases cover which requirements. Updated during roadmap creation.
 | MCONN-02 | Phase 14 | Done |
 | MCONN-03 | Phase 14 | Done |
 | MCONN-04 | Phase 14 | Done |
-| MNAV-01 | Phase 15 | Pending |
-| MNAV-02 | Phase 15 | Pending |
-| MNAV-03 | Phase 15 | Pending |
-| MPOL-01 | Phase 15 | Pending |
-| MPOL-02 | Phase 15 | Pending |
-| MPOL-03 | Phase 15 | Pending |
+| MNAV-01 | Phase 15 | Done |
+| MNAV-02 | Phase 15 | Done |
+| MNAV-03 | Phase 15 | Done |
+| MPOL-01 | Phase 15 | Done |
+| MPOL-02 | Phase 15 | Done |
+| MPOL-03 | Phase 15 | Done |
 | MPOL-04 | Phase 16 | Pending |
 | MPOL-05 | Phase 16 | Pending |
 

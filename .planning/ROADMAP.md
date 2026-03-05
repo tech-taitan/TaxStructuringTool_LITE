@@ -43,7 +43,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 12: Mobile Entity Creation** - FAB, bottom sheet palette, tap-to-add entity placement
 - [x] **Phase 13: Mobile Properties Editing** - Properties bottom sheet, connection properties sheet, long-press context menu
 - [x] **Phase 14: Mobile Connection Drawing** - Connect mode toolbar toggle, tap-source-then-target flow, enlarged handles
-- [ ] **Phase 15: Hover Audit and Toolbar Completion** - 74 hover interactions remediated, mobile toolbar with overflow menu, tablet MiniMap
+- [x] **Phase 15: Hover Audit and Toolbar Completion** - 74 hover interactions remediated, mobile toolbar with overflow menu, tablet MiniMap
 - [ ] **Phase 16: Performance and Real-Device Testing** - Viewport culling, transition optimization, safe area insets, device test matrix
 
 ## Phase Details
@@ -323,5 +323,5 @@ Note: Phase 10 before all v1.1 phases (primitives). Phase 11 before 12-16 (layou
 | 12. Mobile Entity Creation | v1.1 | 1/1 | Complete | 2026-03-04 |
 | 13. Mobile Properties Editing | v1.1 | 2/2 | Complete | 2026-03-05 |
 | 14. Mobile Connection Drawing | v1.1 | 1/1 | Complete | 2026-03-06 |
-| 15. Hover Audit and Toolbar Completion | v1.1 | 0/2 | Not started | - |
+| 15. Hover Audit and Toolbar Completion | v1.1 | 2/2 | Complete | 2026-03-06 |
 | 16. Performance and Real-Device Testing | v1.1 | 0/1 | Not started | - |
