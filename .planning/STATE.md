@@ -5,23 +5,23 @@
 See: .planning/PROJECT.md (updated 2026-03-03)
 
 **Core value:** Tax lawyers can draw a structure and instantly understand its tax implications
-**Current focus:** Milestone v1.1 -- Mobile Experience, Phase 14 (Mobile Connections)
+**Current focus:** Milestone v1.1 -- Mobile Experience, Phase 15 (Hover Interaction Audit)
 
 ## Current Position
 
-Phase: 13 of 16 (Mobile Properties Editing) -- COMPLETE
-Plan: 2 of 2 in current phase -- COMPLETE
-Status: Phase 13 complete, ready for Phase 14
-Last activity: 2026-03-05 -- Completed Phase 13 Plan 02 (Long-press Context Menu, AI Analysis Overlay)
+Phase: 14 of 16 (Mobile Connection Drawing) -- COMPLETE
+Plan: 1 of 1 in current phase -- COMPLETE
+Status: Phase 14 complete, ready for Phase 15
+Last activity: 2026-03-05 -- Completed 14-01-PLAN.md (Mobile Connection Drawing)
 
-Progress: [======================....] 88% (22/25 plans across all milestones)
+Progress: [=======================...] 92% (23/25 plans across all milestones)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 22
+- Total plans completed: 23
 - Average duration: 8 min
-- Total execution time: ~2.9 hours
+- Total execution time: ~3.0 hours
 
 **By Phase:**
 
@@ -38,9 +38,10 @@ Progress: [======================....] 88% (22/25 plans across all milestones)
 | 11-responsive-layout-shell | 2/2 | 7 min | 4 min |
 | 12-mobile-entity-management | 1/1 | 5 min | 5 min |
 | 13-mobile-properties-editing | 2/2 | 12 min | 6 min |
+| 14-mobile-connection-drawing | 1/1 | 4 min | 4 min |
 
 **Recent Trend:**
-- Last 5 plans: 4 min, 3 min, 5 min, 8 min, 4 min
+- Last 5 plans: 3 min, 5 min, 8 min, 4 min, 4 min
 - Trend: Stable
 
 *Updated after each plan completion*
@@ -77,6 +78,9 @@ Recent decisions affecting current work:
 - [13-02]: Combined wrapper approach for EntityNode touch handlers -- captures coords before delegating to useLongPress
 - [13-02]: Analysis overlay uses placeholder content with disabled buttons -- ready for streaming AI when backend exists
 - [13-02]: Double pointer-events-auto (Tailwind + inline) on overlay for guaranteed modal behavior
+- [14-01]: pendingConnection useState hoisted above onNodeClick for connect mode setPendingConnection access
+- [14-01]: connectOnClick disabled only during connect mode to prevent handle-tap conflicts while preserving desktop behavior
+- [14-01]: Handle base opacity bumped from 0.3 to 0.5 for always-visible discovery on touch (MCONN-01)
 
 ### Pending Todos
 
@@ -92,5 +96,5 @@ None.
 ## Session Continuity
 
 Last session: 2026-03-05
-Stopped at: Completed 13-02-PLAN.md -- Phase 13 complete, ready for Phase 14 (Mobile Connections)
+Stopped at: Completed 14-01-PLAN.md -- Phase 14 complete, ready for Phase 15 (Hover Interaction Audit)
 Resume file: None
