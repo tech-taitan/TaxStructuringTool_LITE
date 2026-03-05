@@ -292,9 +292,9 @@ body {
  * ============================================================ */
 
 @media (pointer: coarse) {
-  /* Make handles subtly visible on touch (no hover to discover them) */
+  /* Make handles always visible on touch (no hover to discover them) */
   .react-flow__handle {
-    opacity: 0.3;
+    opacity: 0.5;
   }
 
   /* Enlarge invisible hit area to 44px minimum */
@@ -362,4 +362,37 @@ body {
 
 .context-menu--animate-in {
   animation: context-menu-in 150ms ease-out;
+}
+
+/* ============================================================
+ * Source Entity Highlight (Phase 14)
+ * Blue ring on the entity node selected as connection source
+ * during the mobile tap-to-connect flow.
+ * ============================================================ */
+
+.react-flow__node.mobile-connect-source .entity-node {
+  box-shadow: 0 0 0 3px #3B82F6, 0 0 12px rgba(59, 130, 246, 0.3);
+}
+
+/* Clip-path shapes need filter instead of box-shadow */
+.react-flow__node.mobile-connect-source .entity-node--triangle,
+.react-flow__node.mobile-connect-source .entity-node--diamond,
+.react-flow__node.mobile-connect-source .entity-node--hexagon,
+.react-flow__node.mobile-connect-source .entity-node--shield {
+  box-shadow: none;
+  filter: drop-shadow(0 0 4px rgba(59, 130, 246, 0.6));
+}
+
+/* ============================================================
+ * Connection Banner Entrance Animation (Phase 14)
+ * Played on MobileConnectionBanner appearance for smooth entry.
+ * ============================================================ */
+
+@keyframes connection-banner-in {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.connection-banner--animate-in {
+  animation: connection-banner-in 200ms ease-out;
 }

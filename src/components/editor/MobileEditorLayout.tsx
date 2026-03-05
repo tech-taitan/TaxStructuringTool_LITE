@@ -15,6 +15,7 @@ import Canvas from '@/components/canvas/Canvas';
 import { MobilePalette } from '@/components/mobile/MobilePalette';
 import { MobilePropertiesSheet } from '@/components/mobile/MobilePropertiesSheet';
 import { MobileAnalysisOverlay } from '@/components/mobile/MobileAnalysisOverlay';
+import { MobileConnectionBanner } from '@/components/mobile/MobileConnectionBanner';
 import { useUIStore } from '@/stores/ui-store';
 import { Undo2, Redo2, Plus, Link, Sparkles } from 'lucide-react';
 
@@ -74,6 +75,7 @@ export default function MobileEditorLayout({
       {/* Full-screen canvas area */}
       <div className="flex-1 relative">
         <Canvas />
+        <MobileConnectionBanner />
 
         {/* Floating bottom toolbar */}
         <div
