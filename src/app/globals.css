@@ -58,10 +58,12 @@ body {
   transition: fill 0.15s, stroke 0.15s;
 }
 
-.react-flow__edge:hover .react-flow__edgeupdater {
-  fill: #3B82F6;
-  stroke: white;
-  stroke-width: 1.5;
+@media (hover: hover) {
+  .react-flow__edge:hover .react-flow__edgeupdater {
+    fill: #3B82F6;
+    stroke: white;
+    stroke-width: 1.5;
+  }
 }
 
 .react-flow__edge.selected .react-flow__edgeupdater {
@@ -224,17 +226,19 @@ body {
   transition: box-shadow 0.15s ease, filter 0.15s ease;
 }
 
-.entity-node:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06);
-}
+@media (hover: hover) {
+  .entity-node:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06);
+  }
 
-/* Clip-path shapes can't use box-shadow -- use brighter drop-shadow on hover */
-.entity-node--triangle:hover,
-.entity-node--diamond:hover,
-.entity-node--hexagon:hover,
-.entity-node--shield:hover {
-  box-shadow: none;
-  filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.2));
+  /* Clip-path shapes can't use box-shadow -- use brighter drop-shadow on hover */
+  .entity-node--triangle:hover,
+  .entity-node--diamond:hover,
+  .entity-node--hexagon:hover,
+  .entity-node--shield:hover {
+    box-shadow: none;
+    filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.2));
+  }
 }
 
 /* ============================================================
@@ -281,8 +285,10 @@ body {
   border-color: #374151;
 }
 
-.dark .react-flow__controls button:hover {
-  background: #374151;
+@media (hover: hover) {
+  .dark .react-flow__controls button:hover {
+    background: #374151;
+  }
 }
 
 /* ============================================================
