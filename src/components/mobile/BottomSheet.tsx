@@ -11,7 +11,7 @@
  *   full      =   5% translateY (~95% visible)
  */
 
-import { useState, useRef, useEffect, useCallback } from 'react';
+import { useState, useRef, useEffect, useCallback, forwardRef, useImperativeHandle } from 'react';
 import { createPortal } from 'react-dom';
 import { animateSpringWithVelocity } from '@/lib/spring';
 
@@ -23,8 +23,13 @@ export interface BottomSheetProps {
   children: React.ReactNode;
 }
 
+/** Imperative ref API for external snap control (e.g., keyboard-aware expansion) */
+export interface BottomSheetRef {
+  snapTo: (snap: 'collapsed' | 'half' | 'full') => void;
+}
+
 /** Snap point as percentage of viewport height for translateY */
-const SNAP_PERCENTS: Record<string, number> = {
+export const SNAP_PERCENTS: Record<string, number> = {
   collapsed: 100,
   half: 55,
   full: 5,
@@ -34,13 +39,13 @@ function percentToPx(percent: number): number {
   return (percent / 100) * window.innerHeight;
 }
 
-export function BottomSheet({
+export const BottomSheet = forwardRef<BottomSheetRef, BottomSheetProps>(function BottomSheet({
   isOpen,
   onClose,
   snapPoints = ['collapsed', 'half', 'full'],
   initialSnap = 'half',
   children,
-}: BottomSheetProps) {
+}, ref) {
   // isRendered stays true during close animation so the portal remains mounted
   const [isRendered, setIsRendered] = useState(false);
 
@@ -102,6 +107,13 @@ export function BottomSheet({
     },
     [setSheetPosition],
   );
+
+  // Expose imperative snapTo API for keyboard-aware expansion
+  useImperativeHandle(ref, () => ({
+    snapTo: (snap: 'collapsed' | 'half' | 'full') => {
+      springTo(SNAP_PERCENTS[snap]);
+    },
+  }), [springTo]);
 
   // Open animation
   useEffect(() => {
@@ -271,4 +283,4 @@ export function BottomSheet({
     </>,
     document.body,
   );
-}
+});

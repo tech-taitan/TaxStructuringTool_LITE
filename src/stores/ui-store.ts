@@ -89,6 +89,10 @@ interface UIState {
   pendingConnectionSource: string | null;
   /** ID of the most recently placed node (for scale-in animation), null when cleared */
   lastPlacedNodeId: string | null;
+  /** Mobile context menu position and target node, or null when hidden */
+  mobileContextMenu: { x: number; y: number; nodeId: string } | null;
+  /** Whether the mobile AI analysis overlay is open */
+  isMobileAnalysisOpen: boolean;
 
   /** Set mobile palette open state */
   setMobilePaletteOpen: (open: boolean) => void;
@@ -100,6 +104,10 @@ interface UIState {
   setPendingConnectionSource: (nodeId: string | null) => void;
   /** Set last placed node ID (for scale-in animation tracking) */
   setLastPlacedNodeId: (id: string | null) => void;
+  /** Set mobile context menu state (null to hide) */
+  setMobileContextMenu: (menu: { x: number; y: number; nodeId: string } | null) => void;
+  /** Set mobile analysis overlay open state */
+  setMobileAnalysisOpen: (open: boolean) => void;
 
   /** Set the selected node (null to deselect). Non-null switches to properties view. */
   setSelectedNode: (id: string | null) => void;
@@ -168,12 +176,16 @@ export const useUIStore = create<UIState>()((set) => ({
   mobileTool: null,
   pendingConnectionSource: null,
   lastPlacedNodeId: null,
+  mobileContextMenu: null,
+  isMobileAnalysisOpen: false,
 
   setMobilePaletteOpen: (open) => set({ isMobilePaletteOpen: open }),
   setMobilePropertiesOpen: (open) => set({ isMobilePropertiesOpen: open }),
   setMobileTool: (tool) => set({ mobileTool: tool }),
   setPendingConnectionSource: (nodeId) => set({ pendingConnectionSource: nodeId }),
   setLastPlacedNodeId: (id) => set({ lastPlacedNodeId: id }),
+  setMobileContextMenu: (menu) => set({ mobileContextMenu: menu }),
+  setMobileAnalysisOpen: (open) => set({ isMobileAnalysisOpen: open }),
 
   setSelectedNode: (id) => set(id ? { selectedNodeId: id, rightPanelMode: 'properties' } : { selectedNodeId: id }),
   setSelectedEdge: (id) => set(id ? { selectedEdgeId: id, rightPanelMode: 'properties' } : { selectedEdgeId: id }),
