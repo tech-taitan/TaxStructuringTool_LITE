@@ -9,19 +9,19 @@ See: .planning/PROJECT.md (updated 2026-03-03)
 
 ## Current Position
 
-Phase: 15 of 16 (Hover Audit & Toolbar Completion)
-Plan: 1 of 2 in current phase -- COMPLETE
-Status: 15-01 complete, ready for 15-02
-Last activity: 2026-03-06 -- Completed 15-01-PLAN.md (Mobile Overflow Menu)
+Phase: 15 of 16 (Hover Audit & Toolbar Completion) -- COMPLETE
+Plan: 2 of 2 in current phase -- COMPLETE
+Status: Phase 15 complete, ready for Phase 16
+Last activity: 2026-03-06 -- Completed 15-02-PLAN.md (Hover Audit Remediation)
 
-Progress: [========================..] 96% (24/25 plans across all milestones)
+Progress: [=========================] 100% (25/25 plans across all milestones)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 24
+- Total plans completed: 25
 - Average duration: 8 min
-- Total execution time: ~3.0 hours
+- Total execution time: ~3.1 hours
 
 **By Phase:**
 
@@ -39,10 +39,10 @@ Progress: [========================..] 96% (24/25 plans across all milestones)
 | 12-mobile-entity-management | 1/1 | 5 min | 5 min |
 | 13-mobile-properties-editing | 2/2 | 12 min | 6 min |
 | 14-mobile-connection-drawing | 1/1 | 4 min | 4 min |
-| 15-hover-audit-toolbar-completion | 1/2 | 2 min | 2 min |
+| 15-hover-audit-toolbar-completion | 2/2 | 6 min | 3 min |
 
 **Recent Trend:**
-- Last 5 plans: 5 min, 8 min, 4 min, 4 min, 2 min
+- Last 5 plans: 8 min, 4 min, 4 min, 2 min, 4 min
 - Trend: Stable
 
 *Updated after each plan completion*
@@ -84,6 +84,10 @@ Recent decisions affecting current work:
 - [14-01]: Handle base opacity bumped from 0.3 to 0.5 for always-visible discovery on touch (MCONN-01)
 - [15-01]: pointerdown event (not mousedown) for close-on-tap-outside to handle both mouse and touch
 - [15-01]: Save and Export PNG conditionally rendered only when respective props provided
+- [15-02]: All raw CSS :hover rules wrapped in @media (hover: hover) to prevent touch ghost hover
+- [15-02]: Edge .selected rule kept outside media query -- selection is touch equivalent of hover
+- [15-02]: Tablet MiniMap already works via !isMobile guard (MPOL-03 satisfied, no code changes)
+- [15-02]: pointerdown replaces mousedown in all 4 toolbar dropdowns for tablet touch compatibility
 
 ### Pending Todos
 
@@ -94,10 +98,10 @@ None.
 - Library versions verified: Next.js 16.1.6, React Flow 12.10.0, Zustand 5.0.11, React 19.2.3
 - React Flow 12.10.0 touch props confirmed: zoomOnPinch, panOnDrag, preventScrolling, connectOnClick all present
 - HTML5 DnD is non-functional on touch -- replaced by tap-to-add in Phase 12
-- 74 hover interactions across 22 files need audit in Phase 15
+- Hover audit complete: all 4 raw CSS :hover rules guarded, active feedback on all interactive components
 
 ## Session Continuity
 
 Last session: 2026-03-06
-Stopped at: Completed 15-01-PLAN.md -- ready for 15-02-PLAN.md (Hover Interaction Audit)
+Stopped at: Completed 15-02-PLAN.md -- Phase 15 complete, all milestones done (25/25 plans)
 Resume file: None
