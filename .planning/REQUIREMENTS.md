@@ -99,10 +99,10 @@ Requirements for mobile responsive editing. Each maps to roadmap phases 10-16.
 
 ### Mobile Connection Drawing
 
-- [ ] **MCONN-01**: User can see connection handles on touch devices (always visible, enlarged hit areas)
-- [ ] **MCONN-02**: User can enter connect mode via a toolbar button on mobile
-- [ ] **MCONN-03**: User can draw connections by tapping source entity then target entity
-- [ ] **MCONN-04**: User sees visual feedback during connection flow (source highlight, instruction banner)
+- [x] **MCONN-01**: User can see connection handles on touch devices (always visible, enlarged hit areas)
+- [x] **MCONN-02**: User can enter connect mode via a toolbar button on mobile
+- [x] **MCONN-03**: User can draw connections by tapping source entity then target entity
+- [x] **MCONN-04**: User sees visual feedback during connection flow (source highlight, instruction banner)
 
 ### Mobile Navigation
 
@@ -208,10 +208,10 @@ Which phases cover which requirements. Updated during roadmap creation.
 | MPROP-04 | Phase 13 | Done |
 | MPROP-05 | Phase 13 | Done |
 | MNAV-04 | Phase 13 | Done |
-| MCONN-01 | Phase 14 | Pending |
-| MCONN-02 | Phase 14 | Pending |
-| MCONN-03 | Phase 14 | Pending |
-| MCONN-04 | Phase 14 | Pending |
+| MCONN-01 | Phase 14 | Done |
+| MCONN-02 | Phase 14 | Done |
+| MCONN-03 | Phase 14 | Done |
+| MCONN-04 | Phase 14 | Done |
 | MNAV-01 | Phase 15 | Pending |
 | MNAV-02 | Phase 15 | Pending |
 | MNAV-03 | Phase 15 | Pending |
