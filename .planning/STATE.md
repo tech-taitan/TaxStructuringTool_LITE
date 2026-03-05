@@ -5,23 +5,23 @@
 See: .planning/PROJECT.md (updated 2026-03-03)
 
 **Core value:** Tax lawyers can draw a structure and instantly understand its tax implications
-**Current focus:** Milestone v1.1 -- Mobile Experience, Phase 12 (Mobile Entity Management)
+**Current focus:** Milestone v1.1 -- Mobile Experience, Phase 13 (Mobile Properties Editing)
 
 ## Current Position
 
-Phase: 12 of 16 (Mobile Entity Management)
-Plan: 1 of 1 in current phase -- COMPLETE
-Status: Phase 12 complete
-Last activity: 2026-03-04 -- Completed Phase 12 Plan 01 (Mobile Entity Palette)
+Phase: 13 of 16 (Mobile Properties Editing)
+Plan: 1 of 2 in current phase -- COMPLETE
+Status: Executing Phase 13
+Last activity: 2026-03-05 -- Completed Phase 13 Plan 01 (Mobile Properties Sheet)
 
-Progress: [====================......] 80% (20/25 plans across all milestones)
+Progress: [=====================.....] 84% (21/25 plans across all milestones)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 20
+- Total plans completed: 21
 - Average duration: 9 min
-- Total execution time: ~2.7 hours
+- Total execution time: ~2.8 hours
 
 **By Phase:**
 
@@ -37,9 +37,10 @@ Progress: [====================......] 80% (20/25 plans across all milestones)
 | 10-mobile-foundation | 1/1 | 3 min | 3 min |
 | 11-responsive-layout-shell | 2/2 | 7 min | 4 min |
 | 12-mobile-entity-management | 1/1 | 5 min | 5 min |
+| 13-mobile-properties-editing | 1/2 | 8 min | 8 min |
 
 **Recent Trend:**
-- Last 5 plans: 2 min, 3 min, 4 min, 3 min, 5 min
+- Last 5 plans: 3 min, 4 min, 3 min, 5 min, 8 min
 - Trend: Stable
 
 *Updated after each plan completion*
@@ -69,6 +70,10 @@ Recent decisions affecting current work:
 - [12-01]: CATEGORY_CONFIG uses iconName strings (not JSX) for framework-agnostic sharing between desktop and mobile
 - [12-01]: BottomSheet touch handlers moved to drag handle only, enabling content area scrolling
 - [12-01]: Scale-in animation uses CSS scale property (not transform: scale) to avoid conflicting with React Flow transforms
+- [13-01]: BottomSheet imperative ref API via forwardRef + useImperativeHandle for external snap control
+- [13-01]: RELATIONSHIP_TYPES extracted to shared lib file for desktop modal and mobile picker sync
+- [13-01]: PropertiesPanel autoFocus prop (default true) suppresses keyboard popup on mobile
+- [13-01]: touch-target CSS class in @media (pointer: coarse) for 44px delete button targets
 
 ### Pending Todos
 
@@ -83,6 +88,6 @@ None.
 
 ## Session Continuity
 
-Last session: 2026-03-04
-Stopped at: Completed 12-01-PLAN.md -- Phase 12 complete, ready for Phase 13 (Mobile Entity Properties)
+Last session: 2026-03-05
+Stopped at: Completed 13-01-PLAN.md -- ready for 13-02-PLAN.md (long-press context menu, analysis overlay)
 Resume file: None
