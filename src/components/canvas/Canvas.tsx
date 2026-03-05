@@ -64,6 +64,7 @@ import type { TaxNode, TaxEdge } from '@/models/graph';
 import type { RelationshipType } from '@/models/relationships';
 import { getDefaultRelationshipData } from '@/lib/validation/relationship-schemas';
 import ConnectionTypePickerModal from '@/components/connections/ConnectionTypePickerModal';
+import { MobileConnectionTypePicker } from '@/components/mobile/MobileConnectionTypePicker';
 import CanvasBackground from './CanvasBackground';
 import CanvasBorder from './CanvasBorder';
 import CanvasLegend from './CanvasLegend';
@@ -615,10 +616,9 @@ export default function Canvas() {
         />
       )}
       {pendingConnection && (
-        <ConnectionTypePickerModal
-          onSelect={handleConnectionTypeSelected}
-          onCancel={handleConnectionCancel}
-        />
+        isMobile
+          ? <MobileConnectionTypePicker onSelect={handleConnectionTypeSelected} onCancel={handleConnectionCancel} />
+          : <ConnectionTypePickerModal onSelect={handleConnectionTypeSelected} onCancel={handleConnectionCancel} />
       )}
       {showSearchBar && (
         <EntitySearchBar onClose={() => setShowSearchBar(false)} />

@@ -9,80 +9,13 @@
  */
 
 import { useEffect } from 'react';
-import {
-  Percent,
-  DollarSign,
-  Shield,
-  Users,
-  Handshake,
-  FileText,
-} from 'lucide-react';
 import type { RelationshipType } from '@/models/relationships';
+import { RELATIONSHIP_TYPES } from '@/lib/relationship-type-config';
 
 interface ConnectionTypePickerModalProps {
   onSelect: (type: RelationshipType) => void;
   onCancel: () => void;
 }
-
-/** Flat list of all relationship types for grid layout */
-const RELATIONSHIP_TYPES = [
-  {
-    type: 'equity' as RelationshipType,
-    name: 'Equity',
-    description: 'Ownership / shareholding',
-    color: '#2563EB',
-    icon: Percent,
-  },
-  {
-    type: 'debt' as RelationshipType,
-    name: 'Debt',
-    description: 'Loan / debt instrument',
-    color: '#DC2626',
-    icon: DollarSign,
-  },
-  {
-    type: 'trustee' as RelationshipType,
-    name: 'Trustee',
-    description: 'Trust administration',
-    color: '#7C3AED',
-    icon: Shield,
-  },
-  {
-    type: 'beneficiary' as RelationshipType,
-    name: 'Beneficiary',
-    description: 'Trust entitlement',
-    color: '#7C3AED',
-    icon: Users,
-  },
-  {
-    type: 'partnership' as RelationshipType,
-    name: 'Partnership',
-    description: 'Partnership interest',
-    color: '#059669',
-    icon: Handshake,
-  },
-  {
-    type: 'management' as RelationshipType,
-    name: 'Management',
-    description: 'Management agreement',
-    color: '#6B7280',
-    icon: FileText,
-  },
-  {
-    type: 'services' as RelationshipType,
-    name: 'Services',
-    description: 'Service agreement',
-    color: '#6B7280',
-    icon: FileText,
-  },
-  {
-    type: 'licensing' as RelationshipType,
-    name: 'Licensing',
-    description: 'Licensing agreement',
-    color: '#6B7280',
-    icon: FileText,
-  },
-];
 
 export default function ConnectionTypePickerModal({
   onSelect,

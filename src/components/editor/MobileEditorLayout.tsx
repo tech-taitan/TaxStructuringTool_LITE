@@ -13,6 +13,7 @@
 
 import Canvas from '@/components/canvas/Canvas';
 import { MobilePalette } from '@/components/mobile/MobilePalette';
+import { MobilePropertiesSheet } from '@/components/mobile/MobilePropertiesSheet';
 import { useUIStore } from '@/stores/ui-store';
 import { Undo2, Redo2, Plus, Link } from 'lucide-react';
 
@@ -122,7 +123,7 @@ export default function MobileEditorLayout({
 
       {/* Bottom sheets */}
       <MobilePalette />
-      {/* Phase 13: Mobile properties bottom sheet */}
+      <MobilePropertiesSheet />
     </div>
   );
 }

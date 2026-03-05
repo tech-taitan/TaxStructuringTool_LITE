@@ -26,6 +26,8 @@ import NotesSection from './NotesSection';
 
 interface PropertiesPanelProps {
   nodeId: string;
+  /** Whether to auto-focus the name input on mount (default true). Set false for mobile to prevent keyboard popup. */
+  autoFocus?: boolean;
 }
 
 /** Zod issue shape (compatible with Zod v4) */
@@ -37,7 +39,7 @@ interface ValidationIssue {
 /** Auto-save debounce delay in ms */
 const AUTO_SAVE_DELAY = 400;
 
-export default function PropertiesPanel({ nodeId }: PropertiesPanelProps) {
+export default function PropertiesPanel({ nodeId, autoFocus = true }: PropertiesPanelProps) {
   const node = useGraphStore((state) => state.nodes.find((n) => n.id === nodeId));
   const updateNodeData = useGraphStore((state) => state.updateNodeData);
 
@@ -58,14 +60,15 @@ export default function PropertiesPanel({ nodeId }: PropertiesPanelProps) {
   const nameInputRef = useRef<HTMLInputElement>(null);
   const isInitialMount = useRef(true);
 
-  // Auto-focus name field when panel opens
+  // Auto-focus name field when panel opens (suppressed on mobile to prevent keyboard popup)
   useEffect(() => {
+    if (autoFocus === false) return;
     const timeout = setTimeout(() => {
       nameInputRef.current?.focus();
       nameInputRef.current?.select();
     }, 50);
     return () => clearTimeout(timeout);
-  }, []);
+  }, [autoFocus]);
 
   // Debounced auto-save: validate and commit on every form change
   useEffect(() => {
