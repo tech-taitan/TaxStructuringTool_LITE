@@ -1,0 +1,127 @@
+# Requirements: Tax Structuring Tool
+
+**Defined:** 2026-03-06
+**Core Value:** Tax lawyers can draw a structure and instantly understand its tax implications
+
+## v2.0 Requirements
+
+Requirements for multi-jurisdiction expansion. Each maps to roadmap phases.
+
+### Entity Registry
+
+- [ ] **EREG-01**: User can place all 9 UK entity types (Ltd, PLC, LLP, LP, GP, Unit Trust, Discretionary Trust, Individual, Pension Scheme) on the canvas with visually distinct nodes
+- [ ] **EREG-02**: User can place all 11 US entity types (C Corp, S Corp, LLC Disregarded, LLC Partnership-Taxed, GP, LP, LLLP, Grantor Trust, Non-Grantor Trust, Individual, 501(c)(3)) on the canvas with visually distinct nodes
+- [ ] **EREG-03**: User can place all 6 Hong Kong entity types (Private Company, Public Company, LP, LPF, OFC, Individual) on the canvas with visually distinct nodes
+- [ ] **EREG-04**: User can place all 7 Singapore entity types (Pte Ltd, Public Company, LP, LLP, VCC, Unit Trust, Individual) on the canvas with visually distinct nodes
+- [ ] **EREG-05**: User can place all 10 Luxembourg entity types (Sarl, SA, SCSp, SCS, SICAV, SICAR, SIF, RAIF, SOPARFI flag on Sarl/SA, Individual) on the canvas with visually distinct nodes
+- [ ] **EREG-06**: User can see jurisdiction-appropriate shapes, colors, and flag icons distinguishing each jurisdiction's entity types on the canvas
+
+### Palette & Navigation
+
+- [ ] **PAL-01**: User can browse entity types organized by jurisdiction tabs (AU, UK, US, HK, SG, LU) in both desktop sidebar and mobile bottom sheet palettes
+- [ ] **PAL-02**: User can search for entity types across all jurisdictions with jurisdiction flag shown alongside results
+- [ ] **PAL-03**: User can see all 6 jurisdiction tabs with flag icons in the palette without needing to scroll horizontally to discover them
+
+### Properties & Fields
+
+- [ ] **PROP-01**: User can view and edit UK-specific registration fields (Company Number, UTR, NINO) and tax status fields (Corporation Tax rate, Small Profits eligibility, trust rates, IHT relevance)
+- [ ] **PROP-02**: User can view and edit US-specific registration fields (EIN, SSN/ITIN, State of formation) and tax status fields (check-the-box election, S Corp election, federal tax rate)
+- [ ] **PROP-03**: User can view and edit HK-specific registration fields (CR Number, BR Number, HKID) and tax status fields (two-tier profits tax, territorial source principle)
+- [ ] **PROP-04**: User can view and edit SG-specific registration fields (UEN, NRIC/FIN) and tax status fields (Section 13O/13U election, partial tax exemption, VCC sub-fund structure)
+- [ ] **PROP-05**: User can view and edit LU-specific registration fields (RCS Number, CSSF Approval Number, Tax ID) and tax status fields (SOPARFI flag, participation exemption, subscription tax rate, IP Box election)
+- [ ] **PROP-06**: User can see jurisdiction-specific field validation with correct formats (UK Company Number 8 chars, US EIN XX-XXXXXXX, HK CR Number, SG UEN 9-10 chars, LU RCS B-XXXXXX)
+
+### Cross-Border Canvas
+
+- [ ] **XBRD-01**: User can place entities from different jurisdictions on the same canvas to build mixed cross-border structures
+- [ ] **XBRD-02**: User can visually distinguish which jurisdiction each entity belongs to via flag icon and jurisdiction-specific border color accent
+- [ ] **XBRD-03**: User can see cross-border connections visually differentiated from domestic connections (dashed line style or distinct color)
+- [ ] **XBRD-04**: User can see a jurisdiction color legend on the canvas when entities from multiple jurisdictions are present
+
+### Cross-Border Connection Metadata
+
+- [ ] **CONN-01**: User can set withholding tax rate and payment type (dividend/interest/royalty) on cross-border equity and debt connections
+- [ ] **CONN-02**: User can indicate whether a treaty-reduced rate applies and specify the applicable treaty name on cross-border connections
+- [ ] **CONN-03**: User can see transfer pricing relevance auto-flagged on cross-border service/management/licensing connections between related parties
+- [ ] **CONN-04**: User can set currency denomination (ISO 4217 code) on cross-border debt and equity connections
+
+### Validation
+
+- [ ] **VAL-01**: User can see validation warnings for jurisdiction-specific structural rules (e.g., UK trust without trustee, US S Corp with ineligible shareholder type, SG VCC without fund manager)
+- [ ] **VAL-02**: User can see validation working correctly across mixed-jurisdiction structures without false positives from other jurisdictions' rules
+
+## Future Requirements
+
+Deferred to subsequent milestones. Tracked but not in current roadmap.
+
+### AI Analysis Engine (Multi-Jurisdiction)
+
+- **AI-MJ-01**: User can click "Analyze Structure" and see streaming AI analysis covering all jurisdictions present in the structure
+- **AI-MJ-02**: User can see cross-border tax analysis sections: treaty implications, withholding taxes, PE risk, CFC rules, transfer pricing considerations, substance requirements
+- **AI-MJ-03**: User can see formation and transaction steps that reference jurisdiction-specific requirements (Companies House registration for UK, ACRA for SG, RCS for LU)
+- **AI-MJ-04**: User can export multi-jurisdiction analysis as PDF with jurisdiction-specific sections
+
+### Cross-Border Templates
+
+- **TMPL-01**: User can load pre-built cross-border template structures (AU fund via SG VCC, UK parent with LU SOPARFI, HK holdco for Asia investments)
+- **TMPL-02**: User can see cross-border templates with pre-configured connection metadata (WHT rates, treaty references)
+
+### Differentiators
+
+- **DIFF-01**: User can see a WHT rate matrix showing applicable rates between all jurisdiction pairs in the structure
+- **DIFF-02**: User can see PE risk flags automatically highlighted on relevant connections
+- **DIFF-03**: User can see CFC rule warnings when parent-subsidiary control relationships span high/low-tax jurisdictions
+- **DIFF-04**: User can compare jurisdictions side-by-side (tax rates, treaty network, CFC rules, substance requirements)
+
+## Out of Scope
+
+| Feature | Reason |
+|---------|--------|
+| Real-time treaty database | Enormous scope, constant maintenance, legal liability. Use static indicative rates + AI for nuance |
+| Tax calculation engine | This is structuring advice, not compliance software. No actual tax liability computation |
+| Regulatory filing support | Separate product category. AI can mention filing obligations but not generate filings |
+| US state-level tax modeling | 50 states too complex. Capture state of formation, let AI flag state tax considerations |
+| BEPS Pillar Two calculator | Extraordinarily complex. AI mentions GloBE relevance but no top-up tax computation |
+| Structure optimization suggestions | High hallucination risk. Validate basic analysis accuracy first |
+| Non-covered jurisdictions | Cayman, BVI, Ireland, Netherlands, Japan etc. come in future milestones |
+
+## Traceability
+
+Which phases cover which requirements. Updated during roadmap creation.
+
+| Requirement | Phase | Status |
+|-------------|-------|--------|
+| EREG-01 | TBD | Pending |
+| EREG-02 | TBD | Pending |
+| EREG-03 | TBD | Pending |
+| EREG-04 | TBD | Pending |
+| EREG-05 | TBD | Pending |
+| EREG-06 | TBD | Pending |
+| PAL-01 | TBD | Pending |
+| PAL-02 | TBD | Pending |
+| PAL-03 | TBD | Pending |
+| PROP-01 | TBD | Pending |
+| PROP-02 | TBD | Pending |
+| PROP-03 | TBD | Pending |
+| PROP-04 | TBD | Pending |
+| PROP-05 | TBD | Pending |
+| PROP-06 | TBD | Pending |
+| XBRD-01 | TBD | Pending |
+| XBRD-02 | TBD | Pending |
+| XBRD-03 | TBD | Pending |
+| XBRD-04 | TBD | Pending |
+| CONN-01 | TBD | Pending |
+| CONN-02 | TBD | Pending |
+| CONN-03 | TBD | Pending |
+| CONN-04 | TBD | Pending |
+| VAL-01 | TBD | Pending |
+| VAL-02 | TBD | Pending |
+
+**Coverage:**
+- v2.0 requirements: 25 total
+- Mapped to phases: 0
+- Unmapped: 25 ⚠️
+
+---
+*Requirements defined: 2026-03-06*
+*Last updated: 2026-03-06 after initial definition*
