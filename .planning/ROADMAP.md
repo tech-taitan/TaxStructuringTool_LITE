@@ -289,11 +289,11 @@ Plans:
   3. User can see all 6 HK, 7 SG, and 10 LU entity types available in the entity registry with correct category assignments
   4. User can see jurisdiction-specific visual styling on entity nodes — each jurisdiction has a distinct flag icon and color accent that differentiates it from other jurisdictions at a glance
   5. Existing AU-only saved structures load and render without any changes or errors
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
-- [ ] 17-01: Expand Jurisdiction type, JurisdictionConfig, and EntityCategory; add UK and US entity registry entries
-- [ ] 17-02: Add HK, SG, and LU entity registry entries; verify visual distinction across all 6 jurisdictions
+- [ ] 17-01-PLAN.md -- Expand Jurisdiction type, EntityCategory, COLORS, CATEGORY_CONFIG, PALETTE_ICONS; add 9 UK and 11 US entity registry entries
+- [ ] 17-02-PLAN.md -- Add 6 HK, 7 SG, and 10 LU entity registry entries; fix jurisdictionFlag lookup for correct flag display
 
 ### Phase 18: Jurisdiction Palette
 **Goal**: Users can browse and discover entity types organized by jurisdiction in both desktop sidebar and mobile bottom sheet palettes, with cross-jurisdiction search
