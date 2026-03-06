@@ -25,19 +25,46 @@ export interface ValidationWarning {
 
 /** Trust entity types that require a trustee connection */
 const TRUST_TYPES = new Set([
+  // AU
   'au-unit-trust',
   'au-discretionary-trust',
   'au-hybrid-trust',
   'au-mit',
   'au-smsf',
+  // UK
+  'uk-unit-trust',
+  'uk-discretionary-trust',
+  // US
+  'us-grantor-trust',
+  'us-non-grantor-trust',
+  // SG
+  'sg-unit-trust',
 ]);
 
 /** Partnership/VC entity types that require partners or investors */
 const PARTNERSHIP_TYPES = new Set([
+  // AU
   'au-general-partnership',
   'au-limited-partnership',
   'au-vclp',
   'au-esvclp',
+  // UK
+  'uk-llp',
+  'uk-lp',
+  'uk-gp',
+  // US
+  'us-llc-partnership',
+  'us-gp',
+  'us-lp',
+  'us-lllp',
+  // HK
+  'hk-lp',
+  // SG
+  'sg-lp',
+  'sg-llp',
+  // LU
+  'lu-scsp',
+  'lu-scs',
 ]);
 
 /**

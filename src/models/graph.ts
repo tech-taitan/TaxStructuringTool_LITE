@@ -28,6 +28,7 @@ export interface TaxEntityData extends Record<string, unknown> {
 
   /** Registration details */
   registration: {
+    // AU
     abn?: string;
     acn?: string;
     tfn?: string;
@@ -35,15 +36,56 @@ export interface TaxEntityData extends Record<string, unknown> {
     partnershipAgreementDate?: string;
     registeredWithInnovationAustralia?: boolean;
     registeredWithAPRA?: boolean;
+    // UK
+    companyNumber?: string;
+    utr?: string;
+    nino?: string;
+    lpNumber?: string;
+    hmrcReference?: string;
+    // US
+    ein?: string;
+    ssn?: string;
+    stateOfFormation?: string;
+    // HK
+    crNumber?: string;
+    brn?: string;
+    hkid?: string;
+    // SG
+    uen?: string;
+    nric?: string;
+    // LU
+    rcsNumber?: string;
+    cssfApprovalNumber?: string;
+    nationalId?: string;
   };
 
   /** Tax status fields */
   taxStatus: {
+    // AU
     baseRateEntity?: boolean;
     mitElection?: boolean;
     amitElection?: boolean;
     taxResidency?: string;
     taxRate?: number;
+    // UK
+    corporationTaxRate?: number;
+    smallProfitsRate?: boolean;
+    ihtRelevant?: boolean;
+    // US
+    checkTheBoxElection?: string;
+    sCorpElection?: boolean;
+    federalTaxRate?: number;
+    // HK
+    twoTierProfitsTax?: boolean;
+    // SG
+    section13Election?: string;
+    partialTaxExemption?: boolean;
+    vccSubFundStructure?: boolean;
+    // LU
+    soparfiFlag?: boolean;
+    participationExemption?: boolean;
+    subscriptionTaxRate?: number;
+    ipBoxElection?: boolean;
   };
 
   /** Free-form user notes */
