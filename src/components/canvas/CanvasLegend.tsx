@@ -24,9 +24,12 @@ const CATEGORY_CONFIG: Record<EntityCategory, { label: string; shape: string }> 
   company: { label: 'Company', shape: 'Rectangle' },
   trust: { label: 'Trust', shape: 'Triangle' },
   partnership: { label: 'Partnership', shape: 'Triangle' },
+  fund: { label: 'Fund', shape: 'Triangle' },
+  holding: { label: 'Holding Vehicle', shape: 'Rectangle' },
   vc: { label: 'Venture Capital', shape: 'Triangle' },
   individual: { label: 'Individual', shape: 'Oval' },
   smsf: { label: 'SMSF', shape: 'Triangle' },
+  pension: { label: 'Pension Scheme', shape: 'Shield' },
 };
 
 /** Entity category colors (from COLORS.entity) */
@@ -34,9 +37,12 @@ const CATEGORY_COLORS: Record<EntityCategory, string> = {
   company: COLORS.entity.company,
   trust: COLORS.entity.trust,
   partnership: COLORS.entity.partnership,
+  fund: COLORS.entity.fund,
+  holding: COLORS.entity.holding,
   vc: COLORS.entity.vc,
   individual: COLORS.entity.individual,
   smsf: COLORS.entity.smsf,
+  pension: COLORS.entity.pension,
 };
 
 /** Relationship type display labels */
@@ -80,11 +86,24 @@ function ShapeIcon({ category }: { category: EntityCategory }) {
       );
     case 'trust':
     case 'partnership':
+    case 'fund':
     case 'vc':
     case 'smsf':
       return (
         <svg width="16" height="14" viewBox="0 0 16 14">
           <polygon points="8,1 1,13 15,13" fill={bg} stroke={color} strokeWidth="1.5" />
+        </svg>
+      );
+    case 'holding':
+      return (
+        <svg width="16" height="12" viewBox="0 0 16 12">
+          <rect x="1" y="1" width="14" height="10" rx="1" fill={bg} stroke={color} strokeWidth="1.5" />
+        </svg>
+      );
+    case 'pension':
+      return (
+        <svg width="16" height="14" viewBox="0 0 16 14">
+          <path d="M8,1 L14,5 L14,13 L2,13 L2,5 Z" fill={bg} stroke={color} strokeWidth="1.5" />
         </svg>
       );
     case 'individual':
@@ -116,7 +135,7 @@ export default function CanvasLegend() {
       if (config) categories.add(config.category);
     }
     // Return in a stable order
-    const ordered: EntityCategory[] = ['company', 'trust', 'partnership', 'vc', 'individual', 'smsf'];
+    const ordered: EntityCategory[] = ['company', 'trust', 'partnership', 'fund', 'holding', 'vc', 'individual', 'smsf', 'pension'];
     return ordered.filter((c) => categories.has(c));
   }, [nodes]);
 

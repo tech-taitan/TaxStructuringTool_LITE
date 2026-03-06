@@ -5,14 +5,17 @@
  * the configuration interface for the entity type registry.
  */
 
-/** Entity categories matching Australian tax entity classifications */
+/** Entity categories matching tax entity classifications */
 export type EntityCategory =
   | 'company'
   | 'trust'
   | 'partnership'
   | 'vc'
   | 'individual'
-  | 'smsf';
+  | 'smsf'
+  | 'fund'
+  | 'holding'
+  | 'pension';
 
 /** Visual shapes used to render entity nodes on the canvas */
 export type EntityShape =

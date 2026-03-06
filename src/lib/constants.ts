@@ -100,6 +100,12 @@ export const COLORS = {
     individual: '#64748B',
     /** SMSF nodes (teal-600) */
     smsf: '#0D9488',
+    /** Fund nodes (violet-500) */
+    fund: '#8B5CF6',
+    /** Holding vehicle nodes (cyan-600) */
+    holding: '#0891B2',
+    /** Pension scheme nodes (orange-600) */
+    pension: '#EA580C',
     /** Selected entity highlight (blue-500) */
     selected: '#3B82F6',
     /** Validation error border (red-500) */
@@ -113,5 +119,8 @@ export const COLORS = {
     vc: '#FEF3C7',
     individual: '#F1F5F9',
     smsf: '#CCFBF1',
+    fund: '#F5F3FF',
+    holding: '#CFFAFE',
+    pension: '#FFF7ED',
   },
 } as const;

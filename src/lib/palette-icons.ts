@@ -17,6 +17,8 @@ import {
   TrendingUp,
   Rocket,
   User,
+  Layers,
+  PiggyBank,
   type LucideIcon,
 } from 'lucide-react';
 
@@ -32,4 +34,6 @@ export const PALETTE_ICONS: Record<string, LucideIcon> = {
   'trending-up': TrendingUp,
   'rocket': Rocket,
   'user': User,
+  'layers': Layers,
+  'piggy-bank': PiggyBank,
 };

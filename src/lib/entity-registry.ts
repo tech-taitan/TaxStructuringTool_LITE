@@ -1,5 +1,5 @@
 /**
- * Entity type registry for all Australian tax entity types.
+ * Entity type registry for all tax entity types.
  *
  * Each entry defines the visual appearance (shape, color, icon) and
  * default data for a specific entity type. Adding new jurisdictions
@@ -21,9 +21,12 @@ export const CATEGORY_CONFIG: CategoryConfig[] = [
   { category: 'company', label: 'Companies', iconName: 'building-2' },
   { category: 'trust', label: 'Trusts', iconName: 'shield' },
   { category: 'partnership', label: 'Partnerships', iconName: 'handshake' },
+  { category: 'fund', label: 'Funds', iconName: 'landmark' },
+  { category: 'holding', label: 'Holding Vehicles', iconName: 'layers' },
   { category: 'vc', label: 'Venture Capital', iconName: 'trending-up' },
   { category: 'individual', label: 'Individuals', iconName: 'user' },
   { category: 'smsf', label: 'Super Funds', iconName: 'shield-check' },
+  { category: 'pension', label: 'Pension Schemes', iconName: 'piggy-bank' },
 ];
 
 /** Registry of all entity type configurations, keyed by entity type ID */
