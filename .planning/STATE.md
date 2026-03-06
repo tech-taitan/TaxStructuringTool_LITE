@@ -9,19 +9,19 @@ See: .planning/PROJECT.md (updated 2026-03-06)
 
 ## Current Position
 
-Phase: 18 of 21 (Jurisdiction Palette) -- COMPLETE
-Plan: 2 of 2 in current phase
-Status: Phase 18 Complete
-Last activity: 2026-03-07 — Completed 18-02 (Cross-Jurisdiction Search)
+Phase: 19 of 21 (Properties & Field Validation)
+Plan: 1 of 2 in current phase
+Status: Executing Phase 19
+Last activity: 2026-03-07 — Completed 19-01 (Data Model & Schema Expansion)
 
-Progress: v1.0 (17/17) + v1.1 (10/10) = 27 plans shipped | v2.0: [####------] 40% (4/10 plans)
+Progress: v1.0 (17/17) + v1.1 (10/10) = 27 plans shipped | v2.0: [#####-----] 50% (5/10 plans)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 31
+- Total plans completed: 32
 - Average duration: 8 min
-- Total execution time: ~3.9 hours
+- Total execution time: ~4.0 hours
 
 **By Phase:**
 
@@ -43,9 +43,10 @@ Progress: v1.0 (17/17) + v1.1 (10/10) = 27 plans shipped | v2.0: [####------] 40
 | 16-performance-real-device-testing | 1/1 | 5 min | 5 min |
 | 17-data-model-entity-registry | 2/2 | 7 min | 4 min |
 | 18-jurisdiction-palette | 2/2 | 6 min | 3 min |
+| 19-properties-field-validation | 1/2 | 3 min | 3 min |
 
 **Recent Trend:**
-- Last 5 plans: 5 min, 4 min, 3 min, 3 min, 3 min
+- Last 5 plans: 4 min, 3 min, 3 min, 3 min, 3 min
 - Trend: Stable
 
 *Updated after each plan completion*
@@ -76,6 +77,9 @@ Recent decisions affecting current work:
 - [18-02]: Inline cross-jurisdiction filter in palettes rather than calling searchAllEntities (avoids second grouping step)
 - [18-02]: Mobile search uses local useState, not shared paletteSearchQuery, to avoid cross-device state confusion
 - [18-02]: showFlag prop threaded through PaletteCategory on desktop; inline flags on mobile
+- [19-01]: All new TaxEntityData fields optional to maintain backward compatibility with existing AU code
+- [19-01]: 12 reusable regex field validators extracted before schemas for DRY validation pattern
+- [19-01]: Schema map covers all 54 entity types -- getEntitySchema() never falls back to baseEntitySchema for known types
 
 ### Pending Todos
 
@@ -84,12 +88,12 @@ None.
 ### Blockers/Concerns
 
 - ~~EntityCategory type hardcoded to AU classifications~~ — RESOLVED in 17-01 (now 9 categories)
-- Graph validator hardcodes AU entity ID Sets — must refactor before adding jurisdiction rules (VAL pitfall)
+- ~~Graph validator hardcodes AU entity ID Sets~~ — RESOLVED in 19-01 (TRUST_TYPES: 10 entries, PARTNERSHIP_TYPES: 16 entries across all jurisdictions)
 - Tax status fields per jurisdiction based on training data — practitioner review needed before professional use
 - Registration number format regexes need verification against official registrar documentation
 
 ## Session Continuity
 
-Last session: 2026-03-08
-Stopped at: Phase 18 complete — ready to plan Phase 19
+Last session: 2026-03-07
+Stopped at: Completed 19-01-PLAN.md — ready for 19-02
 Resume file: None
