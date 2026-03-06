@@ -10,18 +10,18 @@ See: .planning/PROJECT.md (updated 2026-03-06)
 ## Current Position
 
 Phase: 19 of 21 (Properties & Field Validation)
-Plan: 1 of 2 in current phase
-Status: Executing Phase 19
-Last activity: 2026-03-07 — Completed 19-01 (Data Model & Schema Expansion)
+Plan: 2 of 2 in current phase (COMPLETE)
+Status: Phase 19 Complete -- ready for Phase 20
+Last activity: 2026-03-07 — Completed 19-02 (Jurisdiction-Specific UI Renderers)
 
-Progress: v1.0 (17/17) + v1.1 (10/10) = 27 plans shipped | v2.0: [#####-----] 50% (5/10 plans)
+Progress: v1.0 (17/17) + v1.1 (10/10) = 27 plans shipped | v2.0: [######----] 60% (6/10 plans)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 32
+- Total plans completed: 33
 - Average duration: 8 min
-- Total execution time: ~4.0 hours
+- Total execution time: ~4.1 hours
 
 **By Phase:**
 
@@ -43,10 +43,10 @@ Progress: v1.0 (17/17) + v1.1 (10/10) = 27 plans shipped | v2.0: [#####-----] 50
 | 16-performance-real-device-testing | 1/1 | 5 min | 5 min |
 | 17-data-model-entity-registry | 2/2 | 7 min | 4 min |
 | 18-jurisdiction-palette | 2/2 | 6 min | 3 min |
-| 19-properties-field-validation | 1/2 | 3 min | 3 min |
+| 19-properties-field-validation | 2/2 | 7 min | 4 min |
 
 **Recent Trend:**
-- Last 5 plans: 4 min, 3 min, 3 min, 3 min, 3 min
+- Last 5 plans: 3 min, 3 min, 3 min, 3 min, 4 min
 - Trend: Stable
 
 *Updated after each plan completion*
@@ -80,6 +80,9 @@ Recent decisions affecting current work:
 - [19-01]: All new TaxEntityData fields optional to maintain backward compatibility with existing AU code
 - [19-01]: 12 reusable regex field validators extracted before schemas for DRY validation pattern
 - [19-01]: Schema map covers all 54 entity types -- getEntitySchema() never falls back to baseEntitySchema for known types
+- [19-02]: Jurisdiction-first dispatch pattern in RegistrationSection and TaxStatusSection
+- [19-02]: AU rendering moved verbatim into renderAuFields() for zero regression guarantee
+- [19-02]: US LLC disregarded and LU Soparfi handled by entityType checks under correct registry categories
 
 ### Pending Todos
 
@@ -95,5 +98,5 @@ None.
 ## Session Continuity
 
 Last session: 2026-03-07
-Stopped at: Completed 19-01-PLAN.md — ready for 19-02
+Stopped at: Completed 19-02-PLAN.md — Phase 19 complete, ready for Phase 20
 Resume file: None
