@@ -5,23 +5,23 @@
 See: .planning/PROJECT.md (updated 2026-03-03)
 
 **Core value:** Tax lawyers can draw a structure and instantly understand its tax implications
-**Current focus:** Milestone v1.1 -- Mobile Experience, Phase 15 (Hover Interaction Audit)
+**Current focus:** Milestone v1.1 -- Mobile Experience -- COMPLETE
 
 ## Current Position
 
-Phase: 15 of 16 (Hover Audit & Toolbar Completion) -- COMPLETE
-Plan: 2 of 2 in current phase -- COMPLETE
-Status: Phase 15 complete, ready for Phase 16
-Last activity: 2026-03-06 -- Completed 15-02-PLAN.md (Hover Audit Remediation)
+Phase: 16 of 16 (Performance & Real-Device Testing) -- COMPLETE
+Plan: 1 of 1 in current phase -- COMPLETE
+Status: All v1.1 Mobile Experience phases complete (10-16)
+Last activity: 2026-03-06 -- Completed 16-01-PLAN.md (Performance & Real-Device Testing)
 
-Progress: [=========================] 100% (25/25 plans across all milestones)
+Progress: [=========================] 100% (26/26 plans across all milestones)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 25
+- Total plans completed: 26
 - Average duration: 8 min
-- Total execution time: ~3.1 hours
+- Total execution time: ~3.2 hours
 
 **By Phase:**
 
@@ -40,9 +40,10 @@ Progress: [=========================] 100% (25/25 plans across all milestones)
 | 13-mobile-properties-editing | 2/2 | 12 min | 6 min |
 | 14-mobile-connection-drawing | 1/1 | 4 min | 4 min |
 | 15-hover-audit-toolbar-completion | 2/2 | 6 min | 3 min |
+| 16-performance-real-device-testing | 1/1 | 5 min | 5 min |
 
 **Recent Trend:**
-- Last 5 plans: 8 min, 4 min, 4 min, 2 min, 4 min
+- Last 5 plans: 4 min, 4 min, 2 min, 4 min, 5 min
 - Trend: Stable
 
 *Updated after each plan completion*
@@ -88,6 +89,10 @@ Recent decisions affecting current work:
 - [15-02]: Edge .selected rule kept outside media query -- selection is touch equivalent of hover
 - [15-02]: Tablet MiniMap already works via !isMobile guard (MPOL-03 satisfied, no code changes)
 - [15-02]: pointerdown replaces mousedown in all 4 toolbar dropdowns for tablet touch compatibility
+- [16-01]: Viewport culling via onlyRenderVisibleElements prop (built-in React Flow, zero custom code)
+- [16-01]: Drag transition suppression via CSS class toggle (not per-node state) for zero re-render overhead
+- [16-01]: Safe-area utilities as plain CSS classes (not Tailwind plugin) since Tailwind v4 dropped pb-safe
+- [16-01]: Backdrop-blur conditionally removed on mobile only; desktop retains frosted glass aesthetic
 
 ### Pending Todos
 
@@ -103,5 +108,5 @@ None.
 ## Session Continuity
 
 Last session: 2026-03-06
-Stopped at: Completed 15-02-PLAN.md -- Phase 15 complete, all milestones done (25/25 plans)
+Stopped at: Completed 16-01-PLAN.md -- Phase 16 complete, all v1.1 Mobile Experience milestones done (26/26 plans)
 Resume file: None
