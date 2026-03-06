@@ -154,6 +154,22 @@ export default function CanvasLegend() {
     return ordered.filter((t) => types.has(t));
   }, [edges]);
 
+  // Check if any cross-border edges exist on the canvas
+  const hasCrossBorderEdges = useMemo(() => {
+    for (const edge of edges) {
+      const sourceNode = nodes.find((n) => n.id === edge.source);
+      const targetNode = nodes.find((n) => n.id === edge.target);
+      if (
+        sourceNode &&
+        targetNode &&
+        sourceNode.data.jurisdiction !== targetNode.data.jurisdiction
+      ) {
+        return true;
+      }
+    }
+    return false;
+  }, [nodes, edges]);
+
   // Check if any non-default status is used
   const hasStatusVariants = useMemo(() => {
     return nodes.some((n) => n.data.status === 'proposed' || n.data.status === 'removed');
@@ -213,6 +229,23 @@ export default function CanvasLegend() {
                 </span>
               </div>
             ))}
+          </div>
+        </div>
+      )}
+
+      {/* Cross-border indicator */}
+      {hasCrossBorderEdges && (
+        <div>
+          <div className="border-t border-gray-100 my-2" />
+          <div className="text-[10px] font-medium text-gray-400 uppercase mb-1">Cross-Border</div>
+          <div className="flex items-center gap-2">
+            <svg width="20" height="8" viewBox="0 0 20 8">
+              <line x1="0" y1="4" x2="20" y2="4"
+                stroke="#F59E0B" strokeWidth="6" opacity="0.3" strokeLinecap="round" />
+              <line x1="0" y1="4" x2="20" y2="4"
+                stroke="#6B7280" strokeWidth="2" strokeLinecap="round" />
+            </svg>
+            <span className="text-xs text-gray-700">Cross-Border Connection</span>
           </div>
         </div>
       )}

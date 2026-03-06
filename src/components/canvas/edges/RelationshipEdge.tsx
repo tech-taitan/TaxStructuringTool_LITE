@@ -101,6 +101,14 @@ const RelationshipEdge = memo(function RelationshipEdge({
     )
   );
 
+  // Detect cross-border edge via narrow selector (only jurisdiction data)
+  const isCrossBorderEdge = useStore((s) => {
+    const sourceNode = s.nodes.find((n: { id: string; data?: { jurisdiction?: string } }) => n.id === source);
+    const targetNode = s.nodes.find((n: { id: string; data?: { jurisdiction?: string } }) => n.id === target);
+    if (!sourceNode?.data?.jurisdiction || !targetNode?.data?.jurisdiction) return false;
+    return sourceNode.data.jurisdiction !== targetNode.data.jurisdiction;
+  });
+
   const edgeIndex = siblingEdges.findIndex((e) => e.id === id);
   const totalParallel = siblingEdges.length;
 
@@ -161,16 +169,7 @@ const RelationshipEdge = memo(function RelationshipEdge({
     isVertical: boolean;
   } | null>(null);
 
-  // Reset dismissed state when edge is deselected then re-selected
-  const prevSelected = useRef(selected);
-  useEffect(() => {
-    if (selected && !prevSelected.current) {
-      setDismissed(false);
-    }
-    prevSelected.current = selected;
-  }, [selected]);
-
-  const showHandle = !isStraight && !dismissed && (selected || hovered);
+  const showHandle = !isStraight && (selected || hovered) && (!dismissed || selected);
 
   // Drag start: record initial position and offset, pause undo tracking
   const handlePointerDown = useCallback(
@@ -274,6 +273,19 @@ const RelationshipEdge = memo(function RelationshipEdge({
             />
           </marker>
         </defs>
+      )}
+
+      {/* Amber double-stroke highlight for cross-border edges */}
+      {isCrossBorderEdge && (
+        <path
+          d={path}
+          fill="none"
+          stroke="#F59E0B"
+          strokeWidth={strokeWidth + 4}
+          strokeDasharray="none"
+          opacity={0.3}
+          style={{ pointerEvents: 'none' }}
+        />
       )}
 
       {/* Invisible wider hit area for hover detection */}
