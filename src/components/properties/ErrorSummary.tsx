@@ -25,6 +25,7 @@ function pathToLabel(path: (string | number)[]): string {
     name: 'Name',
     jurisdiction: 'Jurisdiction',
     notes: 'Notes',
+    // AU registration
     'registration.abn': 'ABN',
     'registration.acn': 'ACN',
     'registration.tfn': 'TFN',
@@ -32,11 +33,52 @@ function pathToLabel(path: (string | number)[]): string {
     'registration.partnershipAgreementDate': 'Partnership Agreement Date',
     'registration.registeredWithInnovationAustralia': 'Innovation Australia Registration',
     'registration.registeredWithAPRA': 'APRA Registration',
+    // UK registration
+    'registration.companyNumber': 'Company Number',
+    'registration.utr': 'UTR',
+    'registration.nino': 'NINO',
+    'registration.lpNumber': 'LP Number',
+    'registration.hmrcReference': 'HMRC Reference',
+    // US registration
+    'registration.ein': 'EIN',
+    'registration.ssn': 'SSN/ITIN',
+    'registration.stateOfFormation': 'State of Formation',
+    // HK registration
+    'registration.crNumber': 'CR Number',
+    'registration.brn': 'Business Registration Number',
+    'registration.hkid': 'HKID',
+    // SG registration
+    'registration.uen': 'UEN',
+    'registration.nric': 'NRIC/FIN',
+    // LU registration
+    'registration.rcsNumber': 'RCS Number',
+    'registration.cssfApprovalNumber': 'CSSF Approval Number',
+    'registration.nationalId': 'Tax ID (Matricule)',
+    // AU tax status
     'taxStatus.baseRateEntity': 'Base Rate Entity',
     'taxStatus.taxRate': 'Tax Rate',
     'taxStatus.taxResidency': 'Tax Residency',
     'taxStatus.mitElection': 'MIT Election',
     'taxStatus.amitElection': 'AMIT Election',
+    // UK tax status
+    'taxStatus.corporationTaxRate': 'Corporation Tax Rate',
+    'taxStatus.smallProfitsRate': 'Small Profits Rate',
+    'taxStatus.ihtRelevant': 'IHT Relevant',
+    // US tax status
+    'taxStatus.checkTheBoxElection': 'Check-the-Box Election',
+    'taxStatus.sCorpElection': 'S Corp Election',
+    'taxStatus.federalTaxRate': 'Federal Tax Rate',
+    // HK tax status
+    'taxStatus.twoTierProfitsTax': 'Two-Tier Profits Tax',
+    // SG tax status
+    'taxStatus.section13Election': 'Section 13O/13U Election',
+    'taxStatus.partialTaxExemption': 'Partial Tax Exemption',
+    'taxStatus.vccSubFundStructure': 'VCC Sub-Fund Structure',
+    // LU tax status
+    'taxStatus.soparfiFlag': 'SOPARFI',
+    'taxStatus.participationExemption': 'Participation Exemption',
+    'taxStatus.subscriptionTaxRate': 'Subscription Tax Rate',
+    'taxStatus.ipBoxElection': 'IP Box Election',
   };
 
   const key = path.join('.');
