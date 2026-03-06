@@ -54,6 +54,10 @@ interface UIState {
   isPaletteCollapsed: boolean;
   /** Current search filter text in the palette */
   paletteSearchQuery: string;
+  /** Currently selected jurisdiction in the palette tab bar */
+  selectedPaletteJurisdiction: string;
+  /** Set the palette jurisdiction tab */
+  setSelectedPaletteJurisdiction: (jurisdiction: string) => void;
   /** Context menu position and target node, or null when hidden */
   contextMenu: { x: number; y: number; nodeId: string } | null;
   /** Delete confirmation dialog state, or null when hidden */
@@ -155,6 +159,7 @@ export const useUIStore = create<UIState>()((set) => ({
   hoveredNodeId: null,
   isPaletteCollapsed: false,
   paletteSearchQuery: '',
+  selectedPaletteJurisdiction: 'AU',
   contextMenu: null,
   deleteConfirm: null,
   connectionFilter: {
@@ -192,6 +197,7 @@ export const useUIStore = create<UIState>()((set) => ({
   setHoveredNode: (id) => set({ hoveredNodeId: id }),
   togglePalette: () => set((state) => ({ isPaletteCollapsed: !state.isPaletteCollapsed })),
   setPaletteSearch: (query) => set({ paletteSearchQuery: query }),
+  setSelectedPaletteJurisdiction: (jurisdiction) => set({ selectedPaletteJurisdiction: jurisdiction }),
   setContextMenu: (menu) => set({ contextMenu: menu }),
   setDeleteConfirm: (confirm) => set({ deleteConfirm: confirm }),
 
