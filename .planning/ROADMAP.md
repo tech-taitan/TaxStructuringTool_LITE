@@ -319,11 +319,11 @@ Plans:
   3. User can open properties for HK, SG, and LU entities and see jurisdiction-appropriate registration and tax status fields for each
   4. User can see inline validation errors when entering registration numbers in incorrect formats (UK Company Number must be 8 characters, US EIN must be XX-XXXXXXX, SG UEN must be 9-10 characters, LU RCS must be B-XXXXXX)
   5. Existing AU entity properties continue to display and validate correctly with no regressions
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
-- [ ] 19-01: Per-jurisdiction registration field renderers (UK, US, HK, SG, LU) in RegistrationSection
-- [ ] 19-02: Per-jurisdiction tax status field renderers and Zod format validation schemas
+- [ ] 19-01-PLAN.md -- Data model expansion (TaxEntityData interfaces), Zod schemas for all non-AU entity types with regex validators, graph validator Set expansion
+- [ ] 19-02-PLAN.md -- Jurisdiction-dispatched RegistrationSection and TaxStatusSection renderers, IdentitySection jurisdiction name fix, ErrorSummary label expansion
 
 ### Phase 20: Cross-Border Connections
 **Goal**: Users can build mixed cross-border structures with connection metadata that captures the tax-relevant details of cross-border flows — withholding tax rates, treaty references, transfer pricing flags, and currency — with visual differentiation of cross-border connections
