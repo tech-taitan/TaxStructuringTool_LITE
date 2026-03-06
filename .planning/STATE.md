@@ -5,7 +5,7 @@
 See: .planning/PROJECT.md (updated 2026-03-06)
 
 **Core value:** Tax lawyers can draw a structure and instantly understand its tax implications
-**Current focus:** Phase 17 — Data Model and Entity Registry (v2.0 Multi-Jurisdiction)
+**Current focus:** Phase 18 — Jurisdiction Palette (v2.0 Multi-Jurisdiction)
 
 ## Current Position
 
@@ -83,6 +83,6 @@ None.
 
 ## Session Continuity
 
-Last session: 2026-03-07
-Stopped at: Completed 17-02-PLAN.md (Phase 17 complete)
+Last session: 2026-03-08
+Stopped at: Phase 17 complete — ready to plan Phase 18
 Resume file: None

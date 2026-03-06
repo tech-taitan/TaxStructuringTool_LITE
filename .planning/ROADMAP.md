@@ -54,7 +54,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 **Milestone Goal:** Tax lawyers can build cross-border structures with entities from 6 jurisdictions (AU, UK, US, HK, SG, LU) on a single canvas, with jurisdiction-specific property fields, cross-border connection metadata, and multi-jurisdiction validation.
 
-- [ ] **Phase 17: Data Model and Entity Registry** - Expand jurisdiction types, entity categories, and ~45 new entity types across UK, US, HK, SG, LU
+- [x] **Phase 17: Data Model and Entity Registry** - Expand jurisdiction types, entity categories, and ~45 new entity types across UK, US, HK, SG, LU
 - [ ] **Phase 18: Jurisdiction Palette** - Jurisdiction tab bar in desktop and mobile palettes with cross-jurisdiction search
 - [ ] **Phase 19: Properties and Field Validation** - Per-jurisdiction registration fields, tax status fields, and format validation
 - [ ] **Phase 20: Cross-Border Connections** - WHT rate, treaty, transfer pricing, and currency fields on cross-border edges with visual differentiation
@@ -292,8 +292,8 @@ Plans:
 **Plans**: 2 plans
 
 Plans:
-- [ ] 17-01-PLAN.md -- Expand Jurisdiction type, EntityCategory, COLORS, CATEGORY_CONFIG, PALETTE_ICONS; add 9 UK and 11 US entity registry entries
-- [ ] 17-02-PLAN.md -- Add 6 HK, 7 SG, and 10 LU entity registry entries; fix jurisdictionFlag lookup for correct flag display
+- [x] 17-01-PLAN.md -- Expand Jurisdiction type, EntityCategory, COLORS, CATEGORY_CONFIG, PALETTE_ICONS; add 9 UK and 11 US entity registry entries
+- [x] 17-02-PLAN.md -- Add 6 HK, 7 SG, and 10 LU entity registry entries; fix jurisdictionFlag lookup for correct flag display
 
 ### Phase 18: Jurisdiction Palette
 **Goal**: Users can browse and discover entity types organized by jurisdiction in both desktop sidebar and mobile bottom sheet palettes, with cross-jurisdiction search
@@ -384,7 +384,7 @@ Note: Phase 17 first (registry is foundation for everything). Phase 18 after 17 
 | 14. Mobile Connection Drawing | v1.1 | 1/1 | Complete | 2026-03-06 |
 | 15. Hover Audit and Toolbar Completion | v1.1 | 2/2 | Complete | 2026-03-06 |
 | 16. Performance and Real-Device Testing | v1.1 | 1/1 | Complete | 2026-03-06 |
-| 17. Data Model and Entity Registry | v2.0 | 0/2 | Not started | - |
+| 17. Data Model and Entity Registry | v2.0 | 2/2 | Complete | 2026-03-08 |
 | 18. Jurisdiction Palette | v2.0 | 0/2 | Not started | - |
 | 19. Properties and Field Validation | v2.0 | 0/2 | Not started | - |
 | 20. Cross-Border Connections | v2.0 | 0/2 | Not started | - |
