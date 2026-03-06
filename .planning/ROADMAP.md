@@ -44,7 +44,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 13: Mobile Properties Editing** - Properties bottom sheet, connection properties sheet, long-press context menu
 - [x] **Phase 14: Mobile Connection Drawing** - Connect mode toolbar toggle, tap-source-then-target flow, enlarged handles
 - [x] **Phase 15: Hover Audit and Toolbar Completion** - 74 hover interactions remediated, mobile toolbar with overflow menu, tablet MiniMap
-- [ ] **Phase 16: Performance and Real-Device Testing** - Viewport culling, transition optimization, safe area insets, device test matrix
+- [x] **Phase 16: Performance and Real-Device Testing** - Viewport culling, transition optimization, safe area insets, device test matrix
 
 ## Phase Details
 
@@ -298,7 +298,7 @@ Plans:
 **Plans**: 1 plan
 
 Plans:
-- [ ] 16-01-PLAN.md -- Performance optimizations (viewport culling, drag transition suppression, backdrop-blur removal) and safe-area-inset CSS for notch/home-indicator devices, with real-device validation checkpoint
+- [x] 16-01-PLAN.md -- Performance optimizations (viewport culling, drag transition suppression, backdrop-blur removal) and safe-area-inset CSS for notch/home-indicator devices, with real-device validation checkpoint
 
 ## Progress
 
@@ -324,4 +324,4 @@ Note: Phase 10 before all v1.1 phases (primitives). Phase 11 before 12-16 (layou
 | 13. Mobile Properties Editing | v1.1 | 2/2 | Complete | 2026-03-05 |
 | 14. Mobile Connection Drawing | v1.1 | 1/1 | Complete | 2026-03-06 |
 | 15. Hover Audit and Toolbar Completion | v1.1 | 2/2 | Complete | 2026-03-06 |
-| 16. Performance and Real-Device Testing | v1.1 | 0/1 | Not started | - |
+| 16. Performance and Real-Device Testing | v1.1 | 1/1 | Complete | 2026-03-06 |

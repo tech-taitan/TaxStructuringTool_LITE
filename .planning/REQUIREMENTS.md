@@ -116,8 +116,8 @@ Requirements for mobile responsive editing. Each maps to roadmap phases 10-16.
 - [x] **MPOL-01**: User can interact with all UI elements on touch without hover dependency
 - [x] **MPOL-02**: User sees :active touch feedback on interactive elements
 - [x] **MPOL-03**: User can see a MiniMap on tablet for navigating large structures
-- [ ] **MPOL-04**: User experiences smooth performance on mobile with 20+ entities
-- [ ] **MPOL-05**: User sees correct safe-area insets on notch/home-indicator devices
+- [x] **MPOL-04**: User experiences smooth performance on mobile with 20+ entities
+- [x] **MPOL-05**: User sees correct safe-area insets on notch/home-indicator devices
 
 ## v2 Requirements
 
