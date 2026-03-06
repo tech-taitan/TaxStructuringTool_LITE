@@ -336,11 +336,11 @@ Plans:
   4. User can see transfer pricing relevance auto-flagged on cross-border service/management/licensing connections between related parties
   5. User can visually distinguish cross-border connections from domestic connections via dashed line style or distinct color
 
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
-- [ ] 20-01: Cross-border edge metadata fields (WHT rate, treaty, transfer pricing, currency) on TaxRelationshipData and connection properties UI
-- [ ] 20-02: Cross-border connection visual differentiation and auto-detection of cross-border edges
+- [ ] 20-01-PLAN.md -- Fix desktop jurisdiction bug, cross-border utility and constants, extend TaxRelationshipData, update schemas, add TP auto-flag rule
+- [ ] 20-02-PLAN.md -- Cross-border properties form section, amber double-stroke edge visual, legend entry
 
 ### Phase 21: Validation and Canvas Polish
 **Goal**: The canvas actively validates jurisdiction-specific structural rules across mixed-jurisdiction structures without false positives, and provides visual aids (jurisdiction legend, border color accents) that help users navigate complex cross-border diagrams
