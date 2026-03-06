@@ -9,19 +9,19 @@ See: .planning/PROJECT.md (updated 2026-03-06)
 
 ## Current Position
 
-Phase: 17 of 21 (Data Model and Entity Registry) -- COMPLETE
-Plan: 2 of 2 in current phase
-Status: Phase Complete
-Last activity: 2026-03-07 — Completed 17-02 (HK/SG/LU Entity Registry and Jurisdiction Flag Fix)
+Phase: 18 of 21 (Jurisdiction Palette) -- IN PROGRESS
+Plan: 1 of 2 in current phase
+Status: Plan 18-01 Complete
+Last activity: 2026-03-07 — Completed 18-01 (Jurisdiction Tab Bar UI)
 
-Progress: v1.0 (17/17) + v1.1 (10/10) = 27 plans shipped | v2.0: [##--------] 20% (2/10 plans)
+Progress: v1.0 (17/17) + v1.1 (10/10) = 27 plans shipped | v2.0: [###-------] 30% (3/10 plans)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 29
+- Total plans completed: 30
 - Average duration: 8 min
-- Total execution time: ~3.7 hours
+- Total execution time: ~3.8 hours
 
 **By Phase:**
 
@@ -42,9 +42,10 @@ Progress: v1.0 (17/17) + v1.1 (10/10) = 27 plans shipped | v2.0: [##--------] 20
 | 15-hover-audit-toolbar-completion | 2/2 | 6 min | 3 min |
 | 16-performance-real-device-testing | 1/1 | 5 min | 5 min |
 | 17-data-model-entity-registry | 2/2 | 7 min | 4 min |
+| 18-jurisdiction-palette | 1/2 | 3 min | 3 min |
 
 **Recent Trend:**
-- Last 5 plans: 4 min, 5 min, 5 min, 4 min, 3 min
+- Last 5 plans: 5 min, 5 min, 4 min, 3 min, 3 min
 - Trend: Stable
 
 *Updated after each plan completion*
@@ -69,6 +70,9 @@ Recent decisions affecting current work:
 - [17-01]: CanvasLegend required auto-fix for Record<EntityCategory> after type expansion
 - [17-02]: JURISDICTIONS registry lookup with optional chaining for safe flag resolution across all jurisdictions
 - [17-02]: canvasJurisdiction injected into EntityPalette useMemo for jurisdiction-aware palette filtering
+- [18-01]: flex-1 tab layout for 6 jurisdiction tabs fitting 256px sidebar and all mobile widths
+- [18-01]: selectedPaletteJurisdiction independent from canvasJurisdiction, synced via useEffect
+- [18-01]: MobilePalette uses config.jurisdiction for entity node data (not canvasJurisdiction)
 
 ### Pending Todos
 
@@ -83,6 +87,6 @@ None.
 
 ## Session Continuity
 
-Last session: 2026-03-08
-Stopped at: Phase 17 complete — ready to plan Phase 18
+Last session: 2026-03-07
+Stopped at: Completed 18-01-PLAN.md — ready for 18-02
 Resume file: None
