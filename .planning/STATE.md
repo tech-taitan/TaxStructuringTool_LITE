@@ -2,19 +2,18 @@
 
 ## Project Reference
 
-See: .planning/PROJECT.md (updated 2026-03-03)
+See: .planning/PROJECT.md (updated 2026-03-06)
 
 **Core value:** Tax lawyers can draw a structure and instantly understand its tax implications
-**Current focus:** Milestone v1.1 -- Mobile Experience -- COMPLETE
+**Current focus:** Between milestones — v1.0 + v1.1 shipped, next milestone TBD
 
 ## Current Position
 
-Phase: 16 of 16 (Performance & Real-Device Testing) -- COMPLETE
-Plan: 1 of 1 in current phase -- COMPLETE
-Status: All v1.1 Mobile Experience phases complete (10-16)
-Last activity: 2026-03-06 -- Completed 16-01-PLAN.md (Performance & Real-Device Testing)
+Milestone: v1.1 Mobile Experience -- ARCHIVED (shipped 2026-03-06)
+Status: All milestones complete, ready for `/gsd:new-milestone`
+Last activity: 2026-03-06 -- Archived v1.1 milestone
 
-Progress: [=========================] 100% (26/26 plans across all milestones)
+Progress: v1.0 (17/17 plans) + v1.1 (10/10 plans) = 27 plans shipped
 
 ## Performance Metrics
 
@@ -108,5 +107,5 @@ None.
 ## Session Continuity
 
 Last session: 2026-03-06
-Stopped at: Completed 16-01-PLAN.md -- Phase 16 complete, all v1.1 Mobile Experience milestones done (26/26 plans)
+Stopped at: Archived v1.1 milestone — ready for next milestone
 Resume file: None

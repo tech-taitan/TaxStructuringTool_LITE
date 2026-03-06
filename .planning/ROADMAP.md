@@ -7,7 +7,7 @@ This roadmap delivers a web application where tax lawyers can visually design mu
 ## Milestones
 
 - v1.0 Core Product - Phases 1-7 (shipped 2026-02-18)
-- v1.1 Mobile Experience - Phases 10-16 (in progress)
+- v1.1 Mobile Experience - Phases 10-16 (shipped 2026-03-06)
 - Deferred - Phases 8-9 (sharing, customization)
 
 ## Phases
@@ -36,7 +36,8 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [ ] **Phase 8: Sharing** - Share links with view-only and editable modes
 - [ ] **Phase 9: Entity Customization** - Per-entity-type shape, color, and icon customization
 
-**v1.1 Mobile Experience:**
+<details>
+<summary>v1.1 Mobile Experience (Phases 10-16) - SHIPPED 2026-03-06</summary>
 
 - [x] **Phase 10: Mobile Foundation** - Reusable hooks, BottomSheet primitive, and Zustand mobile state — no visible UI
 - [x] **Phase 11: Responsive Layout Shell** - Remove mobile gate, full-screen canvas on phone, tablet layout, React Flow touch props
@@ -45,6 +46,8 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 14: Mobile Connection Drawing** - Connect mode toolbar toggle, tap-source-then-target flow, enlarged handles
 - [x] **Phase 15: Hover Audit and Toolbar Completion** - 74 hover interactions remediated, mobile toolbar with overflow menu, tablet MiniMap
 - [x] **Phase 16: Performance and Real-Device Testing** - Viewport culling, transition optimization, safe area insets, device test matrix
+
+</details>
 
 ## Phase Details
 
@@ -192,21 +195,13 @@ Plans:
 Plans:
 - [ ] 09-01: Entity appearance settings page with shape, color, and icon customization per type
 
----
-
-### v1.1 Mobile Experience (Phases 10-16)
-
-**Milestone Goal:** Make the full Tax Structuring Tool work on phone and tablet — responsive layout, touch-friendly canvas editing, and mobile-adapted UI panels so users can place entities, draw connections, edit properties, run AI analysis, and manage structures from any device.
+<details>
+<summary>v1.1 Mobile Experience (Phases 10-16) - SHIPPED 2026-03-06</summary>
 
 ### Phase 10: Mobile Foundation
 **Goal**: All reusable mobile primitives exist and are tested in isolation — hooks for device detection and long-press, a BottomSheet component with snap points, and Zustand store fields for mobile UI state — so every subsequent phase can compose from proven building blocks instead of building infrastructure inline
 **Depends on**: Phase 7 (v1.0 complete)
 **Requirements**: None (infrastructure phase — enables Phases 11-16)
-**Success Criteria** (what must be TRUE):
-  1. `useDeviceCapabilities` hook correctly reports touch vs. mouse input via `matchMedia('(pointer: coarse)')`
-  2. `useLongPress` hook fires a callback after 500ms hold and cancels on finger movement
-  3. `BottomSheet` component renders at three snap points (collapsed, half, full) with touch drag-to-dismiss
-  4. Zustand `ui-store` contains `isMobilePaletteOpen`, `isMobilePropertiesOpen`, `mobileTool`, and `pendingConnectionSource` fields with correct initial values
 **Plans**: 1 plan
 
 Plans:
@@ -216,12 +211,6 @@ Plans:
 **Goal**: Users can access the editor on any screen size — the mobile gate is removed, phones see a full-screen canvas ready for overlay panels, tablets see a two-column layout, and the desktop three-column layout is completely unchanged
 **Depends on**: Phase 10
 **Requirements**: RESP-01, RESP-02, RESP-03, RESP-04, RESP-05, TOUCH-01, TOUCH-02, TOUCH-03, TOUCH-04, TOUCH-05
-**Success Criteria** (what must be TRUE):
-  1. User on a phone (<768px) can open the editor and see a full-screen canvas instead of the "Larger Screen Required" gate
-  2. User on a tablet (768px-1024px) sees a two-column layout with collapsible sidebar and canvas
-  3. User on desktop (>1024px) sees the unchanged three-column layout (palette, canvas, properties)
-  4. User on a touch device can pan with single-finger drag, pinch-to-zoom, tap to select entities, and touch-drag entities to reposition them
-  5. User on a phone sees touch-friendly entity nodes without resize handles and with responsive hit areas
 **Plans**: 2 plans
 
 Plans:
@@ -232,11 +221,6 @@ Plans:
 **Goal**: Users on mobile can add any entity type to the canvas — opening a categorized palette via a floating action button, tapping an entity type to place it at viewport center with smart grid snapping, completely replacing the desktop drag-and-drop flow that is non-functional on touch
 **Depends on**: Phase 11
 **Requirements**: MENT-01, MENT-02, MENT-03, MENT-04
-**Success Criteria** (what must be TRUE):
-  1. User can tap a floating action button on mobile to open the entity palette
-  2. User can browse categorized entity types in a bottom sheet (companies, trusts, partnerships, venture capital, other)
-  3. User can tap an entity type and see it placed at the viewport center on the canvas
-  4. User sees placed entities snapped to grid with automatic overlap avoidance when multiple entities are placed
 **Plans**: 1 plan
 
 Plans:
@@ -246,59 +230,41 @@ Plans:
 **Goal**: Users on mobile can view and edit entity properties, connection properties, and trigger node actions — tapping a selected entity opens a properties bottom sheet, tapping a connection opens its properties, and long-pressing an entity reveals a context action menu for delete, copy, connect, and properties
 **Depends on**: Phase 12
 **Requirements**: MPROP-01, MPROP-02, MPROP-03, MPROP-04, MPROP-05, MNAV-04
-**Success Criteria** (what must be TRUE):
-  1. User can tap a selected entity to open its properties in a bottom sheet with the same fields as the desktop properties panel
-  2. User can edit entity properties in the mobile bottom sheet and see changes reflected on the canvas
-  3. User can tap a selected connection to open connection properties in a bottom sheet
-  4. User can run AI analysis and see streaming results in a mobile full-screen overlay
-  5. User can long-press an entity to see a context action menu with delete, copy, connect, and properties options
 **Plans**: 2 plans
 
 Plans:
-- [x] 13-01-PLAN.md -- MobilePropertiesSheet with two-step tap trigger, keyboard-aware snap, MobileConnectionTypePicker, 44px touch targets (2026-03-05)
-- [x] 13-02-PLAN.md -- MobileContextMenu with long-press trigger, MobileAnalysisOverlay placeholder, Analyze toolbar button (2026-03-05)
+- [x] 13-01-PLAN.md -- MobilePropertiesSheet with two-step tap trigger, keyboard-aware snap, MobileConnectionTypePicker, 44px touch targets
+- [x] 13-02-PLAN.md -- MobileContextMenu with long-press trigger, MobileAnalysisOverlay placeholder, Analyze toolbar button
 
 ### Phase 14: Mobile Connection Drawing
 **Goal**: Users on mobile can draw connections between entities — entering a connect mode via toolbar, tapping a source entity then a target entity to create a connection, with clear visual feedback throughout the flow and enlarged touch-friendly handles
 **Depends on**: Phase 13
 **Requirements**: MCONN-01, MCONN-02, MCONN-03, MCONN-04
-**Success Criteria** (what must be TRUE):
-  1. User can see connection handles on touch devices that are always visible and have enlarged hit areas (44px minimum)
-  2. User can tap a Connect button in the mobile toolbar to enter connect mode
-  3. User can draw a connection by tapping a source entity then tapping a target entity (no drag precision required)
-  4. User sees visual feedback during the connection flow — source entity highlights, instruction banner appears, and cancel option is available
 **Plans**: 1 plan
 
 Plans:
-- [ ] 14-01-PLAN.md -- Connect mode toggle, tap-to-connect state machine, MobileConnectionBanner, source highlight CSS, enhanced handle visibility
+- [x] 14-01-PLAN.md -- Connect mode toggle, tap-to-connect state machine, MobileConnectionBanner, source highlight CSS, enhanced handle visibility
 
 ### Phase 15: Hover Audit and Toolbar Completion
 **Goal**: Every interactive element works on touch without hover dependency — all 74 hover-based interactions across 22 files are remediated with always-visible or tap-triggered alternatives, the mobile toolbar is complete with undo/redo/overflow menu, and tablet gets a MiniMap for navigating large structures
 **Depends on**: Phase 14
 **Requirements**: MNAV-01, MNAV-02, MNAV-03, MPOL-01, MPOL-02, MPOL-03
-**Success Criteria** (what must be TRUE):
-  1. User can access undo, redo, add, connect, and edit tools via the mobile bottom toolbar
-  2. User can access save, templates, auto-layout, and export via an overflow menu in the mobile toolbar
-  3. User can interact with all UI elements on touch devices without any hover dependency (handles, tooltips, shadows, highlights all have touch-accessible alternatives)
-  4. User sees :active touch feedback (scale, color change) on all interactive elements when tapped
-  5. User on tablet can see a MiniMap for navigating large structures
 **Plans**: 2 plans
 
 Plans:
-- [ ] 15-01-PLAN.md -- MobileOverflowMenu component, prop threading, toolbar overflow button for save/templates/layout/export
-- [ ] 15-02-PLAN.md -- CSS :hover wrapping in @media (hover: hover), :active touch feedback on all components, tablet MiniMap verification
+- [x] 15-01-PLAN.md -- MobileOverflowMenu component, prop threading, toolbar overflow button for save/templates/layout/export
+- [x] 15-02-PLAN.md -- CSS :hover wrapping in @media (hover: hover), :active touch feedback on all components, tablet MiniMap verification
 
 ### Phase 16: Performance and Real-Device Testing
 **Goal**: The mobile experience performs smoothly on real mid-range hardware — 20+ entity structures render without jank, transitions are suppressed during drag, safe area insets are correct on notch devices, and the full feature set is validated on iOS Safari, Android Chrome, and iPad Safari
 **Depends on**: Phase 15
 **Requirements**: MPOL-04, MPOL-05
-**Success Criteria** (what must be TRUE):
-  1. User can work with 20+ entities on mobile without perceptible jank or frame drops during pan, zoom, and drag operations
-  2. User on a notch/home-indicator device sees correct safe-area insets on the bottom toolbar, FAB, and bottom sheets
 **Plans**: 1 plan
 
 Plans:
 - [x] 16-01-PLAN.md -- Performance optimizations (viewport culling, drag transition suppression, backdrop-blur removal) and safe-area-inset CSS for notch/home-indicator devices, with real-device validation checkpoint
+
+</details>
 
 ## Progress
 
