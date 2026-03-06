@@ -91,37 +91,37 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| EREG-01 | TBD | Pending |
-| EREG-02 | TBD | Pending |
-| EREG-03 | TBD | Pending |
-| EREG-04 | TBD | Pending |
-| EREG-05 | TBD | Pending |
-| EREG-06 | TBD | Pending |
-| PAL-01 | TBD | Pending |
-| PAL-02 | TBD | Pending |
-| PAL-03 | TBD | Pending |
-| PROP-01 | TBD | Pending |
-| PROP-02 | TBD | Pending |
-| PROP-03 | TBD | Pending |
-| PROP-04 | TBD | Pending |
-| PROP-05 | TBD | Pending |
-| PROP-06 | TBD | Pending |
-| XBRD-01 | TBD | Pending |
-| XBRD-02 | TBD | Pending |
-| XBRD-03 | TBD | Pending |
-| XBRD-04 | TBD | Pending |
-| CONN-01 | TBD | Pending |
-| CONN-02 | TBD | Pending |
-| CONN-03 | TBD | Pending |
-| CONN-04 | TBD | Pending |
-| VAL-01 | TBD | Pending |
-| VAL-02 | TBD | Pending |
+| EREG-01 | Phase 17 | Pending |
+| EREG-02 | Phase 17 | Pending |
+| EREG-03 | Phase 17 | Pending |
+| EREG-04 | Phase 17 | Pending |
+| EREG-05 | Phase 17 | Pending |
+| EREG-06 | Phase 17 | Pending |
+| PAL-01 | Phase 18 | Pending |
+| PAL-02 | Phase 18 | Pending |
+| PAL-03 | Phase 18 | Pending |
+| PROP-01 | Phase 19 | Pending |
+| PROP-02 | Phase 19 | Pending |
+| PROP-03 | Phase 19 | Pending |
+| PROP-04 | Phase 19 | Pending |
+| PROP-05 | Phase 19 | Pending |
+| PROP-06 | Phase 19 | Pending |
+| XBRD-01 | Phase 20 | Pending |
+| XBRD-02 | Phase 21 | Pending |
+| XBRD-03 | Phase 20 | Pending |
+| XBRD-04 | Phase 21 | Pending |
+| CONN-01 | Phase 20 | Pending |
+| CONN-02 | Phase 20 | Pending |
+| CONN-03 | Phase 20 | Pending |
+| CONN-04 | Phase 20 | Pending |
+| VAL-01 | Phase 21 | Pending |
+| VAL-02 | Phase 21 | Pending |
 
 **Coverage:**
 - v2.0 requirements: 25 total
-- Mapped to phases: 0
-- Unmapped: 25 ⚠️
+- Mapped to phases: 25
+- Unmapped: 0
 
 ---
 *Requirements defined: 2026-03-06*
-*Last updated: 2026-03-06 after initial definition*
+*Last updated: 2026-03-07 after roadmap creation (traceability complete)*

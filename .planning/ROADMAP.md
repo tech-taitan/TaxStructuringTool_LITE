@@ -2,13 +2,14 @@
 
 ## Overview
 
-This roadmap delivers a web application where tax lawyers can visually design multi-entity tax structures on a canvas, wire them with debt/equity/trust relationships, and get AI-powered tax analysis — all in the browser. v1.0 delivered the core desktop product. v1.1 extends the full editing experience to phone and tablet — responsive layout, touch-friendly canvas interactions, mobile-adapted panels, and performance hardening — so users can place entities, draw connections, edit properties, and run AI analysis from any device.
+This roadmap delivers a web application where tax lawyers can visually design multi-entity tax structures on a canvas, wire them with debt/equity/trust relationships, and get AI-powered tax analysis — all in the browser. v1.0 delivered the core desktop product. v1.1 extended full editing to phone and tablet. v2.0 expands the tool from Australia-only to six jurisdictions (AU, UK, US, HK, SG, LU) — adding ~45 new entity types, jurisdiction-organized palettes, per-jurisdiction property fields, cross-border connection metadata, and multi-jurisdiction validation — so tax lawyers can design cross-border structures on a single canvas.
 
 ## Milestones
 
 - v1.0 Core Product - Phases 1-7 (shipped 2026-02-18)
 - v1.1 Mobile Experience - Phases 10-16 (shipped 2026-03-06)
 - Deferred - Phases 8-9 (sharing, customization)
+- v2.0 Multi-Jurisdiction - Phases 17-21 (in progress)
 
 ## Phases
 
@@ -48,6 +49,16 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 16: Performance and Real-Device Testing** - Viewport culling, transition optimization, safe area insets, device test matrix
 
 </details>
+
+### v2.0 Multi-Jurisdiction (In Progress)
+
+**Milestone Goal:** Tax lawyers can build cross-border structures with entities from 6 jurisdictions (AU, UK, US, HK, SG, LU) on a single canvas, with jurisdiction-specific property fields, cross-border connection metadata, and multi-jurisdiction validation.
+
+- [ ] **Phase 17: Data Model and Entity Registry** - Expand jurisdiction types, entity categories, and ~45 new entity types across UK, US, HK, SG, LU
+- [ ] **Phase 18: Jurisdiction Palette** - Jurisdiction tab bar in desktop and mobile palettes with cross-jurisdiction search
+- [ ] **Phase 19: Properties and Field Validation** - Per-jurisdiction registration fields, tax status fields, and format validation
+- [ ] **Phase 20: Cross-Border Connections** - WHT rate, treaty, transfer pricing, and currency fields on cross-border edges with visual differentiation
+- [ ] **Phase 21: Validation and Canvas Polish** - Jurisdiction-specific structural validation, cross-jurisdiction false-positive prevention, and jurisdiction legend
 
 ## Phase Details
 
@@ -266,12 +277,94 @@ Plans:
 
 </details>
 
+### v2.0 Multi-Jurisdiction (Phases 17-21)
+
+### Phase 17: Data Model and Entity Registry
+**Goal**: All 6 jurisdictions' entity types exist in the registry with visually distinct shapes, colors, and flag icons — the foundation that every subsequent phase reads from
+**Depends on**: Phase 16 (v1.1 complete)
+**Requirements**: EREG-01, EREG-02, EREG-03, EREG-04, EREG-05, EREG-06
+**Success Criteria** (what must be TRUE):
+  1. User can see all 9 UK entity types (Ltd, PLC, LLP, LP, GP, Unit Trust, Discretionary Trust, Individual, Pension Scheme) available in the entity registry with correct category assignments
+  2. User can see all 11 US entity types (C Corp, S Corp, LLC Disregarded, LLC Partnership-Taxed, GP, LP, LLLP, Grantor Trust, Non-Grantor Trust, Individual, 501(c)(3)) available in the entity registry with correct category assignments
+  3. User can see all 6 HK, 7 SG, and 10 LU entity types available in the entity registry with correct category assignments
+  4. User can see jurisdiction-specific visual styling on entity nodes — each jurisdiction has a distinct flag icon and color accent that differentiates it from other jurisdictions at a glance
+  5. Existing AU-only saved structures load and render without any changes or errors
+**Plans**: TBD
+
+Plans:
+- [ ] 17-01: Expand Jurisdiction type, JurisdictionConfig, and EntityCategory; add UK and US entity registry entries
+- [ ] 17-02: Add HK, SG, and LU entity registry entries; verify visual distinction across all 6 jurisdictions
+
+### Phase 18: Jurisdiction Palette
+**Goal**: Users can browse and discover entity types organized by jurisdiction in both desktop sidebar and mobile bottom sheet palettes, with cross-jurisdiction search
+**Depends on**: Phase 17
+**Requirements**: PAL-01, PAL-02, PAL-03
+**Success Criteria** (what must be TRUE):
+  1. User can see jurisdiction tabs (AU, UK, US, HK, SG, LU) in both the desktop sidebar palette and mobile bottom sheet palette, and switching tabs shows only that jurisdiction's entity types
+  2. User can type a search term and see matching entity types from all jurisdictions with jurisdiction flag icons shown alongside each result
+  3. User can see all 6 jurisdiction tabs without needing to scroll horizontally to discover them, on both desktop and mobile screen sizes
+**Plans**: TBD
+
+Plans:
+- [ ] 18-01: Jurisdiction tab bar in EntityPalette and MobilePalette with selectedPaletteJurisdiction state
+- [ ] 18-02: Cross-jurisdiction palette search with flag icons in results
+
+### Phase 19: Properties and Field Validation
+**Goal**: Users can view and edit jurisdiction-specific registration and tax status fields for any entity, with format validation that matches each jurisdiction's official registration number patterns
+**Depends on**: Phase 18
+**Requirements**: PROP-01, PROP-02, PROP-03, PROP-04, PROP-05, PROP-06
+**Success Criteria** (what must be TRUE):
+  1. User can open properties for a UK entity and see UK-specific fields (Company Number, UTR, NINO, Corporation Tax rate, Small Profits eligibility, trust rates, IHT relevance)
+  2. User can open properties for a US entity and see US-specific fields (EIN, SSN/ITIN, State of formation, check-the-box election, S Corp election, federal tax rate)
+  3. User can open properties for HK, SG, and LU entities and see jurisdiction-appropriate registration and tax status fields for each
+  4. User can see inline validation errors when entering registration numbers in incorrect formats (UK Company Number must be 8 characters, US EIN must be XX-XXXXXXX, SG UEN must be 9-10 characters, LU RCS must be B-XXXXXX)
+  5. Existing AU entity properties continue to display and validate correctly with no regressions
+**Plans**: TBD
+
+Plans:
+- [ ] 19-01: Per-jurisdiction registration field renderers (UK, US, HK, SG, LU) in RegistrationSection
+- [ ] 19-02: Per-jurisdiction tax status field renderers and Zod format validation schemas
+
+### Phase 20: Cross-Border Connections
+**Goal**: Users can build mixed cross-border structures with connection metadata that captures the tax-relevant details of cross-border flows — withholding tax rates, treaty references, transfer pricing flags, and currency — with visual differentiation of cross-border connections
+**Depends on**: Phase 19
+**Requirements**: XBRD-01, XBRD-03, CONN-01, CONN-02, CONN-03, CONN-04
+**Success Criteria** (what must be TRUE):
+  1. User can place entities from different jurisdictions on the same canvas and connect them with equity, debt, or agreement connections
+  2. User can set withholding tax rate and payment type (dividend/interest/royalty) on any cross-border equity or debt connection
+  3. User can indicate whether a treaty-reduced rate applies and specify the applicable treaty name on any cross-border connection
+  4. User can see transfer pricing relevance auto-flagged on cross-border service/management/licensing connections between related parties
+  5. User can visually distinguish cross-border connections from domestic connections via dashed line style or distinct color
+
+**Plans**: TBD
+
+Plans:
+- [ ] 20-01: Cross-border edge metadata fields (WHT rate, treaty, transfer pricing, currency) on TaxRelationshipData and connection properties UI
+- [ ] 20-02: Cross-border connection visual differentiation and auto-detection of cross-border edges
+
+### Phase 21: Validation and Canvas Polish
+**Goal**: The canvas actively validates jurisdiction-specific structural rules across mixed-jurisdiction structures without false positives, and provides visual aids (jurisdiction legend, border color accents) that help users navigate complex cross-border diagrams
+**Depends on**: Phase 20
+**Requirements**: XBRD-02, XBRD-04, VAL-01, VAL-02
+**Success Criteria** (what must be TRUE):
+  1. User can see validation warnings for jurisdiction-specific structural rules (UK trust without trustee, US S Corp with ineligible shareholder type, SG VCC without fund manager) displayed alongside existing AU validation rules
+  2. User can build a structure with entities from 3+ jurisdictions and see only the validation rules relevant to each entity's own jurisdiction — no false positives from other jurisdictions' rules
+  3. User can see a jurisdiction color legend on the canvas when entities from 2+ jurisdictions are present, showing which color accent maps to which jurisdiction
+  4. User can visually distinguish which jurisdiction each entity belongs to via flag icon and jurisdiction-specific border color accent, even on a canvas with 20+ entities from mixed jurisdictions
+
+**Plans**: TBD
+
+Plans:
+- [ ] 21-01: Refactor graph-validator from hardcoded AU Sets to registry-derived Sets; add jurisdiction-specific validation rules
+- [ ] 21-02: Jurisdiction color legend component and XBRD-02 border color accent on entity nodes
+
 ## Progress
 
 **Execution Order:**
 v1.0: 1 > 2 > 3 > 4 > 5 > 6 > 7 (complete)
-v1.1: 10 > 11 > 12 > 13 > 14 > 15 > 16
-Note: Phase 10 before all v1.1 phases (primitives). Phase 11 before 12-16 (layout shell). Phase 12 before 13 (can't edit what you can't place). Phase 13 before 14 (mobileTool state machine). Phase 15 after 14 (audit after all interactions exist). Phase 16 last (optimize complete feature set).
+v1.1: 10 > 11 > 12 > 13 > 14 > 15 > 16 (complete)
+v2.0: 17 > 18 > 19 > 20 > 21
+Note: Phase 17 first (registry is foundation for everything). Phase 18 after 17 (palette needs registry entries). Phase 19 after 18 (properties need entities placeable). Phase 20 after 19 (cross-border connections need entities configured). Phase 21 last (validation needs full cross-border structures to validate).
 
 | Phase | Milestone | Plans Complete | Status | Completed |
 |-------|-----------|----------------|--------|-----------|
@@ -291,3 +384,8 @@ Note: Phase 10 before all v1.1 phases (primitives). Phase 11 before 12-16 (layou
 | 14. Mobile Connection Drawing | v1.1 | 1/1 | Complete | 2026-03-06 |
 | 15. Hover Audit and Toolbar Completion | v1.1 | 2/2 | Complete | 2026-03-06 |
 | 16. Performance and Real-Device Testing | v1.1 | 1/1 | Complete | 2026-03-06 |
+| 17. Data Model and Entity Registry | v2.0 | 0/2 | Not started | - |
+| 18. Jurisdiction Palette | v2.0 | 0/2 | Not started | - |
+| 19. Properties and Field Validation | v2.0 | 0/2 | Not started | - |
+| 20. Cross-Border Connections | v2.0 | 0/2 | Not started | - |
+| 21. Validation and Canvas Polish | v2.0 | 0/2 | Not started | - |

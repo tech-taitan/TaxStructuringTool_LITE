@@ -5,23 +5,23 @@
 See: .planning/PROJECT.md (updated 2026-03-06)
 
 **Core value:** Tax lawyers can draw a structure and instantly understand its tax implications
-**Current focus:** Milestone v2.0 -- Multi-Jurisdiction -- Defining requirements
+**Current focus:** Phase 17 — Data Model and Entity Registry (v2.0 Multi-Jurisdiction)
 
 ## Current Position
 
-Phase: Not started (defining requirements)
-Plan: —
-Status: Defining requirements
-Last activity: 2026-03-06 — Milestone v2.0 started
+Phase: 17 of 21 (Data Model and Entity Registry)
+Plan: 0 of 2 in current phase
+Status: Ready to plan
+Last activity: 2026-03-07 — Roadmap created for v2.0 Multi-Jurisdiction (Phases 17-21)
 
-Progress: v1.0 (17/17 plans) + v1.1 (10/10 plans) = 27 plans shipped | v2.0: 0%
+Progress: v1.0 (17/17) + v1.1 (10/10) = 27 plans shipped | v2.0: [----------] 0% (0/10 plans)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 26
+- Total plans completed: 27
 - Average duration: 8 min
-- Total execution time: ~3.2 hours
+- Total execution time: ~3.5 hours
 
 **By Phase:**
 
@@ -55,44 +55,14 @@ Progress: v1.0 (17/17 plans) + v1.1 (10/10 plans) = 27 plans shipped | v2.0: 0%
 Decisions are logged in PROJECT.md Key Decisions table.
 Recent decisions affecting current work:
 
-- [Roadmap v1.1]: 7 phases (10-16) derived from 32 requirements at comprehensive depth
-- [Roadmap v1.1]: Phase 10 is infrastructure-only (no user-facing requirements)
-- [Roadmap v1.1]: Zero-new-dependencies as primary approach; vaul/@use-gesture as fallback
-- [Roadmap v1.1]: Hover audit deferred to Phase 15 (after all interactions exist)
-- [Research]: connectOnClick integration needs verification in Phase 14 before building UI around it
-- [Research]: iOS Safari virtual keyboard + visualViewport API needs fix cycle budget in Phase 13
-- [07-03]: Thumbnail capture at pixelRatio: 1 to keep localStorage footprint small; explicit save only (not auto-save)
-- [10-01]: Zero new dependencies -- all mobile primitives built with native APIs (matchMedia, rAF, touch events)
-- [10-01]: Spring animation uses simple stiffness/damping model (~80 lines) instead of adding a physics library
-- [10-01]: BottomSheet uses translateY transforms via ref (no React state during drag) for 60fps touch performance
-- [11-01]: No floating structure name header in mobile editor -- maximizes canvas real estate like Figma mobile
-- [11-01]: Template picker and delete dialog render on all screen sizes via fragment wrapper
-- [11-02]: Double-click-to-create disabled on touch -- FAB in Phase 12 replaces it
-- [11-02]: Context menus disabled on touch -- long-press menus in Phase 13 replace them
-- [11-02]: HelperLines hidden on all touch devices (not just mobile) -- precision feature
-- [12-01]: CATEGORY_CONFIG uses iconName strings (not JSX) for framework-agnostic sharing between desktop and mobile
-- [12-01]: BottomSheet touch handlers moved to drag handle only, enabling content area scrolling
-- [12-01]: Scale-in animation uses CSS scale property (not transform: scale) to avoid conflicting with React Flow transforms
-- [13-01]: BottomSheet imperative ref API via forwardRef + useImperativeHandle for external snap control
-- [13-01]: RELATIONSHIP_TYPES extracted to shared lib file for desktop modal and mobile picker sync
-- [13-01]: PropertiesPanel autoFocus prop (default true) suppresses keyboard popup on mobile
-- [13-01]: touch-target CSS class in @media (pointer: coarse) for 44px delete button targets
-- [13-02]: Combined wrapper approach for EntityNode touch handlers -- captures coords before delegating to useLongPress
-- [13-02]: Analysis overlay uses placeholder content with disabled buttons -- ready for streaming AI when backend exists
-- [13-02]: Double pointer-events-auto (Tailwind + inline) on overlay for guaranteed modal behavior
-- [14-01]: pendingConnection useState hoisted above onNodeClick for connect mode setPendingConnection access
-- [14-01]: connectOnClick disabled only during connect mode to prevent handle-tap conflicts while preserving desktop behavior
-- [14-01]: Handle base opacity bumped from 0.3 to 0.5 for always-visible discovery on touch (MCONN-01)
-- [15-01]: pointerdown event (not mousedown) for close-on-tap-outside to handle both mouse and touch
-- [15-01]: Save and Export PNG conditionally rendered only when respective props provided
-- [15-02]: All raw CSS :hover rules wrapped in @media (hover: hover) to prevent touch ghost hover
-- [15-02]: Edge .selected rule kept outside media query -- selection is touch equivalent of hover
-- [15-02]: Tablet MiniMap already works via !isMobile guard (MPOL-03 satisfied, no code changes)
-- [15-02]: pointerdown replaces mousedown in all 4 toolbar dropdowns for tablet touch compatibility
-- [16-01]: Viewport culling via onlyRenderVisibleElements prop (built-in React Flow, zero custom code)
-- [16-01]: Drag transition suppression via CSS class toggle (not per-node state) for zero re-render overhead
-- [16-01]: Safe-area utilities as plain CSS classes (not Tailwind plugin) since Tailwind v4 dropped pb-safe
-- [16-01]: Backdrop-blur conditionally removed on mobile only; desktop retains frosted glass aesthetic
+- [Roadmap v2.0]: 5 phases (17-21) derived from 25 requirements at comprehensive depth
+- [Roadmap v2.0]: AI analysis engine deferred to future milestone (not built in v2.0)
+- [Roadmap v2.0]: Entity registry expanded in one phase (not split by jurisdiction) to avoid horizontal layers
+- [Roadmap v2.0]: Cross-border connection metadata and canvas visuals combined in Phase 20
+- [Roadmap v2.0]: Validation refactored from hardcoded AU Sets to registry-derived Sets in Phase 21
+- [Research]: EntityCategory type must be extended before adding non-AU entity registry entries
+- [Research]: Graph validator hardcodes AU entity IDs — must derive from registry before cross-border validation
+- [Research]: Zero new dependencies — all work is data model expansion and UI rendering
 
 ### Pending Todos
 
@@ -100,13 +70,13 @@ None.
 
 ### Blockers/Concerns
 
-- Library versions verified: Next.js 16.1.6, React Flow 12.10.0, Zustand 5.0.11, React 19.2.3
-- React Flow 12.10.0 touch props confirmed: zoomOnPinch, panOnDrag, preventScrolling, connectOnClick all present
-- HTML5 DnD is non-functional on touch -- replaced by tap-to-add in Phase 12
-- Hover audit complete: all 4 raw CSS :hover rules guarded, active feedback on all interactive components
+- EntityCategory type hardcoded to AU classifications — must extend first (EREG pitfall)
+- Graph validator hardcodes AU entity ID Sets — must refactor before adding jurisdiction rules (VAL pitfall)
+- Tax status fields per jurisdiction based on training data — practitioner review needed before professional use
+- Registration number format regexes need verification against official registrar documentation
 
 ## Session Continuity
 
-Last session: 2026-03-06
-Stopped at: Starting v2.0 Multi-Jurisdiction milestone — research phase
+Last session: 2026-03-07
+Stopped at: Roadmap created for v2.0 Multi-Jurisdiction — ready to plan Phase 17
 Resume file: None
