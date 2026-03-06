@@ -55,7 +55,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 **Milestone Goal:** Tax lawyers can build cross-border structures with entities from 6 jurisdictions (AU, UK, US, HK, SG, LU) on a single canvas, with jurisdiction-specific property fields, cross-border connection metadata, and multi-jurisdiction validation.
 
 - [x] **Phase 17: Data Model and Entity Registry** - Expand jurisdiction types, entity categories, and ~45 new entity types across UK, US, HK, SG, LU
-- [ ] **Phase 18: Jurisdiction Palette** - Jurisdiction tab bar in desktop and mobile palettes with cross-jurisdiction search
+- [x] **Phase 18: Jurisdiction Palette** - Jurisdiction tab bar in desktop and mobile palettes with cross-jurisdiction search
 - [ ] **Phase 19: Properties and Field Validation** - Per-jurisdiction registration fields, tax status fields, and format validation
 - [ ] **Phase 20: Cross-Border Connections** - WHT rate, treaty, transfer pricing, and currency fields on cross-border edges with visual differentiation
 - [ ] **Phase 21: Validation and Canvas Polish** - Jurisdiction-specific structural validation, cross-jurisdiction false-positive prevention, and jurisdiction legend
@@ -306,8 +306,8 @@ Plans:
 **Plans**: 2 plans
 
 Plans:
-- [ ] 18-01-PLAN.md -- Jurisdiction tab bar component, selectedPaletteJurisdiction state in ui-store, integration into both EntityPalette and MobilePalette
-- [ ] 18-02-PLAN.md -- Cross-jurisdiction search bypass with flag icons in results, search input in MobilePalette, tab dimming during search
+- [x] 18-01-PLAN.md -- Jurisdiction tab bar component, selectedPaletteJurisdiction state in ui-store, integration into both EntityPalette and MobilePalette
+- [x] 18-02-PLAN.md -- Cross-jurisdiction search bypass with flag icons in results, search input in MobilePalette, tab dimming during search
 
 ### Phase 19: Properties and Field Validation
 **Goal**: Users can view and edit jurisdiction-specific registration and tax status fields for any entity, with format validation that matches each jurisdiction's official registration number patterns
@@ -385,7 +385,7 @@ Note: Phase 17 first (registry is foundation for everything). Phase 18 after 17 
 | 15. Hover Audit and Toolbar Completion | v1.1 | 2/2 | Complete | 2026-03-06 |
 | 16. Performance and Real-Device Testing | v1.1 | 1/1 | Complete | 2026-03-06 |
 | 17. Data Model and Entity Registry | v2.0 | 2/2 | Complete | 2026-03-08 |
-| 18. Jurisdiction Palette | v2.0 | 0/2 | Planned | - |
+| 18. Jurisdiction Palette | v2.0 | 2/2 | Complete | 2026-03-08 |
 | 19. Properties and Field Validation | v2.0 | 0/2 | Not started | - |
 | 20. Cross-Border Connections | v2.0 | 0/2 | Not started | - |
 | 21. Validation and Canvas Polish | v2.0 | 0/2 | Not started | - |
