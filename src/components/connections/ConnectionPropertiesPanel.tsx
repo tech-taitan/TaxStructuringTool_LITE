@@ -21,10 +21,12 @@ import {
   Handshake,
   FileText,
   ArrowRight,
+  Globe,
 } from 'lucide-react';
 import Markdown from 'react-markdown';
 import { useGraphStore } from '@/stores/graph-store';
 import { getRelationshipSchema, getDefaultRelationshipData } from '@/lib/validation/relationship-schemas';
+import { COMMON_CURRENCIES, PAYMENT_TYPES } from '@/lib/cross-border';
 import type { RelationshipType, TaxRelationshipData } from '@/models/relationships';
 
 interface ConnectionPropertiesPanelProps {
@@ -78,6 +80,12 @@ function pathToLabel(path: (string | number)[]): string {
     beneficiaryType: 'Beneficiary Type',
     notes: 'Notes',
     relationshipType: 'Relationship Type',
+    withholdingTaxRate: 'WHT Rate',
+    paymentType: 'Payment Type',
+    treatyApplies: 'Treaty Applies',
+    treatyName: 'Treaty Name',
+    currencyCode: 'Currency',
+    transferPricingRelevant: 'Transfer Pricing',
   };
   const key = path.join('.');
   return labelMap[key] ?? path[path.length - 1]?.toString() ?? 'Unknown field';
@@ -138,6 +146,12 @@ export default function ConnectionPropertiesPanel({ edgeId }: ConnectionProperti
         notes: prev.notes ?? '',
         label: defaults.label,
         pathOffset: prev.pathOffset,
+        withholdingTaxRate: prev.withholdingTaxRate,
+        paymentType: prev.paymentType,
+        treatyApplies: prev.treatyApplies,
+        treatyName: prev.treatyName,
+        currencyCode: prev.currencyCode,
+        transferPricingRelevant: prev.transferPricingRelevant,
       };
     });
     setErrors([]);
@@ -152,6 +166,11 @@ export default function ConnectionPropertiesPanel({ edgeId }: ConnectionProperti
   const targetNode = nodes.find((n) => n.id === edge.target);
   const sourceName = sourceNode?.data.name ?? 'Unknown';
   const targetName = targetNode?.data.name ?? 'Unknown';
+
+  const isCrossBorderEdge =
+    sourceNode != null &&
+    targetNode != null &&
+    sourceNode.data.jurisdiction !== targetNode.data.jurisdiction;
 
   const edgeColor = EDGE_COLORS[formData.relationshipType] ?? '#6B7280';
 
@@ -398,6 +417,146 @@ export default function ConnectionPropertiesPanel({ edgeId }: ConnectionProperti
                 <option value="discretionary">Discretionary</option>
               </select>
             </div>
+          </div>
+        )}
+
+        {/* Cross-border section (conditional) */}
+        {isCrossBorderEdge && (
+          <div className="px-4 py-3 border-t border-gray-100">
+            <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-3 flex items-center gap-1.5">
+              <Globe className="w-3.5 h-3.5" />
+              Cross-Border Details
+            </h3>
+
+            {/* Withholding Tax Rate (equity/debt only) */}
+            {(formData.relationshipType === 'equity' || formData.relationshipType === 'debt') && (
+              <div className="mb-3">
+                <label htmlFor="withholdingTaxRate" className="block text-sm font-medium text-gray-700 mb-1">
+                  Withholding Tax Rate
+                </label>
+                <div className="relative">
+                  <input
+                    id="withholdingTaxRate"
+                    type="number"
+                    min={0}
+                    max={100}
+                    step={0.1}
+                    value={formData.withholdingTaxRate ?? ''}
+                    onChange={(e) =>
+                      handleChange({ withholdingTaxRate: e.target.value === '' ? undefined : Number(e.target.value) })
+                    }
+                    className="w-full px-3 py-2 pr-8 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    placeholder="0"
+                  />
+                  <span className="absolute right-3 top-1/2 -translate-y-1/2 text-sm text-gray-400">%</span>
+                </div>
+              </div>
+            )}
+
+            {/* Payment Type (equity/debt only) */}
+            {(formData.relationshipType === 'equity' || formData.relationshipType === 'debt') && (
+              <div className="mb-3">
+                <label htmlFor="paymentType" className="block text-sm font-medium text-gray-700 mb-1">
+                  Payment Type
+                </label>
+                <select
+                  id="paymentType"
+                  value={formData.paymentType ?? ''}
+                  onChange={(e) =>
+                    handleChange({
+                      paymentType: (e.target.value || undefined) as TaxRelationshipData['paymentType'],
+                    })
+                  }
+                  className="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                >
+                  <option value="">-- Select --</option>
+                  {PAYMENT_TYPES.map((pt) => (
+                    <option key={pt.value} value={pt.value}>
+                      {pt.label}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            )}
+
+            {/* Treaty Applies (all cross-border types) */}
+            <div className="mb-3">
+              <div className="flex items-center gap-2">
+                <input
+                  id="treatyApplies"
+                  type="checkbox"
+                  checked={formData.treatyApplies ?? false}
+                  onChange={(e) => handleChange({ treatyApplies: e.target.checked })}
+                  className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                />
+                <label htmlFor="treatyApplies" className="text-sm font-medium text-gray-700">
+                  Treaty Applies
+                </label>
+              </div>
+            </div>
+
+            {/* Treaty Name (when treaty applies) */}
+            {formData.treatyApplies && (
+              <div className="mb-3">
+                <label htmlFor="treatyName" className="block text-sm font-medium text-gray-700 mb-1">
+                  Treaty Name
+                </label>
+                <input
+                  id="treatyName"
+                  type="text"
+                  maxLength={200}
+                  value={formData.treatyName ?? ''}
+                  onChange={(e) => handleChange({ treatyName: e.target.value })}
+                  className="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  placeholder="e.g. Australia-UK DTA"
+                />
+              </div>
+            )}
+
+            {/* Currency (equity/debt only) */}
+            {(formData.relationshipType === 'equity' || formData.relationshipType === 'debt') && (
+              <div className="mb-3">
+                <label htmlFor="currencyCode" className="block text-sm font-medium text-gray-700 mb-1">
+                  Currency
+                </label>
+                <select
+                  id="currencyCode"
+                  value={formData.currencyCode ?? ''}
+                  onChange={(e) =>
+                    handleChange({ currencyCode: e.target.value || undefined })
+                  }
+                  className="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                >
+                  <option value="">-- Select --</option>
+                  {COMMON_CURRENCIES.map((c) => (
+                    <option key={c.code} value={c.code}>
+                      {c.code} - {c.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            )}
+
+            {/* Transfer Pricing Relevant (services/management/licensing only) */}
+            {(formData.relationshipType === 'services' || formData.relationshipType === 'management' || formData.relationshipType === 'licensing') && (
+              <div className="mb-3">
+                <div className="flex items-center gap-2">
+                  <input
+                    id="transferPricingRelevant"
+                    type="checkbox"
+                    checked={formData.transferPricingRelevant ?? false}
+                    onChange={(e) => handleChange({ transferPricingRelevant: e.target.checked })}
+                    className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                  />
+                  <label htmlFor="transferPricingRelevant" className="text-sm font-medium text-gray-700">
+                    Transfer Pricing Relevant
+                  </label>
+                </div>
+                <p className="text-xs text-gray-400 mt-1 ml-6">
+                  Auto-flagged for cross-border service connections. Toggle off if not applicable.
+                </p>
+              </div>
+            )}
           </div>
         )}
 
