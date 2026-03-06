@@ -9,19 +9,19 @@ See: .planning/PROJECT.md (updated 2026-03-06)
 
 ## Current Position
 
-Phase: 19 of 21 (Properties & Field Validation)
-Plan: 2 of 2 in current phase (COMPLETE)
-Status: Phase 19 Complete -- ready for Phase 20
-Last activity: 2026-03-07 — Completed 19-02 (Jurisdiction-Specific UI Renderers)
+Phase: 20 of 21 (Cross-Border Connections)
+Plan: 1 of 2 in current phase
+Status: Executing Phase 20 -- Plan 01 complete, Plan 02 remaining
+Last activity: 2026-03-07 — Completed 20-01 (Cross-Border Data Layer)
 
-Progress: v1.0 (17/17) + v1.1 (10/10) = 27 plans shipped | v2.0: [######----] 60% (6/10 plans)
+Progress: v1.0 (17/17) + v1.1 (10/10) = 27 plans shipped | v2.0: [#######---] 70% (7/10 plans)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 33
+- Total plans completed: 34
 - Average duration: 8 min
-- Total execution time: ~4.1 hours
+- Total execution time: ~4.2 hours
 
 **By Phase:**
 
@@ -44,9 +44,10 @@ Progress: v1.0 (17/17) + v1.1 (10/10) = 27 plans shipped | v2.0: [######----] 60
 | 17-data-model-entity-registry | 2/2 | 7 min | 4 min |
 | 18-jurisdiction-palette | 2/2 | 6 min | 3 min |
 | 19-properties-field-validation | 2/2 | 7 min | 4 min |
+| 20-cross-border-connections | 1/2 | 3 min | 3 min |
 
 **Recent Trend:**
-- Last 5 plans: 3 min, 3 min, 3 min, 3 min, 4 min
+- Last 5 plans: 3 min, 3 min, 3 min, 4 min, 3 min
 - Trend: Stable
 
 *Updated after each plan completion*
@@ -83,6 +84,9 @@ Recent decisions affecting current work:
 - [19-02]: Jurisdiction-first dispatch pattern in RegistrationSection and TaxStatusSection
 - [19-02]: AU rendering moved verbatim into renderAuFields() for zero regression guarantee
 - [19-02]: US LLC disregarded and LU Soparfi handled by entityType checks under correct registry categories
+- [20-01]: onDrop uses config.jurisdiction from entity registry; onDoubleClickPane retains canvasJurisdiction for default AU shortcut
+- [20-01]: All 6 cross-border fields optional on base relationship schema so every type inherits them
+- [20-01]: TP auto-flag is info severity (advisory, not structural validation)
 
 ### Pending Todos
 
@@ -97,6 +101,6 @@ None.
 
 ## Session Continuity
 
-Last session: 2026-03-08
-Stopped at: Phase 19 complete — ready to plan Phase 20
+Last session: 2026-03-07
+Stopped at: Completed 20-01-PLAN.md
 Resume file: None
