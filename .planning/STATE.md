@@ -5,14 +5,14 @@
 See: .planning/PROJECT.md (updated 2026-03-06)
 
 **Core value:** Tax lawyers can draw a structure and instantly understand its tax implications
-**Current focus:** Phase 20 — Cross-Border Connections (v2.0 Multi-Jurisdiction)
+**Current focus:** Phase 21 — Validation and Canvas Polish (v2.0 Multi-Jurisdiction)
 
 ## Current Position
 
 Phase: 20 of 21 (Cross-Border Connections)
-Plan: 2 of 2 in current phase
-Status: Phase 20 complete -- all plans shipped
-Last activity: 2026-03-07 — Completed 20-02 (Cross-Border Connection Visuals)
+Plan: 2 of 2 in current phase (COMPLETE)
+Status: Phase 20 Complete -- ready for Phase 21
+Last activity: 2026-03-08 — Completed 20-02 (Cross-Border Connection Visuals)
 
 Progress: v1.0 (17/17) + v1.1 (10/10) = 27 plans shipped | v2.0: [########--] 80% (8/10 plans)
 
@@ -104,6 +104,6 @@ None.
 
 ## Session Continuity
 
-Last session: 2026-03-07
-Stopped at: Completed 20-02-PLAN.md
+Last session: 2026-03-08
+Stopped at: Phase 20 complete — ready to plan Phase 21
 Resume file: None

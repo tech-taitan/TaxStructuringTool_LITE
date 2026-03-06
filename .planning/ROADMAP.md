@@ -57,7 +57,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 17: Data Model and Entity Registry** - Expand jurisdiction types, entity categories, and ~45 new entity types across UK, US, HK, SG, LU
 - [x] **Phase 18: Jurisdiction Palette** - Jurisdiction tab bar in desktop and mobile palettes with cross-jurisdiction search
 - [x] **Phase 19: Properties and Field Validation** - Per-jurisdiction registration fields, tax status fields, and format validation
-- [ ] **Phase 20: Cross-Border Connections** - WHT rate, treaty, transfer pricing, and currency fields on cross-border edges with visual differentiation
+- [x] **Phase 20: Cross-Border Connections** - WHT rate, treaty, transfer pricing, and currency fields on cross-border edges with visual differentiation
 - [ ] **Phase 21: Validation and Canvas Polish** - Jurisdiction-specific structural validation, cross-jurisdiction false-positive prevention, and jurisdiction legend
 
 ## Phase Details
@@ -339,8 +339,8 @@ Plans:
 **Plans**: 2 plans
 
 Plans:
-- [ ] 20-01-PLAN.md -- Fix desktop jurisdiction bug, cross-border utility and constants, extend TaxRelationshipData, update schemas, add TP auto-flag rule
-- [ ] 20-02-PLAN.md -- Cross-border properties form section, amber double-stroke edge visual, legend entry
+- [x] 20-01-PLAN.md -- Fix desktop jurisdiction bug, cross-border utility and constants, extend TaxRelationshipData, update schemas, add TP auto-flag rule
+- [x] 20-02-PLAN.md -- Cross-border properties form section, amber double-stroke edge visual, legend entry
 
 ### Phase 21: Validation and Canvas Polish
 **Goal**: The canvas actively validates jurisdiction-specific structural rules across mixed-jurisdiction structures without false positives, and provides visual aids (jurisdiction legend, border color accents) that help users navigate complex cross-border diagrams
@@ -387,5 +387,5 @@ Note: Phase 17 first (registry is foundation for everything). Phase 18 after 17 
 | 17. Data Model and Entity Registry | v2.0 | 2/2 | Complete | 2026-03-08 |
 | 18. Jurisdiction Palette | v2.0 | 2/2 | Complete | 2026-03-08 |
 | 19. Properties and Field Validation | v2.0 | 2/2 | Complete | 2026-03-08 |
-| 20. Cross-Border Connections | v2.0 | 0/2 | Not started | - |
+| 20. Cross-Border Connections | v2.0 | 2/2 | Complete | 2026-03-08 |
 | 21. Validation and Canvas Polish | v2.0 | 0/2 | Not started | - |
