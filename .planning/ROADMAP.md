@@ -303,11 +303,11 @@ Plans:
   1. User can see jurisdiction tabs (AU, UK, US, HK, SG, LU) in both the desktop sidebar palette and mobile bottom sheet palette, and switching tabs shows only that jurisdiction's entity types
   2. User can type a search term and see matching entity types from all jurisdictions with jurisdiction flag icons shown alongside each result
   3. User can see all 6 jurisdiction tabs without needing to scroll horizontally to discover them, on both desktop and mobile screen sizes
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
-- [ ] 18-01: Jurisdiction tab bar in EntityPalette and MobilePalette with selectedPaletteJurisdiction state
-- [ ] 18-02: Cross-jurisdiction palette search with flag icons in results
+- [ ] 18-01-PLAN.md -- Jurisdiction tab bar component, selectedPaletteJurisdiction state in ui-store, integration into both EntityPalette and MobilePalette
+- [ ] 18-02-PLAN.md -- Cross-jurisdiction search bypass with flag icons in results, search input in MobilePalette, tab dimming during search
 
 ### Phase 19: Properties and Field Validation
 **Goal**: Users can view and edit jurisdiction-specific registration and tax status fields for any entity, with format validation that matches each jurisdiction's official registration number patterns
@@ -385,7 +385,7 @@ Note: Phase 17 first (registry is foundation for everything). Phase 18 after 17 
 | 15. Hover Audit and Toolbar Completion | v1.1 | 2/2 | Complete | 2026-03-06 |
 | 16. Performance and Real-Device Testing | v1.1 | 1/1 | Complete | 2026-03-06 |
 | 17. Data Model and Entity Registry | v2.0 | 2/2 | Complete | 2026-03-08 |
-| 18. Jurisdiction Palette | v2.0 | 0/2 | Not started | - |
+| 18. Jurisdiction Palette | v2.0 | 0/2 | Planned | - |
 | 19. Properties and Field Validation | v2.0 | 0/2 | Not started | - |
 | 20. Cross-Border Connections | v2.0 | 0/2 | Not started | - |
 | 21. Validation and Canvas Polish | v2.0 | 0/2 | Not started | - |
