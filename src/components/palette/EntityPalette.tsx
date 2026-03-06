@@ -24,6 +24,7 @@ import { ENTITY_REGISTRY } from '@/lib/entity-registry';
 import { PALETTE_ICONS } from '@/lib/palette-icons';
 import PaletteSearch from './PaletteSearch';
 import PaletteCategory from './PaletteCategory';
+import { JurisdictionTabBar } from './JurisdictionTabBar';
 
 /** Pre-rendered ghost preview elements for setDragImage (must be in DOM ahead of time) */
 function GhostPreviews() {
@@ -55,6 +56,8 @@ export default function EntityPalette() {
   const paletteSearchQuery = useUIStore((s) => s.paletteSearchQuery);
   const togglePalette = useUIStore((s) => s.togglePalette);
   const setPaletteSearch = useUIStore((s) => s.setPaletteSearch);
+  const selectedPaletteJurisdiction = useUIStore((s) => s.selectedPaletteJurisdiction);
+  const setSelectedPaletteJurisdiction = useUIStore((s) => s.setSelectedPaletteJurisdiction);
   const canvasJurisdiction = useGraphStore((s) => s.canvasJurisdiction);
 
   // Debounced search query (150ms)
@@ -67,12 +70,17 @@ export default function EntityPalette() {
     return () => clearTimeout(timer);
   }, [paletteSearchQuery]);
 
+  // Sync palette jurisdiction from canvas jurisdiction (e.g. loading a saved structure)
+  useEffect(() => {
+    setSelectedPaletteJurisdiction(canvasJurisdiction);
+  }, [canvasJurisdiction, setSelectedPaletteJurisdiction]);
+
   // Get items per category, filtered by search
   const categoriesWithItems = useMemo(() => {
     const query = debouncedQuery.toLowerCase().trim();
 
     return CATEGORY_CONFIG.map((cat) => {
-      let items = getEntitiesByCategory(canvasJurisdiction, cat.category);
+      let items = getEntitiesByCategory(selectedPaletteJurisdiction, cat.category);
       if (query) {
         items = items.filter((item) =>
           item.displayName.toLowerCase().includes(query)
@@ -80,7 +88,7 @@ export default function EntityPalette() {
       }
       return { ...cat, items };
     });
-  }, [debouncedQuery, canvasJurisdiction]);
+  }, [debouncedQuery, selectedPaletteJurisdiction]);
 
   return (
     <aside
@@ -131,8 +139,12 @@ export default function EntityPalette() {
           })}
         </div>
       ) : (
-        /* Expanded mode: search + categories */
+        /* Expanded mode: jurisdiction tabs + search + categories */
         <>
+          <JurisdictionTabBar
+            selected={selectedPaletteJurisdiction}
+            onSelect={setSelectedPaletteJurisdiction}
+          />
           <PaletteSearch value={paletteSearchQuery} onChange={setPaletteSearch} />
           <div className="flex-1 overflow-y-auto">
             {categoriesWithItems.map((cat) => {

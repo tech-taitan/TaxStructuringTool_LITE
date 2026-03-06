@@ -18,6 +18,7 @@ import { useGraphStore } from '@/stores/graph-store';
 import { CATEGORY_CONFIG, getEntitiesByCategory, getEntityConfig } from '@/lib/entity-registry';
 import { JURISDICTIONS, type Jurisdiction } from '@/models/jurisdiction';
 import { PALETTE_ICONS } from '@/lib/palette-icons';
+import { JurisdictionTabBar } from '@/components/palette/JurisdictionTabBar';
 import { resolveOverlap } from '@/lib/utils/overlap';
 import { GRID_SIZE, NODE_WIDTH, NODE_HEIGHT, CANVAS_BOUNDS } from '@/lib/constants';
 import type { TaxNode } from '@/models/graph';
@@ -27,8 +28,9 @@ export function MobilePalette() {
   const setOpen = useUIStore((s) => s.setMobilePaletteOpen);
   const setLastPlacedNodeId = useUIStore((s) => s.setLastPlacedNodeId);
   const setSelectedNode = useUIStore((s) => s.setSelectedNode);
+  const selectedPaletteJurisdiction = useUIStore((s) => s.selectedPaletteJurisdiction);
+  const setSelectedPaletteJurisdiction = useUIStore((s) => s.setSelectedPaletteJurisdiction);
   const addNode = useGraphStore((s) => s.addNode);
-  const canvasJurisdiction = useGraphStore((s) => s.canvasJurisdiction);
   const { screenToFlowPosition, getNodes } = useReactFlow();
 
   const handleSelect = useCallback(
@@ -62,8 +64,8 @@ export function MobilePalette() {
         data: {
           entityType: entityTypeId,
           name: `New ${config.shortName}`,
-          jurisdiction: canvasJurisdiction,
-          jurisdictionFlag: JURISDICTIONS[canvasJurisdiction as Jurisdiction]?.flag ?? '',
+          jurisdiction: config.jurisdiction,
+          jurisdictionFlag: JURISDICTIONS[config.jurisdiction as Jurisdiction]?.flag ?? '',
           registration: {},
           taxStatus: {},
           notes: '',
@@ -84,7 +86,7 @@ export function MobilePalette() {
       // 8. Close palette sheet
       setOpen(false);
     },
-    [screenToFlowPosition, getNodes, addNode, setSelectedNode, setLastPlacedNodeId, setOpen, canvasJurisdiction],
+    [screenToFlowPosition, getNodes, addNode, setSelectedNode, setLastPlacedNodeId, setOpen],
   );
 
   return (
@@ -97,9 +99,13 @@ export function MobilePalette() {
       <div className="px-4 pb-2">
         <h2 className="text-base font-semibold text-gray-800">Add Entity</h2>
       </div>
+      <JurisdictionTabBar
+        selected={selectedPaletteJurisdiction}
+        onSelect={setSelectedPaletteJurisdiction}
+      />
       <div className="safe-area-bottom">
         {CATEGORY_CONFIG.map((cat) => {
-          const items = getEntitiesByCategory(canvasJurisdiction, cat.category);
+          const items = getEntitiesByCategory(selectedPaletteJurisdiction, cat.category);
           if (items.length === 0) return null;
           const CatIcon = PALETTE_ICONS[cat.iconName];
           return (
