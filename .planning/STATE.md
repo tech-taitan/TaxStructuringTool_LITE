@@ -10,16 +10,16 @@ See: .planning/PROJECT.md (updated 2026-03-06)
 ## Current Position
 
 Phase: 20 of 21 (Cross-Border Connections)
-Plan: 1 of 2 in current phase
-Status: Executing Phase 20 -- Plan 01 complete, Plan 02 remaining
-Last activity: 2026-03-07 — Completed 20-01 (Cross-Border Data Layer)
+Plan: 2 of 2 in current phase
+Status: Phase 20 complete -- all plans shipped
+Last activity: 2026-03-07 — Completed 20-02 (Cross-Border Connection Visuals)
 
-Progress: v1.0 (17/17) + v1.1 (10/10) = 27 plans shipped | v2.0: [#######---] 70% (7/10 plans)
+Progress: v1.0 (17/17) + v1.1 (10/10) = 27 plans shipped | v2.0: [########--] 80% (8/10 plans)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 34
+- Total plans completed: 35
 - Average duration: 8 min
 - Total execution time: ~4.2 hours
 
@@ -44,10 +44,10 @@ Progress: v1.0 (17/17) + v1.1 (10/10) = 27 plans shipped | v2.0: [#######---] 70
 | 17-data-model-entity-registry | 2/2 | 7 min | 4 min |
 | 18-jurisdiction-palette | 2/2 | 6 min | 3 min |
 | 19-properties-field-validation | 2/2 | 7 min | 4 min |
-| 20-cross-border-connections | 1/2 | 3 min | 3 min |
+| 20-cross-border-connections | 2/2 | 6 min | 3 min |
 
 **Recent Trend:**
-- Last 5 plans: 3 min, 3 min, 3 min, 4 min, 3 min
+- Last 5 plans: 3 min, 3 min, 3 min, 3 min, 3 min
 - Trend: Stable
 
 *Updated after each plan completion*
@@ -87,6 +87,9 @@ Recent decisions affecting current work:
 - [20-01]: onDrop uses config.jurisdiction from entity registry; onDoubleClickPane retains canvasJurisdiction for default AU shortcut
 - [20-01]: All 6 cross-border fields optional on base relationship schema so every type inherits them
 - [20-01]: TP auto-flag is info severity (advisory, not structural validation)
+- [20-02]: Cross-border detection inline in each component via jurisdiction comparison rather than shared hook
+- [20-02]: Amber double-stroke at opacity 0.3, preserving relationship type colors and dash patterns
+- [20-02]: Cross-border fields preserved across relationship type changes
 
 ### Pending Todos
 
@@ -102,5 +105,5 @@ None.
 ## Session Continuity
 
 Last session: 2026-03-07
-Stopped at: Completed 20-01-PLAN.md
+Stopped at: Completed 20-02-PLAN.md
 Resume file: None
