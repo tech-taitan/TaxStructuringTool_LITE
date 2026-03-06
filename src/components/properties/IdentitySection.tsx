@@ -13,6 +13,7 @@ import { ChevronDown } from 'lucide-react';
 import type { TaxEntityData } from '@/models/graph';
 import type { EntityShape } from '@/models/entities';
 import { getEntityConfig, getEntitiesByCategory } from '@/lib/entity-registry';
+import { JURISDICTIONS, type Jurisdiction } from '@/models/jurisdiction';
 
 /** All available shapes with display labels */
 const SHAPE_OPTIONS: { value: EntityShape; label: string }[] = [
@@ -170,7 +171,7 @@ export default function IdentitySection({
               Jurisdiction
             </label>
             <div className="px-3 py-1.5 text-sm border border-gray-200 rounded-md bg-gray-50 text-gray-600">
-              {formData.jurisdiction === 'AU' ? 'Australia' : formData.jurisdiction}
+              {JURISDICTIONS[formData.jurisdiction as Jurisdiction]?.name ?? formData.jurisdiction}
             </div>
           </div>
         </div>
