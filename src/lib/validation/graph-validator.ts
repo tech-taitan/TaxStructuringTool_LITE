@@ -12,6 +12,7 @@
  *   5. Equity doesn't sum to 100% (info)
  *   6. SMSF member limit exceeded (warning)
  *   7. Trust without beneficiary (info)
+ *   8. Transfer pricing relevance on cross-border service/management/licensing (info)
  */
 
 import type { TaxNode, TaxEdge } from '@/models/graph';
@@ -66,6 +67,9 @@ const PARTNERSHIP_TYPES = new Set([
   'lu-scsp',
   'lu-scs',
 ]);
+
+/** Relationship types that trigger transfer pricing relevance on cross-border connections */
+const TP_RELEVANT_TYPES = new Set(['services', 'management', 'licensing']);
 
 /**
  * Validate a graph of tax entities and relationships.
@@ -234,6 +238,24 @@ export function validateGraph(
           severity: 'info',
         });
       }
+    }
+  }
+
+  // Rule 8: Transfer pricing relevance on cross-border service/management/licensing
+  for (const edge of edges) {
+    if (!edge.data?.relationshipType) continue;
+    if (!TP_RELEVANT_TYPES.has(edge.data.relationshipType)) continue;
+
+    const sourceNode = nodes.find((n) => n.id === edge.source);
+    const targetNode = nodes.find((n) => n.id === edge.target);
+    if (!sourceNode || !targetNode) continue;
+
+    if (sourceNode.data.jurisdiction !== targetNode.data.jurisdiction) {
+      warnings.push({
+        nodeId: edge.source,
+        message: `Cross-border ${edge.data.relationshipType} connection may require transfer pricing documentation`,
+        severity: 'info',
+      });
     }
   }
 

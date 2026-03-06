@@ -30,6 +30,17 @@ const baseRelationshipSchema = z.object({
   notes: z.string().max(2000).optional().default(''),
   pathOffset: z.number().optional(),
   pathStyle: z.enum(['smoothstep', 'straight']).optional(),
+
+  // Cross-border fields
+  withholdingTaxRate: z.number().min(0).max(100).optional(),
+  paymentType: z.enum([
+    'dividend', 'interest', 'royalty',
+    'service-fee', 'management-fee', 'license-fee',
+  ]).optional(),
+  treatyApplies: z.boolean().optional(),
+  treatyName: z.string().max(200).optional().or(z.literal('')),
+  currencyCode: z.string().min(3).max(3).optional().or(z.literal('')),
+  transferPricingRelevant: z.boolean().optional(),
 });
 
 /** Equity (ownership/shareholding) relationship schema */
