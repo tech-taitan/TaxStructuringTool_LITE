@@ -5,15 +5,16 @@
 See: .planning/PROJECT.md (updated 2026-03-06)
 
 **Core value:** Tax lawyers can draw a structure and instantly understand its tax implications
-**Current focus:** Between milestones — v1.0 + v1.1 shipped, next milestone TBD
+**Current focus:** Milestone v2.0 -- Multi-Jurisdiction -- Defining requirements
 
 ## Current Position
 
-Milestone: v1.1 Mobile Experience -- ARCHIVED (shipped 2026-03-06)
-Status: All milestones complete, ready for `/gsd:new-milestone`
-Last activity: 2026-03-06 -- Archived v1.1 milestone
+Phase: Not started (defining requirements)
+Plan: —
+Status: Defining requirements
+Last activity: 2026-03-06 — Milestone v2.0 started
 
-Progress: v1.0 (17/17 plans) + v1.1 (10/10 plans) = 27 plans shipped
+Progress: v1.0 (17/17 plans) + v1.1 (10/10 plans) = 27 plans shipped | v2.0: 0%
 
 ## Performance Metrics
 
@@ -107,5 +108,5 @@ None.
 ## Session Continuity
 
 Last session: 2026-03-06
-Stopped at: Archived v1.1 milestone — ready for next milestone
+Stopped at: Starting v2.0 Multi-Jurisdiction milestone — research phase
 Resume file: None
