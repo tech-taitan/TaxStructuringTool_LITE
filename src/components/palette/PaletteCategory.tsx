@@ -18,6 +18,7 @@ interface PaletteCategoryProps {
   icon: React.ReactNode;
   items: EntityTypeConfig[];
   defaultOpen?: boolean;
+  showFlag?: boolean;
 }
 
 export default function PaletteCategory({
@@ -25,6 +26,7 @@ export default function PaletteCategory({
   icon,
   items,
   defaultOpen = false,
+  showFlag,
 }: PaletteCategoryProps) {
   const [isOpen, setIsOpen] = useState(defaultOpen);
 
@@ -53,7 +55,7 @@ export default function PaletteCategory({
       >
         <div className="pb-1 pl-2">
           {items.map((item) => (
-            <PaletteItem key={item.id} config={item} />
+            <PaletteItem key={item.id} config={item} showFlag={showFlag} />
           ))}
         </div>
       </div>

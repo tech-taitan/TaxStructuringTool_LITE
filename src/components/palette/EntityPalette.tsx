@@ -75,17 +75,28 @@ export default function EntityPalette() {
     setSelectedPaletteJurisdiction(canvasJurisdiction);
   }, [canvasJurisdiction, setSelectedPaletteJurisdiction]);
 
-  // Get items per category, filtered by search
+  // Whether search is active (used to dim tabs and show flags)
+  const isSearchActive = debouncedQuery.trim().length > 0;
+
+  // Get items per category, filtered by search or jurisdiction tab
   const categoriesWithItems = useMemo(() => {
     const query = debouncedQuery.toLowerCase().trim();
 
-    return CATEGORY_CONFIG.map((cat) => {
-      let items = getEntitiesByCategory(selectedPaletteJurisdiction, cat.category);
-      if (query) {
-        items = items.filter((item) =>
-          item.displayName.toLowerCase().includes(query)
+    if (query) {
+      // Cross-jurisdiction search: search ALL entities, group by category
+      return CATEGORY_CONFIG.map((cat) => {
+        const allItems = Object.values(ENTITY_REGISTRY).filter(
+          (e) => e.category === cat.category &&
+                 (e.displayName.toLowerCase().includes(query) ||
+                  e.shortName.toLowerCase().includes(query))
         );
-      }
+        return { ...cat, items: allItems };
+      });
+    }
+
+    // No search: filter by selected jurisdiction tab
+    return CATEGORY_CONFIG.map((cat) => {
+      const items = getEntitiesByCategory(selectedPaletteJurisdiction, cat.category);
       return { ...cat, items };
     });
   }, [debouncedQuery, selectedPaletteJurisdiction]);
@@ -144,6 +155,7 @@ export default function EntityPalette() {
           <JurisdictionTabBar
             selected={selectedPaletteJurisdiction}
             onSelect={setSelectedPaletteJurisdiction}
+            disabled={isSearchActive}
           />
           <PaletteSearch value={paletteSearchQuery} onChange={setPaletteSearch} />
           <div className="flex-1 overflow-y-auto">
@@ -156,6 +168,7 @@ export default function EntityPalette() {
                   icon={CatIcon ? <CatIcon className="w-4 h-4" /> : null}
                   items={cat.items}
                   defaultOpen={false}
+                  showFlag={isSearchActive}
                 />
               );
             })}

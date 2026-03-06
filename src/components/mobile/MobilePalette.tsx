@@ -9,13 +9,14 @@
  * new entity.
  */
 
-import { useCallback } from 'react';
+import { useCallback, useState, useEffect, useMemo } from 'react';
 import { useReactFlow } from '@xyflow/react';
 import { nanoid } from 'nanoid';
 import { BottomSheet } from '@/components/mobile/BottomSheet';
 import { useUIStore } from '@/stores/ui-store';
 import { useGraphStore } from '@/stores/graph-store';
-import { CATEGORY_CONFIG, getEntitiesByCategory, getEntityConfig } from '@/lib/entity-registry';
+import { CATEGORY_CONFIG, ENTITY_REGISTRY, getEntitiesByCategory, getEntityConfig } from '@/lib/entity-registry';
+import PaletteSearch from '@/components/palette/PaletteSearch';
 import { JURISDICTIONS, type Jurisdiction } from '@/models/jurisdiction';
 import { PALETTE_ICONS } from '@/lib/palette-icons';
 import { JurisdictionTabBar } from '@/components/palette/JurisdictionTabBar';
@@ -32,6 +33,41 @@ export function MobilePalette() {
   const setSelectedPaletteJurisdiction = useUIStore((s) => s.setSelectedPaletteJurisdiction);
   const addNode = useGraphStore((s) => s.addNode);
   const { screenToFlowPosition, getNodes } = useReactFlow();
+
+  // Local search state (not shared with desktop -- clears when sheet closes)
+  const [searchQuery, setSearchQuery] = useState('');
+  const [debouncedQuery, setDebouncedQuery] = useState('');
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setDebouncedQuery(searchQuery);
+    }, 150);
+    return () => clearTimeout(timer);
+  }, [searchQuery]);
+
+  const isSearchActive = debouncedQuery.trim().length > 0;
+
+  const categoriesWithItems = useMemo(() => {
+    const query = debouncedQuery.toLowerCase().trim();
+
+    if (query) {
+      // Cross-jurisdiction search: search ALL entities, group by category
+      return CATEGORY_CONFIG.map((cat) => {
+        const allItems = Object.values(ENTITY_REGISTRY).filter(
+          (e) => e.category === cat.category &&
+                 (e.displayName.toLowerCase().includes(query) ||
+                  e.shortName.toLowerCase().includes(query))
+        );
+        return { ...cat, items: allItems };
+      });
+    }
+
+    // No search: filter by selected jurisdiction tab
+    return CATEGORY_CONFIG.map((cat) => {
+      const items = getEntitiesByCategory(selectedPaletteJurisdiction, cat.category);
+      return { ...cat, items };
+    });
+  }, [debouncedQuery, selectedPaletteJurisdiction]);
 
   const handleSelect = useCallback(
     (entityTypeId: string) => {
@@ -92,7 +128,10 @@ export function MobilePalette() {
   return (
     <BottomSheet
       isOpen={isOpen}
-      onClose={() => setOpen(false)}
+      onClose={() => {
+        setOpen(false);
+        setSearchQuery('');
+      }}
       initialSnap="half"
       snapPoints={['collapsed', 'half', 'full']}
     >
@@ -102,11 +141,12 @@ export function MobilePalette() {
       <JurisdictionTabBar
         selected={selectedPaletteJurisdiction}
         onSelect={setSelectedPaletteJurisdiction}
+        disabled={isSearchActive}
       />
+      <PaletteSearch value={searchQuery} onChange={setSearchQuery} />
       <div className="safe-area-bottom">
-        {CATEGORY_CONFIG.map((cat) => {
-          const items = getEntitiesByCategory(selectedPaletteJurisdiction, cat.category);
-          if (items.length === 0) return null;
+        {categoriesWithItems.map((cat) => {
+          if (cat.items.length === 0) return null;
           const CatIcon = PALETTE_ICONS[cat.iconName];
           return (
             <div key={cat.category}>
@@ -116,7 +156,7 @@ export function MobilePalette() {
                 {cat.label}
               </div>
               {/* Entity rows */}
-              {items.map((item) => {
+              {cat.items.map((item) => {
                 const Icon = PALETTE_ICONS[item.icon];
                 return (
                   <button
@@ -129,6 +169,11 @@ export function MobilePalette() {
                       style={{ backgroundColor: item.color }}
                     />
                     {Icon && <Icon className="w-5 h-5 flex-shrink-0 text-gray-600" />}
+                    {isSearchActive && (
+                      <span className="text-xs flex-shrink-0">
+                        {JURISDICTIONS[item.jurisdiction as Jurisdiction]?.flag}
+                      </span>
+                    )}
                     <span className="text-sm text-gray-700">{item.displayName}</span>
                   </button>
                 );
@@ -136,6 +181,11 @@ export function MobilePalette() {
             </div>
           );
         })}
+        {isSearchActive && categoriesWithItems.every((cat) => cat.items.length === 0) && (
+          <div className="px-4 py-8 text-sm text-gray-400 text-center">
+            No entities match &ldquo;{debouncedQuery}&rdquo;
+          </div>
+        )}
       </div>
     </BottomSheet>
   );
