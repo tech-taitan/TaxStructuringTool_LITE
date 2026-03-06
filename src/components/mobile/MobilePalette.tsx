@@ -16,6 +16,7 @@ import { BottomSheet } from '@/components/mobile/BottomSheet';
 import { useUIStore } from '@/stores/ui-store';
 import { useGraphStore } from '@/stores/graph-store';
 import { CATEGORY_CONFIG, getEntitiesByCategory, getEntityConfig } from '@/lib/entity-registry';
+import { JURISDICTIONS, type Jurisdiction } from '@/models/jurisdiction';
 import { PALETTE_ICONS } from '@/lib/palette-icons';
 import { resolveOverlap } from '@/lib/utils/overlap';
 import { GRID_SIZE, NODE_WIDTH, NODE_HEIGHT, CANVAS_BOUNDS } from '@/lib/constants';
@@ -62,7 +63,7 @@ export function MobilePalette() {
           entityType: entityTypeId,
           name: `New ${config.shortName}`,
           jurisdiction: canvasJurisdiction,
-          jurisdictionFlag: canvasJurisdiction === 'AU' ? '\u{1F1E6}\u{1F1FA}' : '',
+          jurisdictionFlag: JURISDICTIONS[canvasJurisdiction as Jurisdiction]?.flag ?? '',
           registration: {},
           taxStatus: {},
           notes: '',
@@ -98,7 +99,7 @@ export function MobilePalette() {
       </div>
       <div className="safe-area-bottom">
         {CATEGORY_CONFIG.map((cat) => {
-          const items = getEntitiesByCategory('AU', cat.category);
+          const items = getEntitiesByCategory(canvasJurisdiction, cat.category);
           if (items.length === 0) return null;
           const CatIcon = PALETTE_ICONS[cat.iconName];
           return (

@@ -18,6 +18,7 @@ import {
   PanelLeft,
 } from 'lucide-react';
 import { useUIStore } from '@/stores/ui-store';
+import { useGraphStore } from '@/stores/graph-store';
 import { getEntitiesByCategory, CATEGORY_CONFIG } from '@/lib/entity-registry';
 import { ENTITY_REGISTRY } from '@/lib/entity-registry';
 import { PALETTE_ICONS } from '@/lib/palette-icons';
@@ -54,6 +55,7 @@ export default function EntityPalette() {
   const paletteSearchQuery = useUIStore((s) => s.paletteSearchQuery);
   const togglePalette = useUIStore((s) => s.togglePalette);
   const setPaletteSearch = useUIStore((s) => s.setPaletteSearch);
+  const canvasJurisdiction = useGraphStore((s) => s.canvasJurisdiction);
 
   // Debounced search query (150ms)
   const [debouncedQuery, setDebouncedQuery] = useState(paletteSearchQuery);
@@ -70,7 +72,7 @@ export default function EntityPalette() {
     const query = debouncedQuery.toLowerCase().trim();
 
     return CATEGORY_CONFIG.map((cat) => {
-      let items = getEntitiesByCategory('AU', cat.category);
+      let items = getEntitiesByCategory(canvasJurisdiction, cat.category);
       if (query) {
         items = items.filter((item) =>
           item.displayName.toLowerCase().includes(query)
@@ -78,7 +80,7 @@ export default function EntityPalette() {
       }
       return { ...cat, items };
     });
-  }, [debouncedQuery]);
+  }, [debouncedQuery, canvasJurisdiction]);
 
   return (
     <aside

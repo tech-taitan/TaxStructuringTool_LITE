@@ -60,6 +60,7 @@ import {
 } from '@/lib/constants';
 import { getEntityConfig } from '@/lib/entity-registry';
 import { resolveOverlap } from '@/lib/utils/overlap';
+import { JURISDICTIONS, type Jurisdiction } from '@/models/jurisdiction';
 import type { TaxNode, TaxEdge } from '@/models/graph';
 import type { RelationshipType } from '@/models/relationships';
 import { getDefaultRelationshipData } from '@/lib/validation/relationship-schemas';
@@ -222,7 +223,7 @@ export default function Canvas() {
           entityType: entityTypeId,
           name: `New ${config.shortName}`,
           jurisdiction: canvasJurisdiction,
-          jurisdictionFlag: canvasJurisdiction === 'AU' ? '\u{1F1E6}\u{1F1FA}' : '',
+          jurisdictionFlag: JURISDICTIONS[canvasJurisdiction as Jurisdiction]?.flag ?? '',
           registration: {},
           taxStatus: {},
           notes: '',
@@ -367,7 +368,7 @@ export default function Canvas() {
           entityType: 'au-pty-ltd',
           name: 'New Entity',
           jurisdiction: canvasJurisdiction,
-          jurisdictionFlag: canvasJurisdiction === 'AU' ? '\u{1F1E6}\u{1F1FA}' : '',
+          jurisdictionFlag: JURISDICTIONS[canvasJurisdiction as Jurisdiction]?.flag ?? '',
           registration: {},
           taxStatus: {},
           notes: '',
