@@ -10,18 +10,18 @@ See: .planning/PROJECT.md (updated 2026-03-06)
 ## Current Position
 
 Phase: 17 of 21 (Data Model and Entity Registry)
-Plan: 0 of 2 in current phase
-Status: Ready to plan
-Last activity: 2026-03-07 — Roadmap created for v2.0 Multi-Jurisdiction (Phases 17-21)
+Plan: 1 of 2 in current phase
+Status: Executing
+Last activity: 2026-03-07 — Completed 17-01 (Type System and Entity Registry)
 
-Progress: v1.0 (17/17) + v1.1 (10/10) = 27 plans shipped | v2.0: [----------] 0% (0/10 plans)
+Progress: v1.0 (17/17) + v1.1 (10/10) = 27 plans shipped | v2.0: [#---------] 10% (1/10 plans)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 27
+- Total plans completed: 28
 - Average duration: 8 min
-- Total execution time: ~3.5 hours
+- Total execution time: ~3.6 hours
 
 **By Phase:**
 
@@ -41,9 +41,10 @@ Progress: v1.0 (17/17) + v1.1 (10/10) = 27 plans shipped | v2.0: [----------] 0%
 | 14-mobile-connection-drawing | 1/1 | 4 min | 4 min |
 | 15-hover-audit-toolbar-completion | 2/2 | 6 min | 3 min |
 | 16-performance-real-device-testing | 1/1 | 5 min | 5 min |
+| 17-data-model-entity-registry | 1/2 | 4 min | 4 min |
 
 **Recent Trend:**
-- Last 5 plans: 4 min, 4 min, 2 min, 4 min, 5 min
+- Last 5 plans: 2 min, 4 min, 5 min, 5 min, 4 min
 - Trend: Stable
 
 *Updated after each plan completion*
@@ -60,9 +61,12 @@ Recent decisions affecting current work:
 - [Roadmap v2.0]: Entity registry expanded in one phase (not split by jurisdiction) to avoid horizontal layers
 - [Roadmap v2.0]: Cross-border connection metadata and canvas visuals combined in Phase 20
 - [Roadmap v2.0]: Validation refactored from hardcoded AU Sets to registry-derived Sets in Phase 21
-- [Research]: EntityCategory type must be extended before adding non-AU entity registry entries
+- [Research]: EntityCategory type must be extended before adding non-AU entity registry entries -- DONE in 17-01
 - [Research]: Graph validator hardcodes AU entity IDs — must derive from registry before cross-border validation
 - [Research]: Zero new dependencies — all work is data model expansion and UI rendering
+- [17-01]: Unicode escape sequences for flag emojis to match existing AU pattern
+- [17-01]: New categories in logical palette order: fund after partnership, holding after fund, pension at end
+- [17-01]: CanvasLegend required auto-fix for Record<EntityCategory> after type expansion
 
 ### Pending Todos
 
@@ -70,7 +74,7 @@ None.
 
 ### Blockers/Concerns
 
-- EntityCategory type hardcoded to AU classifications — must extend first (EREG pitfall)
+- ~~EntityCategory type hardcoded to AU classifications~~ — RESOLVED in 17-01 (now 9 categories)
 - Graph validator hardcodes AU entity ID Sets — must refactor before adding jurisdiction rules (VAL pitfall)
 - Tax status fields per jurisdiction based on training data — practitioner review needed before professional use
 - Registration number format regexes need verification against official registrar documentation
@@ -78,5 +82,5 @@ None.
 ## Session Continuity
 
 Last session: 2026-03-07
-Stopped at: Roadmap created for v2.0 Multi-Jurisdiction — ready to plan Phase 17
+Stopped at: Completed 17-01-PLAN.md
 Resume file: None
