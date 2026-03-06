@@ -544,6 +544,366 @@ export const ENTITY_REGISTRY: Record<string, EntityTypeConfig> = {
       exemptionType: '501(c)(3)',
     },
   },
+
+  // ─── Hong Kong (HK) ──────────────────────────────────────────────
+
+  'hk-private-co': {
+    id: 'hk-private-co',
+    jurisdiction: 'HK',
+    category: 'company',
+    displayName: 'Private Company Limited by Shares',
+    shortName: 'Private Co',
+    description: 'A Hong Kong private company limited by shares, incorporated under the Companies Ordinance.',
+    shape: 'rectangle',
+    icon: 'building-2',
+    color: COLORS.entity.company,
+    defaultData: {
+      brn: '',
+      crNumber: '',
+    },
+  },
+
+  'hk-public-co': {
+    id: 'hk-public-co',
+    jurisdiction: 'HK',
+    category: 'company',
+    displayName: 'Public Company',
+    shortName: 'Public Co',
+    description: 'A Hong Kong public company that can offer shares to the public and list on the Stock Exchange of Hong Kong.',
+    shape: 'rectangle',
+    icon: 'building-2',
+    color: COLORS.entity.company,
+    defaultData: {
+      brn: '',
+      crNumber: '',
+    },
+  },
+
+  'hk-lp': {
+    id: 'hk-lp',
+    jurisdiction: 'HK',
+    category: 'partnership',
+    displayName: 'Limited Partnership',
+    shortName: 'LP',
+    description: 'A Hong Kong limited partnership with general and limited partners under the Limited Partnerships Ordinance.',
+    shape: 'triangle',
+    icon: 'file-signature',
+    color: COLORS.entity.partnership,
+    defaultData: {
+      brn: '',
+    },
+  },
+
+  'hk-lpf': {
+    id: 'hk-lpf',
+    jurisdiction: 'HK',
+    category: 'fund',
+    displayName: 'Limited Partnership Fund',
+    shortName: 'LPF',
+    description: 'A Hong Kong limited partnership fund registered under the Limited Partnership Fund Ordinance for investment funds.',
+    shape: 'hexagon',
+    icon: 'landmark',
+    color: COLORS.entity.fund,
+    defaultData: {
+      brn: '',
+      fundManagerName: '',
+    },
+  },
+
+  'hk-ofc': {
+    id: 'hk-ofc',
+    jurisdiction: 'HK',
+    category: 'fund',
+    displayName: 'Open-Ended Fund Company',
+    shortName: 'OFC',
+    description: 'A Hong Kong open-ended fund company authorized by the Securities and Futures Commission.',
+    shape: 'hexagon',
+    icon: 'landmark',
+    color: COLORS.entity.fund,
+    defaultData: {
+      brn: '',
+      fundManagerName: '',
+    },
+  },
+
+  'hk-individual': {
+    id: 'hk-individual',
+    jurisdiction: 'HK',
+    category: 'individual',
+    displayName: 'Individual',
+    shortName: 'Individual',
+    description: 'A Hong Kong-resident natural person subject to salaries tax and profits tax.',
+    shape: 'oval',
+    icon: 'user',
+    color: COLORS.entity.individual,
+    defaultData: {
+      hkid: '',
+    },
+  },
+
+  // ─── Singapore (SG) ──────────────────────────────────────────────
+
+  'sg-pte-ltd': {
+    id: 'sg-pte-ltd',
+    jurisdiction: 'SG',
+    category: 'company',
+    displayName: 'Private Limited Company',
+    shortName: 'Pte Ltd',
+    description: 'A Singapore private limited company incorporated under the Companies Act, the most common business structure.',
+    shape: 'rectangle',
+    icon: 'building-2',
+    color: COLORS.entity.company,
+    defaultData: {
+      uen: '',
+    },
+  },
+
+  'sg-public-co': {
+    id: 'sg-public-co',
+    jurisdiction: 'SG',
+    category: 'company',
+    displayName: 'Public Company',
+    shortName: 'Public Co',
+    description: 'A Singapore public company that can offer shares to the public and list on the Singapore Exchange.',
+    shape: 'rectangle',
+    icon: 'building-2',
+    color: COLORS.entity.company,
+    defaultData: {
+      uen: '',
+    },
+  },
+
+  'sg-lp': {
+    id: 'sg-lp',
+    jurisdiction: 'SG',
+    category: 'partnership',
+    displayName: 'Limited Partnership',
+    shortName: 'LP',
+    description: 'A Singapore limited partnership registered under the Limited Partnerships Act.',
+    shape: 'triangle',
+    icon: 'file-signature',
+    color: COLORS.entity.partnership,
+    defaultData: {
+      uen: '',
+    },
+  },
+
+  'sg-llp': {
+    id: 'sg-llp',
+    jurisdiction: 'SG',
+    category: 'partnership',
+    displayName: 'Limited Liability Partnership',
+    shortName: 'LLP',
+    description: 'A Singapore limited liability partnership registered under the Limited Liability Partnerships Act.',
+    shape: 'triangle',
+    icon: 'handshake',
+    color: COLORS.entity.partnership,
+    defaultData: {
+      uen: '',
+    },
+  },
+
+  'sg-vcc': {
+    id: 'sg-vcc',
+    jurisdiction: 'SG',
+    category: 'fund',
+    displayName: 'Variable Capital Company',
+    shortName: 'VCC',
+    description: 'A Singapore variable capital company structure for investment funds under the VCC Act.',
+    shape: 'hexagon',
+    icon: 'landmark',
+    color: COLORS.entity.fund,
+    defaultData: {
+      uen: '',
+      fundManagerName: '',
+    },
+  },
+
+  'sg-unit-trust': {
+    id: 'sg-unit-trust',
+    jurisdiction: 'SG',
+    category: 'trust',
+    displayName: 'Unit Trust',
+    shortName: 'Unit Trust',
+    description: 'A Singapore unit trust managed by a trustee for collective investment purposes.',
+    shape: 'triangle',
+    icon: 'shield',
+    color: COLORS.entity.trust,
+    defaultData: {
+      uen: '',
+      trusteeName: '',
+    },
+  },
+
+  'sg-individual': {
+    id: 'sg-individual',
+    jurisdiction: 'SG',
+    category: 'individual',
+    displayName: 'Individual',
+    shortName: 'Individual',
+    description: 'A Singapore-resident natural person subject to income tax administered by IRAS.',
+    shape: 'oval',
+    icon: 'user',
+    color: COLORS.entity.individual,
+    defaultData: {
+      nric: '',
+    },
+  },
+
+  // ─── Luxembourg (LU) ─────────────────────────────────────────────
+
+  'lu-sarl': {
+    id: 'lu-sarl',
+    jurisdiction: 'LU',
+    category: 'company',
+    displayName: 'S.a r.l. (Private Limited)',
+    shortName: 'Sarl',
+    description: 'A Luxembourg private limited liability company (societe a responsabilite limitee) under company law.',
+    shape: 'rectangle',
+    icon: 'building-2',
+    color: COLORS.entity.company,
+    defaultData: {
+      rcsNumber: '',
+    },
+  },
+
+  'lu-sa': {
+    id: 'lu-sa',
+    jurisdiction: 'LU',
+    category: 'company',
+    displayName: 'S.A. (Public Limited)',
+    shortName: 'SA',
+    description: 'A Luxembourg public limited company (societe anonyme) that can issue shares to the public.',
+    shape: 'rectangle',
+    icon: 'building-2',
+    color: COLORS.entity.company,
+    defaultData: {
+      rcsNumber: '',
+    },
+  },
+
+  'lu-scsp': {
+    id: 'lu-scsp',
+    jurisdiction: 'LU',
+    category: 'partnership',
+    displayName: 'SCSp (Special Limited Partnership)',
+    shortName: 'SCSp',
+    description: 'A Luxembourg special limited partnership (societe en commandite speciale) widely used for fund structures.',
+    shape: 'triangle',
+    icon: 'handshake',
+    color: COLORS.entity.partnership,
+    defaultData: {
+      rcsNumber: '',
+    },
+  },
+
+  'lu-scs': {
+    id: 'lu-scs',
+    jurisdiction: 'LU',
+    category: 'partnership',
+    displayName: 'SCS (Limited Partnership)',
+    shortName: 'SCS',
+    description: 'A Luxembourg limited partnership (societe en commandite simple) with general and limited partners.',
+    shape: 'triangle',
+    icon: 'file-signature',
+    color: COLORS.entity.partnership,
+    defaultData: {
+      rcsNumber: '',
+    },
+  },
+
+  'lu-sicav': {
+    id: 'lu-sicav',
+    jurisdiction: 'LU',
+    category: 'fund',
+    displayName: 'SICAV (Investment Fund)',
+    shortName: 'SICAV',
+    description: 'A Luxembourg open-ended investment company (SICAV) subject to CSSF supervision.',
+    shape: 'hexagon',
+    icon: 'landmark',
+    color: COLORS.entity.fund,
+    defaultData: {
+      rcsNumber: '',
+      cssfApproval: false,
+    },
+  },
+
+  'lu-sicar': {
+    id: 'lu-sicar',
+    jurisdiction: 'LU',
+    category: 'fund',
+    displayName: 'SICAR (Risk Capital Fund)',
+    shortName: 'SICAR',
+    description: 'A Luxembourg risk capital investment company (SICAR) for qualified investors in venture and private equity.',
+    shape: 'hexagon',
+    icon: 'landmark',
+    color: COLORS.entity.fund,
+    defaultData: {
+      rcsNumber: '',
+      cssfApproval: false,
+    },
+  },
+
+  'lu-sif': {
+    id: 'lu-sif',
+    jurisdiction: 'LU',
+    category: 'fund',
+    displayName: 'SIF (Specialised Investment Fund)',
+    shortName: 'SIF',
+    description: 'A Luxembourg specialised investment fund (SIF) for well-informed investors under CSSF regulation.',
+    shape: 'hexagon',
+    icon: 'landmark',
+    color: COLORS.entity.fund,
+    defaultData: {
+      rcsNumber: '',
+      cssfApproval: false,
+    },
+  },
+
+  'lu-raif': {
+    id: 'lu-raif',
+    jurisdiction: 'LU',
+    category: 'fund',
+    displayName: 'RAIF (Reserved Alternative Fund)',
+    shortName: 'RAIF',
+    description: 'A Luxembourg reserved alternative investment fund (RAIF) not directly supervised by CSSF but managed by an authorized AIFM.',
+    shape: 'hexagon',
+    icon: 'landmark',
+    color: COLORS.entity.fund,
+    defaultData: {
+      rcsNumber: '',
+    },
+  },
+
+  'lu-soparfi': {
+    id: 'lu-soparfi',
+    jurisdiction: 'LU',
+    category: 'holding',
+    displayName: 'Soparfi (Holding Company)',
+    shortName: 'Soparfi',
+    description: 'A Luxembourg financial holding company (Soparfi) used for holding participations and benefiting from the participation exemption regime.',
+    shape: 'diamond',
+    icon: 'layers',
+    color: COLORS.entity.holding,
+    defaultData: {
+      rcsNumber: '',
+    },
+  },
+
+  'lu-individual': {
+    id: 'lu-individual',
+    jurisdiction: 'LU',
+    category: 'individual',
+    displayName: 'Individual',
+    shortName: 'Individual',
+    description: 'A Luxembourg-resident natural person subject to income tax administered by the Administration des Contributions Directes.',
+    shape: 'oval',
+    icon: 'user',
+    color: COLORS.entity.individual,
+    defaultData: {
+      nationalId: '',
+    },
+  },
 };
 
 /**
