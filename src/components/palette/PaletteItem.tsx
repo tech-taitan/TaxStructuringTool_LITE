@@ -10,12 +10,14 @@
 
 import type { EntityTypeConfig } from '@/models/entities';
 import { PALETTE_ICONS } from '@/lib/palette-icons';
+import { JURISDICTIONS, type Jurisdiction } from '@/models/jurisdiction';
 
 interface PaletteItemProps {
   config: EntityTypeConfig;
+  showFlag?: boolean; // true during cross-jurisdiction search results
 }
 
-export default function PaletteItem({ config }: PaletteItemProps) {
+export default function PaletteItem({ config, showFlag }: PaletteItemProps) {
   const IconComponent = PALETTE_ICONS[config.icon];
 
   const onDragStart = (event: React.DragEvent) => {
@@ -40,6 +42,11 @@ export default function PaletteItem({ config }: PaletteItemProps) {
       />
       {IconComponent && (
         <IconComponent className="w-4 h-4 flex-shrink-0 text-gray-600" />
+      )}
+      {showFlag && (
+        <span className="text-xs flex-shrink-0" title={config.jurisdiction}>
+          {JURISDICTIONS[config.jurisdiction as Jurisdiction]?.flag}
+        </span>
       )}
       <span className="text-sm text-gray-700 truncate">{config.displayName}</span>
       {/* Hover tooltip with description */}

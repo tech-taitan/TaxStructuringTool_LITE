@@ -944,3 +944,17 @@ export function getEntityConfig(
 ): EntityTypeConfig | undefined {
   return ENTITY_REGISTRY[entityTypeId];
 }
+
+/**
+ * Search all entities across ALL jurisdictions by display name or short name.
+ * Used for cross-jurisdiction palette search (PAL-02).
+ * Returns matches from every jurisdiction, not filtered by any jurisdiction tab.
+ */
+export function searchAllEntities(query: string): EntityTypeConfig[] {
+  const q = query.toLowerCase().trim();
+  if (!q) return [];
+  return Object.values(ENTITY_REGISTRY).filter(
+    (e) => e.displayName.toLowerCase().includes(q) ||
+           e.shortName.toLowerCase().includes(q)
+  );
+}
