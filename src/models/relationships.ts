@@ -47,6 +47,20 @@ export interface TaxRelationshipData extends Record<string, unknown> {
   /** Free-form notes about the relationship */
   notes?: string;
 
+  // Cross-border fields
+  /** Withholding tax rate as percentage 0-100 */
+  withholdingTaxRate?: number;
+  /** Payment type for WHT classification */
+  paymentType?: 'dividend' | 'interest' | 'royalty' | 'service-fee' | 'management-fee' | 'license-fee';
+  /** Whether a treaty-reduced rate applies */
+  treatyApplies?: boolean;
+  /** Name of the applicable tax treaty */
+  treatyName?: string;
+  /** ISO 4217 currency code */
+  currencyCode?: string;
+  /** Transfer pricing relevance flag (auto-computed, user-overridable) */
+  transferPricingRelevant?: boolean;
+
   // Visual routing
   /** Smooth-step path offset (px) controlling edge curvature. undefined = auto. */
   pathOffset?: number;

@@ -222,8 +222,8 @@ export default function Canvas() {
         data: {
           entityType: entityTypeId,
           name: `New ${config.shortName}`,
-          jurisdiction: canvasJurisdiction,
-          jurisdictionFlag: JURISDICTIONS[canvasJurisdiction as Jurisdiction]?.flag ?? '',
+          jurisdiction: config.jurisdiction,
+          jurisdictionFlag: JURISDICTIONS[config.jurisdiction as Jurisdiction]?.flag ?? '',
           registration: {},
           taxStatus: {},
           notes: '',
@@ -244,7 +244,6 @@ export default function Canvas() {
       getNodes,
       addNode,
       setSelectedNode,
-      canvasJurisdiction,
       nodeCount,
     ]
   );
