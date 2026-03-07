@@ -14,10 +14,11 @@ import { useMemo } from 'react';
 import { useGraphStore } from '@/stores/graph-store';
 import { useUIStore } from '@/stores/ui-store';
 import { useDeviceCapabilities } from '@/hooks/useDeviceCapabilities';
-import { COLORS } from '@/lib/constants';
+import { COLORS, JURISDICTION_COLORS } from '@/lib/constants';
 import { getEntityConfig } from '@/lib/entity-registry';
 import type { EntityCategory } from '@/models/entities';
 import type { RelationshipType } from '@/models/relationships';
+import { JURISDICTIONS, type Jurisdiction } from '@/models/jurisdiction';
 
 /** Entity category display configuration */
 const CATEGORY_CONFIG: Record<EntityCategory, { label: string; shape: string }> = {
@@ -170,6 +171,17 @@ export default function CanvasLegend() {
     return false;
   }, [nodes, edges]);
 
+  // Compute unique jurisdictions present on canvas
+  const activeJurisdictions = useMemo(() => {
+    const jurisdictions = new Set<string>();
+    for (const node of nodes) {
+      if (node.data.jurisdiction) {
+        jurisdictions.add(node.data.jurisdiction);
+      }
+    }
+    return Array.from(jurisdictions).sort();
+  }, [nodes]);
+
   // Check if any non-default status is used
   const hasStatusVariants = useMemo(() => {
     return nodes.some((n) => n.data.status === 'proposed' || n.data.status === 'removed');
@@ -201,6 +213,37 @@ export default function CanvasLegend() {
                 </span>
               </div>
             ))}
+          </div>
+        </div>
+      )}
+
+      {/* Jurisdiction accents */}
+      {activeJurisdictions.length >= 2 && (
+        <div className="mb-2">
+          {activeCategories.length > 0 && (
+            <div className="border-t border-gray-100 my-2" />
+          )}
+          <div className="text-[10px] font-medium text-gray-400 uppercase mb-1">
+            Jurisdictions
+          </div>
+          <div className="space-y-1">
+            {activeJurisdictions.map((code) => {
+              const jConfig = JURISDICTIONS[code as Jurisdiction];
+              return (
+                <div key={code} className="flex items-center gap-2">
+                  <div
+                    className="w-4 h-3 rounded-sm"
+                    style={{
+                      backgroundColor: JURISDICTION_COLORS[code] ?? '#6B7280',
+                      opacity: 0.8,
+                    }}
+                  />
+                  <span className="text-xs text-gray-700">
+                    {jConfig?.flag} {jConfig?.name ?? code}
+                  </span>
+                </div>
+              );
+            })}
           </div>
         </div>
       )}
