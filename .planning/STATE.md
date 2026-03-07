@@ -10,18 +10,18 @@ See: .planning/PROJECT.md (updated 2026-03-06)
 ## Current Position
 
 Phase: 21 of 21 (Validation and Canvas Polish)
-Plan: 1 of 2 in current phase
-Status: Executing Phase 21
-Last activity: 2026-03-07 — Completed 21-01 (Jurisdiction-Specific Validation Rules)
+Plan: 2 of 2 in current phase (COMPLETE)
+Status: Phase 21 Complete -- v2.0 Multi-Jurisdiction milestone complete
+Last activity: 2026-03-07 — Completed 21-02 (Jurisdiction Visual Differentiation)
 
-Progress: v1.0 (17/17) + v1.1 (10/10) = 27 plans shipped | v2.0: [#########-] 90% (9/10 plans)
+Progress: v1.0 (17/17) + v1.1 (10/10) = 27 plans shipped | v2.0: [##########] 100% (10/10 plans)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 36
+- Total plans completed: 37
 - Average duration: 7 min
-- Total execution time: ~4.2 hours
+- Total execution time: ~4.3 hours
 
 **By Phase:**
 
@@ -45,10 +45,10 @@ Progress: v1.0 (17/17) + v1.1 (10/10) = 27 plans shipped | v2.0: [#########-] 90
 | 18-jurisdiction-palette | 2/2 | 6 min | 3 min |
 | 19-properties-field-validation | 2/2 | 7 min | 4 min |
 | 20-cross-border-connections | 2/2 | 6 min | 3 min |
-| 21-validation-canvas-polish | 1/2 | 1 min | 1 min |
+| 21-validation-canvas-polish | 2/2 | 3 min | 2 min |
 
 **Recent Trend:**
-- Last 5 plans: 3 min, 3 min, 3 min, 3 min, 1 min
+- Last 5 plans: 3 min, 3 min, 3 min, 1 min, 2 min
 - Trend: Stable
 
 *Updated after each plan completion*
@@ -93,6 +93,9 @@ Recent decisions affecting current work:
 - [20-02]: Cross-border fields preserved across relationship type changes
 - [21-01]: S_CORP_INELIGIBLE_CATEGORIES as Set constant for O(1) category lookup via entity-registry
 - [21-01]: Jurisdiction-specific rules gate on entityType literal (not jurisdiction string) to avoid false positives
+- [21-02]: Jurisdiction accent on left border only (3px) so selection highlight does not replace it
+- [21-02]: Clip-path shapes rely on flag emoji alone since CSS borders are clipped
+- [21-02]: Jurisdiction legend threshold at 2+ jurisdictions (single-jurisdiction canvases hide section)
 
 ### Pending Todos
 
@@ -108,5 +111,5 @@ None.
 ## Session Continuity
 
 Last session: 2026-03-07
-Stopped at: Completed 21-01-PLAN.md — ready for 21-02
+Stopped at: Phase 21 complete — v2.0 Multi-Jurisdiction milestone complete
 Resume file: None
