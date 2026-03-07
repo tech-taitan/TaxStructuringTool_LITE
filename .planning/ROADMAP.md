@@ -352,11 +352,11 @@ Plans:
   3. User can see a jurisdiction color legend on the canvas when entities from 2+ jurisdictions are present, showing which color accent maps to which jurisdiction
   4. User can visually distinguish which jurisdiction each entity belongs to via flag icon and jurisdiction-specific border color accent, even on a canvas with 20+ entities from mixed jurisdictions
 
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
-- [ ] 21-01: Refactor graph-validator from hardcoded AU Sets to registry-derived Sets; add jurisdiction-specific validation rules
-- [ ] 21-02: Jurisdiction color legend component and XBRD-02 border color accent on entity nodes
+- [ ] 21-01-PLAN.md -- Add jurisdiction-specific validation rules (US S Corp shareholders, SG VCC fund manager, HK LPF fund manager) with false-positive prevention
+- [ ] 21-02-PLAN.md -- Jurisdiction color constant, left-border accent on entity nodes, flag emoji display, and jurisdiction legend in CanvasLegend
 
 ## Progress
 
