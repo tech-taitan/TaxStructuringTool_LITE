@@ -2,7 +2,7 @@
 
 ## What This Is
 
-A web application for tax lawyers to visually design multi-entity tax structures on a grid canvas, automatically see the legal and transactional steps required to create those structures, and get AI-powered tax analysis at both investor and fund level. Works on desktop, tablet, and phone with full touch-friendly editing. Replaces the manual PowerPoint/Visio workflows tax professionals use today.
+A web application for tax lawyers to visually design multi-entity, multi-jurisdiction tax structures on a grid canvas, automatically see the legal and transactional steps required to create those structures, and get AI-powered tax analysis at both investor and fund level. Supports 6 jurisdictions (AU, UK, US, HK, SG, LU) with 54 entity types, cross-border connection metadata, and jurisdiction-specific validation. Works on desktop, tablet, and phone with full touch-friendly editing. Replaces the manual PowerPoint/Visio workflows tax professionals use today.
 
 ## Core Value
 
@@ -12,7 +12,7 @@ Tax lawyers can draw a structure and instantly understand its tax implications �
 
 ### Validated
 
-<!-- Shipped and confirmed valuable in v1.0 -->
+<!-- Shipped and confirmed valuable -->
 
 - ✓ Lucidchart-style grid canvas with snap-to-grid behavior — v1.0
 - ✓ Drag-and-drop entity shapes from a sidebar palette — v1.0
@@ -34,16 +34,19 @@ Tax lawyers can draw a structure and instantly understand its tax implications �
 - ✓ Tablet MiniMap and two-column layout — v1.1
 - ✓ All hover interactions touch-safe with :active feedback — v1.1
 - ✓ Viewport culling, transition suppression, safe-area insets for notch devices — v1.1
+- ✓ Multi-jurisdiction entity types: UK (9), US (11), HK (6), SG (7), LU (10) with distinct shapes, colors, flags — v2.0
+- ✓ Mixed cross-border structures on a single canvas with amber visual differentiation — v2.0
+- ✓ Jurisdiction-organized palette with 6 tabs and cross-jurisdiction search — v2.0
+- ✓ Per-jurisdiction registration fields, tax status fields, and format validation (54 Zod schemas) — v2.0
+- ✓ Cross-border connection metadata: WHT, treaty, TP flags, currency — v2.0
+- ✓ Jurisdiction-aware validation rules (11 rules) with false-positive prevention — v2.0
+- ✓ Jurisdiction color legend and left-border accent for visual navigation — v2.0
 
 ### Active
 
-<!-- v2.0 Multi-Jurisdiction — defining requirements -->
+<!-- Next milestone — defining requirements -->
 
-- Multi-jurisdiction entity types: UK, US, Hong Kong, Singapore, Luxembourg (full depth, 8-15 types each)
-- Mixed cross-border structures on a single canvas
-- Jurisdiction-organized palette (all 6 jurisdictions visible)
-- Cross-border AI analysis: treaty implications, withholding taxes, PE risk, transfer pricing flags
-- Jurisdiction-aware validation rules per entity type
+(None yet — run `/gsd:new-milestone` to define next milestone)
 
 ### Out of Scope
 
@@ -55,11 +58,11 @@ Tax lawyers can draw a structure and instantly understand its tax implications �
 
 ## Current State
 
-**Shipped:** v1.0 Core Product (2026-02-18) + v1.1 Mobile Experience (2026-03-06)
-**Source:** 11,368 LOC TypeScript across 75+ files
+**Shipped:** v1.0 Core Product (2026-02-18) + v1.1 Mobile Experience (2026-03-06) + v2.0 Multi-Jurisdiction (2026-03-08)
+**Source:** 14,218 LOC TypeScript across 80+ files
 **Stack:** Next.js 16.1.6, React 19.2.3, React Flow 12.10.0, Zustand 5.0.11, Tailwind CSS v4.1.18, Gemini 2.5 Flash
-**Approach:** Zero external dependencies for mobile — all touch primitives built with native APIs (matchMedia, rAF, touch events, visualViewport)
-**Next milestone:** v2.0 Multi-Jurisdiction — UK, US, HK, Singapore, Luxembourg entity types with cross-border AI analysis
+**Approach:** Zero external dependencies for mobile or multi-jurisdiction — all touch primitives native APIs, all entity data in a single registry
+**Entity registry:** 54 entity types across 6 jurisdictions (AU 12, UK 9, US 11, HK 6, SG 7, LU 10)
 
 ## Context
 
@@ -67,7 +70,7 @@ Tax lawyers can draw a structure and instantly understand its tax implications �
 
 **Target users:** Any tax professional doing entity structuring — Big Law tax teams, in-house tax departments at funds/PE firms/multinationals, and solo/small firm practitioners.
 
-**Jurisdiction roadmap:** Australia shipped in v1.0. v2.0 adds UK, US, Hong Kong, Singapore, and Luxembourg — each with full entity type palettes, jurisdiction-specific tax rules, and cross-border analysis. Future milestones may add additional jurisdictions.
+**Jurisdiction coverage:** 6 jurisdictions shipped (AU, UK, US, HK, SG, LU) with full entity type palettes, jurisdiction-specific property fields, cross-border connection metadata, and multi-jurisdiction validation. Future milestones may add Cayman, BVI, Ireland, Netherlands, Japan.
 
 **Australian tax context:** The tool must understand Australian tax concepts including:
 - Corporate tax rates (25% base rate entity / 30% otherwise)
@@ -79,13 +82,13 @@ Tax lawyers can draw a structure and instantly understand its tax implications �
 - Thin capitalisation rules for debt structures
 - Part IVA general anti-avoidance provisions
 
-**AI integration:** The analysis engine is model-flexible. Gemini 2.5 Flash is preferred for speed/cost, but the architecture should support swapping models. The AI receives a serialized representation of the structure (entities, connections, relationship types) and returns a structured tax analysis.
+**AI integration:** The analysis engine is model-flexible. Gemini 2.5 Flash is preferred for speed/cost, but the architecture should support swapping models. The AI receives a serialized representation of the structure (entities, connections, relationship types) and returns a structured tax analysis. Multi-jurisdiction AI analysis (cross-border treaty, WHT, PE, CFC, TP) is deferred to a future milestone.
 
 ## Constraints
 
 - **Tech stack**: Web-first — must run in modern browsers without plugins
 - **AI model**: Must support Gemini 2.5 Flash API; architecture should be model-agnostic for future flexibility
-- **Jurisdiction**: v2.0 expands to 6 jurisdictions (AU, UK, US, HK, SG, LU); entity type registry and AI prompts must be jurisdiction-extensible
+- **Jurisdiction**: 6 jurisdictions shipped (AU, UK, US, HK, SG, LU); entity type registry and AI prompts are jurisdiction-extensible
 - **Canvas**: Must feel responsive and professional — Lucidchart-quality interaction (snap to grid, smooth dragging, clean connection lines)
 
 ## Key Decisions
@@ -100,10 +103,13 @@ Tax lawyers can draw a structure and instantly understand its tax implications �
 | Share via links (not real-time collab) | Simpler v1, covers most professional workflows | — Pending (deferred) |
 | Responsive web over native app | Single codebase, no app store friction, progressive enhancement | ✓ Good — full mobile editing without native app |
 | Mobile-first v1.1 milestone | Users need mobile access for meetings/travel; biggest gap in current product | ✓ Good — 7 phases, 10 plans, 3 days |
-| Zero new dependencies for mobile | Minimize bundle size, avoid framework lock-in | ✓ Good — all primitives native APIs (~80 lines spring, ref-based BottomSheet) |
+| Zero new dependencies for mobile | Minimize bundle size, avoid framework lock-in | ✓ Good — all primitives native APIs |
 | BottomSheet as primary mobile pattern | Consistent with iOS/Android UX conventions | ✓ Good — palette, properties, context menu all use it |
-
-| All 5 jurisdictions in one milestone | Users need cross-border structures; partial jurisdiction support has limited value | — Pending |
+| All 5 jurisdictions in one milestone | Users need cross-border structures; partial jurisdiction support has limited value | ✓ Good — 54 entity types, 5 phases, 2 days |
+| Entity registry as single source of truth | One data structure drives palette, properties, validation, and canvas | ✓ Good — zero duplication across 6 jurisdictions |
+| Jurisdiction-first dispatch in UI | Switch on jurisdiction before entity type to isolate per-jurisdiction rendering | ✓ Good — zero AU regressions, clean separation |
+| Inline cross-border detection | Compare jurisdictions at each use site rather than shared hook | ✓ Good — simpler, no extra abstraction |
+| Left-border-only accent for jurisdiction | Preserves selection highlight on other 3 borders | ✓ Good — works with existing selection UX |
 
 ---
-*Last updated: 2026-03-06 after v2.0 milestone start*
+*Last updated: 2026-03-08 after v2.0 milestone completion*

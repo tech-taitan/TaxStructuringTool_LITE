@@ -2,19 +2,19 @@
 
 ## Project Reference
 
-See: .planning/PROJECT.md (updated 2026-03-06)
+See: .planning/PROJECT.md (updated 2026-03-08)
 
 **Core value:** Tax lawyers can draw a structure and instantly understand its tax implications
-**Current focus:** Phase 21 — Validation and Canvas Polish (v2.0 Multi-Jurisdiction)
+**Current focus:** Planning next milestone
 
 ## Current Position
 
-Phase: 21 of 21 (Validation and Canvas Polish)
-Plan: 2 of 2 in current phase (COMPLETE)
-Status: Phase 21 Complete -- v2.0 Multi-Jurisdiction milestone complete
-Last activity: 2026-03-08 — Completed 21-02 (Jurisdiction Visual Differentiation)
+Phase: 21 of 21 (all milestones complete)
+Plan: N/A
+Status: v2.0 Multi-Jurisdiction milestone archived
+Last activity: 2026-03-08 — Completed v2.0 milestone archival
 
-Progress: v1.0 (17/17) + v1.1 (10/10) = 27 plans shipped | v2.0: [##########] 100% (10/10 plans)
+Progress: v1.0 (17/17) + v1.1 (10/10) + v2.0 (10/10) = 37 plans shipped
 
 ## Performance Metrics
 
@@ -47,10 +47,6 @@ Progress: v1.0 (17/17) + v1.1 (10/10) = 27 plans shipped | v2.0: [##########] 10
 | 20-cross-border-connections | 2/2 | 6 min | 3 min |
 | 21-validation-canvas-polish | 2/2 | 3 min | 2 min |
 
-**Recent Trend:**
-- Last 5 plans: 3 min, 3 min, 3 min, 1 min, 2 min
-- Trend: Stable
-
 *Updated after each plan completion*
 
 ## Accumulated Context
@@ -58,44 +54,6 @@ Progress: v1.0 (17/17) + v1.1 (10/10) = 27 plans shipped | v2.0: [##########] 10
 ### Decisions
 
 Decisions are logged in PROJECT.md Key Decisions table.
-Recent decisions affecting current work:
-
-- [Roadmap v2.0]: 5 phases (17-21) derived from 25 requirements at comprehensive depth
-- [Roadmap v2.0]: AI analysis engine deferred to future milestone (not built in v2.0)
-- [Roadmap v2.0]: Entity registry expanded in one phase (not split by jurisdiction) to avoid horizontal layers
-- [Roadmap v2.0]: Cross-border connection metadata and canvas visuals combined in Phase 20
-- [Roadmap v2.0]: Validation refactored from hardcoded AU Sets to registry-derived Sets in Phase 21
-- [Research]: EntityCategory type must be extended before adding non-AU entity registry entries -- DONE in 17-01
-- [Research]: Graph validator hardcodes AU entity IDs — must derive from registry before cross-border validation
-- [Research]: Zero new dependencies — all work is data model expansion and UI rendering
-- [17-01]: Unicode escape sequences for flag emojis to match existing AU pattern
-- [17-01]: New categories in logical palette order: fund after partnership, holding after fund, pension at end
-- [17-01]: CanvasLegend required auto-fix for Record<EntityCategory> after type expansion
-- [17-02]: JURISDICTIONS registry lookup with optional chaining for safe flag resolution across all jurisdictions
-- [17-02]: canvasJurisdiction injected into EntityPalette useMemo for jurisdiction-aware palette filtering
-- [18-01]: flex-1 tab layout for 6 jurisdiction tabs fitting 256px sidebar and all mobile widths
-- [18-01]: selectedPaletteJurisdiction independent from canvasJurisdiction, synced via useEffect
-- [18-01]: MobilePalette uses config.jurisdiction for entity node data (not canvasJurisdiction)
-- [18-02]: Inline cross-jurisdiction filter in palettes rather than calling searchAllEntities (avoids second grouping step)
-- [18-02]: Mobile search uses local useState, not shared paletteSearchQuery, to avoid cross-device state confusion
-- [18-02]: showFlag prop threaded through PaletteCategory on desktop; inline flags on mobile
-- [19-01]: All new TaxEntityData fields optional to maintain backward compatibility with existing AU code
-- [19-01]: 12 reusable regex field validators extracted before schemas for DRY validation pattern
-- [19-01]: Schema map covers all 54 entity types -- getEntitySchema() never falls back to baseEntitySchema for known types
-- [19-02]: Jurisdiction-first dispatch pattern in RegistrationSection and TaxStatusSection
-- [19-02]: AU rendering moved verbatim into renderAuFields() for zero regression guarantee
-- [19-02]: US LLC disregarded and LU Soparfi handled by entityType checks under correct registry categories
-- [20-01]: onDrop uses config.jurisdiction from entity registry; onDoubleClickPane retains canvasJurisdiction for default AU shortcut
-- [20-01]: All 6 cross-border fields optional on base relationship schema so every type inherits them
-- [20-01]: TP auto-flag is info severity (advisory, not structural validation)
-- [20-02]: Cross-border detection inline in each component via jurisdiction comparison rather than shared hook
-- [20-02]: Amber double-stroke at opacity 0.3, preserving relationship type colors and dash patterns
-- [20-02]: Cross-border fields preserved across relationship type changes
-- [21-01]: S_CORP_INELIGIBLE_CATEGORIES as Set constant for O(1) category lookup via entity-registry
-- [21-01]: Jurisdiction-specific rules gate on entityType literal (not jurisdiction string) to avoid false positives
-- [21-02]: Jurisdiction accent on left border only (3px) so selection highlight does not replace it
-- [21-02]: Clip-path shapes rely on flag emoji alone since CSS borders are clipped
-- [21-02]: Jurisdiction legend threshold at 2+ jurisdictions (single-jurisdiction canvases hide section)
 
 ### Pending Todos
 
@@ -103,13 +61,12 @@ None.
 
 ### Blockers/Concerns
 
-- ~~EntityCategory type hardcoded to AU classifications~~ — RESOLVED in 17-01 (now 9 categories)
-- ~~Graph validator hardcodes AU entity ID Sets~~ — RESOLVED in 19-01 (TRUST_TYPES: 10 entries, PARTNERSHIP_TYPES: 16 entries across all jurisdictions)
 - Tax status fields per jurisdiction based on training data — practitioner review needed before professional use
 - Registration number format regexes need verification against official registrar documentation
+- Multi-jurisdiction AI analysis not yet built (deferred — AI currently only analyzes AU structures)
 
 ## Session Continuity
 
 Last session: 2026-03-08
-Stopped at: Phase 21 complete — v2.0 Multi-Jurisdiction milestone complete
+Stopped at: v2.0 milestone archived — ready for next milestone
 Resume file: None
