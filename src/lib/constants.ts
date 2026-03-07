@@ -124,3 +124,13 @@ export const COLORS = {
     pension: '#FFF7ED',
   },
 } as const;
+
+/** Jurisdiction border accent colors -- 6 visually distinct colors, one per jurisdiction */
+export const JURISDICTION_COLORS: Record<string, string> = {
+  AU: '#15803D', // green-700 -- Australian green
+  UK: '#1E40AF', // blue-800 -- British blue
+  US: '#B91C1C', // red-700 -- American red
+  HK: '#EA580C', // orange-600 -- Hong Kong orange
+  SG: '#7C3AED', // violet-600 -- Singapore purple
+  LU: '#0891B2', // cyan-600 -- Luxembourg teal
+};

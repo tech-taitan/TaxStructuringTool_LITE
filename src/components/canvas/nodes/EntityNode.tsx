@@ -15,7 +15,7 @@ import { useGraphStore } from '@/stores/graph-store';
 import { useUIStore } from '@/stores/ui-store';
 import { useDeviceCapabilities } from '@/hooks/useDeviceCapabilities';
 import { useLongPress } from '@/hooks/useLongPress';
-import { COLORS, MIN_NODE_WIDTH, MIN_NODE_HEIGHT } from '@/lib/constants';
+import { COLORS, JURISDICTION_COLORS, MIN_NODE_WIDTH, MIN_NODE_HEIGHT } from '@/lib/constants';
 import type { EntityCategory } from '@/models/entities';
 import { AlertTriangle } from 'lucide-react';
 
@@ -234,6 +234,7 @@ const EntityNode = memo(({ id, data, selected }: EntityNodeProps) => {
 
   // Build node style: clip-path shapes use drop-shadow (CSS border gets clipped), others use CSS border
   const isClipPath = CLIP_PATH_SHAPES.has(shape);
+  const jurisdictionColor = JURISDICTION_COLORS[data.jurisdiction] ?? undefined;
   const nodeStyle: React.CSSProperties = isClipPath
     ? {
         filter: `drop-shadow(0 0 ${selected ? 2 : 1}px ${borderColor})`,
@@ -245,11 +246,11 @@ const EntityNode = memo(({ id, data, selected }: EntityNodeProps) => {
         borderTopWidth: selected ? 2 : 1,
         borderRightWidth: selected ? 2 : 1,
         borderBottomWidth: selected ? 2 : 1,
-        borderLeftWidth: hasValidationWarning ? 3 : (selected ? 2 : 1),
+        borderLeftWidth: jurisdictionColor ? 3 : (hasValidationWarning ? 3 : (selected ? 2 : 1)),
         borderTopColor: borderColor,
         borderRightColor: borderColor,
         borderBottomColor: borderColor,
-        borderLeftColor: hasValidationWarning ? '#F59E0B' : borderColor,
+        borderLeftColor: jurisdictionColor ?? (hasValidationWarning ? '#F59E0B' : borderColor),
         borderStyle: status === 'proposed' ? 'dashed' : 'solid',
         background: bgColor,
         ...(status === 'removed' ? { opacity: 0.4 } : {}),
@@ -405,7 +406,9 @@ const EntityNode = memo(({ id, data, selected }: EntityNodeProps) => {
           </div>
         )}
         <div className={`text-gray-500 leading-tight ${isCompact ? 'text-[10px]' : 'text-xs'}`}>{config.shortName}</div>
-        <div className={`text-gray-400 leading-tight ${isCompact ? 'text-[9px]' : 'text-[10px]'}`}>({data.jurisdiction})</div>
+        <div className={`text-gray-400 leading-tight ${isCompact ? 'text-[9px]' : 'text-[10px]'}`}>
+          {data.jurisdictionFlag} {data.jurisdiction}
+        </div>
       </div>
 
       {/* Key metrics (optional) */}
