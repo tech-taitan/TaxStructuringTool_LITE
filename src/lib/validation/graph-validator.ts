@@ -13,9 +13,13 @@
  *   6. SMSF member limit exceeded (warning)
  *   7. Trust without beneficiary (info)
  *   8. Transfer pricing relevance on cross-border service/management/licensing (info)
+ *   9. US S Corp with ineligible shareholder type (warning)
+ *  10. SG VCC without fund manager (warning)
+ *  11. HK LPF without fund manager (warning)
  */
 
 import type { TaxNode, TaxEdge } from '@/models/graph';
+import { getEntityConfig } from '@/lib/entity-registry';
 
 /** A validation warning or error associated with a specific node */
 export interface ValidationWarning {
@@ -70,6 +74,15 @@ const PARTNERSHIP_TYPES = new Set([
 
 /** Relationship types that trigger transfer pricing relevance on cross-border connections */
 const TP_RELEVANT_TYPES = new Set(['services', 'management', 'licensing']);
+
+/** Shareholder categories ineligible for US S Corp ownership */
+const S_CORP_INELIGIBLE_CATEGORIES = new Set([
+  'company',
+  'partnership',
+  'fund',
+  'holding',
+  'vc',
+]);
 
 /**
  * Validate a graph of tax entities and relationships.
@@ -256,6 +269,70 @@ export function validateGraph(
         message: `Cross-border ${edge.data.relationshipType} connection may require transfer pricing documentation`,
         severity: 'info',
       });
+    }
+  }
+
+  // Rule 9: US S Corp with ineligible shareholder type
+  for (const node of nodes) {
+    if (node.data.entityType === 'us-s-corp') {
+      const equityEdges = edges.filter(
+        (e) => e.target === node.id && e.data?.relationshipType === 'equity'
+      );
+      for (const edge of equityEdges) {
+        const shareholder = nodes.find((n) => n.id === edge.source);
+        if (!shareholder) continue;
+        const shareholderConfig = getEntityConfig(shareholder.data.entityType);
+        if (!shareholderConfig) continue;
+
+        if (S_CORP_INELIGIBLE_CATEGORIES.has(shareholderConfig.category)) {
+          warnings.push({
+            nodeId: node.id,
+            message: `S Corp has ineligible shareholder type: ${shareholder.data.name} (${shareholderConfig.shortName})`,
+            severity: 'warning',
+          });
+        } else if (
+          shareholderConfig.category === 'individual' &&
+          shareholderConfig.jurisdiction !== 'US'
+        ) {
+          warnings.push({
+            nodeId: node.id,
+            message: `S Corp has non-US individual shareholder: ${shareholder.data.name}`,
+            severity: 'warning',
+          });
+        }
+      }
+    }
+  }
+
+  // Rule 10: SG VCC without fund manager
+  for (const node of nodes) {
+    if (node.data.entityType === 'sg-vcc') {
+      const hasManager = edges.some(
+        (e) => e.target === node.id && e.data?.relationshipType === 'management'
+      );
+      if (!hasManager) {
+        warnings.push({
+          nodeId: node.id,
+          message: 'VCC has no fund manager (management connection)',
+          severity: 'warning',
+        });
+      }
+    }
+  }
+
+  // Rule 11: HK LPF without fund manager
+  for (const node of nodes) {
+    if (node.data.entityType === 'hk-lpf') {
+      const hasManager = edges.some(
+        (e) => e.target === node.id && e.data?.relationshipType === 'management'
+      );
+      if (!hasManager) {
+        warnings.push({
+          nodeId: node.id,
+          message: 'Limited Partnership Fund has no fund manager (management connection)',
+          severity: 'warning',
+        });
+      }
     }
   }
 
