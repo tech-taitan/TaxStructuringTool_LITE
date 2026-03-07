@@ -58,7 +58,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 18: Jurisdiction Palette** - Jurisdiction tab bar in desktop and mobile palettes with cross-jurisdiction search
 - [x] **Phase 19: Properties and Field Validation** - Per-jurisdiction registration fields, tax status fields, and format validation
 - [x] **Phase 20: Cross-Border Connections** - WHT rate, treaty, transfer pricing, and currency fields on cross-border edges with visual differentiation
-- [ ] **Phase 21: Validation and Canvas Polish** - Jurisdiction-specific structural validation, cross-jurisdiction false-positive prevention, and jurisdiction legend
+- [x] **Phase 21: Validation and Canvas Polish** - Jurisdiction-specific structural validation, cross-jurisdiction false-positive prevention, and jurisdiction legend
 
 ## Phase Details
 
@@ -355,8 +355,8 @@ Plans:
 **Plans**: 2 plans
 
 Plans:
-- [ ] 21-01-PLAN.md -- Add jurisdiction-specific validation rules (US S Corp shareholders, SG VCC fund manager, HK LPF fund manager) with false-positive prevention
-- [ ] 21-02-PLAN.md -- Jurisdiction color constant, left-border accent on entity nodes, flag emoji display, and jurisdiction legend in CanvasLegend
+- [x] 21-01-PLAN.md -- Add jurisdiction-specific validation rules (US S Corp shareholders, SG VCC fund manager, HK LPF fund manager) with false-positive prevention
+- [x] 21-02-PLAN.md -- Jurisdiction color constant, left-border accent on entity nodes, flag emoji display, and jurisdiction legend in CanvasLegend
 
 ## Progress
 
@@ -388,4 +388,4 @@ Note: Phase 17 first (registry is foundation for everything). Phase 18 after 17 
 | 18. Jurisdiction Palette | v2.0 | 2/2 | Complete | 2026-03-08 |
 | 19. Properties and Field Validation | v2.0 | 2/2 | Complete | 2026-03-08 |
 | 20. Cross-Border Connections | v2.0 | 2/2 | Complete | 2026-03-08 |
-| 21. Validation and Canvas Polish | v2.0 | 0/2 | Not started | - |
+| 21. Validation and Canvas Polish | v2.0 | 2/2 | Complete | 2026-03-08 |
